@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Moxy.Api</name>
+    </assembly>
+    <members>
+        <member name="T:Moxy.Api.Controllers.V1.TestController">
+            <summary>
+            测试接口
+            </summary>
+        </member>
+        <member name="M:Moxy.Api.Controllers.V1.TestController.GetList">
+            <summary>
+            列表页请求
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Moxy.Api.Controllers.V1.TestController.GetDetail">
+            <summary>
+            详情页请求
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Moxy.Api.Controllers.V1.TestController.Post(System.String)">
+            <summary>
+            修改接口
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="T:Moxy.Api.Controllers.V2.TestController">
+            <summary>
+            测试接口V2
+            </summary>
+        </member>
+        <member name="M:Moxy.Api.Controllers.V2.TestController.GetList">
+            <summary>
+            列表页请求
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Moxy.Api.Controllers.V2.TestController.GetDetail">
+            <summary>
+            详情页请求
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Moxy.Api.Startup.CURRENT_SWAGGER_OPTIONS">
+            <summary>
+            项目接口文档配置
+            </summary>
+        </member>
+    </members>
+</doc>

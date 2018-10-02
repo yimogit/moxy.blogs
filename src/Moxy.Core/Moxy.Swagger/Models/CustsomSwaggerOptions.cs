@@ -29,6 +29,14 @@ namespace Moxy.Swagger
         /// </summary>
         public string RoutePrefix { get; set; } = "swagger";
         /// <summary>
+        /// 使用自定义首页
+        /// </summary>
+        public bool UseCustomIndex { get; set; }
+        /// <summary>
+        /// 控制器标签
+        /// </summary>
+        public List<Tag> ControllerTags { get; set; }
+        /// <summary>
         /// UseSwagger Hook
         /// </summary>
         public Action<SwaggerOptions> UseSwaggerAction { get; set; }

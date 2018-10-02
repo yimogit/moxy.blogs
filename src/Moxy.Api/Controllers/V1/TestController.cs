@@ -23,7 +23,7 @@ namespace Moxy.Api.Controllers.V1
         [Route("list")]
         public IActionResult GetList()
         {
-
+ 
             return Ok(new { version = "list-v1" });
         }
         /// <summary>

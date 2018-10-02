@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Moxy.Swagger.Filters;
 using Moxy.Swagger.Interface;
+using Moxy.Swagger.Models;
 using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
@@ -15,6 +16,7 @@ namespace Moxy.Swagger.Builder
         {
             return AddCustomSwagger(services, new CustsomSwaggerOptions());
         }
+
         public static IServiceCollection AddCustomSwagger(this IServiceCollection services, CustsomSwaggerOptions options)
         {
             services.AddSwaggerGen(c =>
@@ -24,23 +26,24 @@ namespace Moxy.Swagger.Builder
                 {
                     c.SwaggerDoc(version, new Info { Title = options.ProjectName, Version = version });
                 }
-                //还是应该放到外面去定义，不应该有耦合的
-                c.OperationFilter<AssignOperationVendorFilter>();
+                if (options.ControllerTags != null)
+                {
+                    c.DocumentFilter<TagDescriptionsDocumentFilter>();
+                }
+                options.AddSwaggerGenAction?.Invoke(c);
 
-                if (options.AddSwaggerGenAction == null) return;
-                options.AddSwaggerGenAction(c);
             });
-            ConfigureCustomSwagger(services, options);
+            CustomSwaggerGlobalConfig.CURRENT_SWAGGER_TAGS = options.ControllerTags;
             return services;
         }
         public static void ConfigureCustomSwagger(this IServiceCollection services, CustsomSwaggerOptions options)
         {
-            services.AddMvc(c =>
-            {
-                c.Conventions.Add(new ApiExplorerGroupPerVersionConvention());
-            });
-            services.AddMvcCore()
-                .AddApiExplorer();
+            //services.AddMvc(c =>
+            //{
+            //    c.Conventions.Add(new ApiExplorerGroupPerVersionConvention());
+            //});
+            //services.AddMvcCore()
+            //    .AddApiExplorer();
         }
     }
 }

@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
+using Swashbuckle.AspNetCore.SwaggerUI;
+using System.IO;
 
 namespace Moxy.Swagger.Builder
 {
@@ -25,15 +28,27 @@ namespace Moxy.Swagger.Builder
                 if (options.ApiVersions == null) return;
                 c.RoutePrefix = options.RoutePrefix;
                 c.DocumentTitle = options.ProjectName;
+                if (options.UseCustomIndex)
+                {
+                    c.UseCustomSwaggerIndex();
+                }
                 foreach (var item in options.ApiVersions)
                 {
                     c.SwaggerEndpoint($"/swagger/{item}/swagger.json", $"{options.ProjectName} {item}");
                 }
-                if (options.UseSwaggerUIAction == null) return;
-                options.UseSwaggerUIAction(c);
+                options.UseSwaggerUIAction?.Invoke(c);
             });
 
             return app;
+        }
+        /// <summary>
+        /// 使用自定义首页
+        /// </summary>
+        /// <returns></returns>
+        public static void UseCustomSwaggerIndex(this SwaggerUIOptions c)
+        {
+            c.IndexStream = () => typeof(CustsomSwaggerOptions).GetTypeInfo().Assembly
+                          .GetManifestResourceStream("Moxy.Swagger.index.html");
         }
     }
 }
