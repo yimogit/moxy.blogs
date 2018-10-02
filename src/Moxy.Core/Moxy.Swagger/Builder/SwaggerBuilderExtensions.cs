@@ -34,7 +34,7 @@ namespace Moxy.Swagger.Builder
                 }
                 foreach (var item in options.ApiVersions)
                 {
-                    c.SwaggerEndpoint($"/swagger/{item}/swagger.json", $"{options.ProjectName} {item}");
+                    c.SwaggerEndpoint($"/swagger/{item}/swagger.json", $"{item}");
                 }
                 options.UseSwaggerUIAction?.Invoke(c);
             });
