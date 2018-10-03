@@ -5,6 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Interface\**" />
+    <EmbeddedResource Remove="Interface\**" />
+    <None Remove="Interface\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Filters\TagDescriptionsDocumentFilter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="index.html" />
   </ItemGroup>
 

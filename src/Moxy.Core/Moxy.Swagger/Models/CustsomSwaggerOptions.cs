@@ -23,7 +23,7 @@ namespace Moxy.Swagger
         /// <summary>
         /// 接口文档显示版本
         /// </summary>
-        public string[] ApiVersions { get; set; } = new string[] { "v1" };
+        public string[] ApiVersions { get; set; }
         /// <summary>
         /// 接口文档访问路由前缀
         /// </summary>
@@ -32,10 +32,6 @@ namespace Moxy.Swagger
         /// 使用自定义首页
         /// </summary>
         public bool UseCustomIndex { get; set; }
-        /// <summary>
-        /// 控制器标签
-        /// </summary>
-        public List<Tag> ControllerTags { get; set; }
         /// <summary>
         /// UseSwagger Hook
         /// </summary>

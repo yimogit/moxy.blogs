@@ -24,7 +24,7 @@ namespace Moxy.Swagger.Filters
 
             operation.Parameters = operation.Parameters ?? new List<IParameter>();
 
-            operation.Parameters.Insert(0, new NonBodyParameter() { Name = "X-Token", In = "header", Description = "身份验证票据", Required = false, Type = "string" });
+            //operation.Parameters.Insert(0, new NonBodyParameter() { Name = "X-Token", In = "header", Description = "身份验证票据", Required = false, Type = "string" });
 
         }
     }

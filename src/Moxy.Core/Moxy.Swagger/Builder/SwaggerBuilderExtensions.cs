@@ -32,7 +32,6 @@ namespace Moxy.Swagger.Builder
                 {
                     c.UseCustomSwaggerIndex();
                 }
-                
                 foreach (var item in options.ApiVersions)
                 {
                     c.SwaggerEndpoint($"/swagger/{item}/swagger.json", $"{item}");
