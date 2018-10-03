@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <None Remove="index.html" />
+    <None Remove="login.html" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,5 +27,6 @@
 
   <ItemGroup>
     <EmbeddedResource Include="index.html" />
+    <EmbeddedResource Include="login.html" />
   </ItemGroup>
 </Project>

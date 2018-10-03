@@ -1,4 +1,5 @@
-﻿using Swashbuckle.AspNetCore.Swagger;
+﻿using Moxy.Swagger.Utils;
+using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
@@ -33,6 +34,10 @@ namespace Moxy.Swagger
         /// </summary>
         public bool UseCustomIndex { get; set; }
         /// <summary>
+        /// swagger login账号,未指定则不启用
+        /// </summary>
+        public List<CustomSwaggerAuth> SwaggerAuthList;
+        /// <summary>
         /// UseSwagger Hook
         /// </summary>
         public Action<SwaggerOptions> UseSwaggerAction { get; set; }
@@ -44,5 +49,23 @@ namespace Moxy.Swagger
         /// AddSwaggerGen Hook
         /// </summary>
         public Action<SwaggerGenOptions> AddSwaggerGenAction { get; set; }
+    }
+    public class CustomSwaggerAuth
+    {
+        public CustomSwaggerAuth() { }
+        public CustomSwaggerAuth(string userName,string userPwd)
+        {
+            UserName = userName;
+            UserPwd = userPwd;
+        }
+        public string UserName { get; set; }
+        public string UserPwd { get; set; }
+        public string AuthStr
+        {
+            get
+            {
+                return SecurityHelper.HMACSHA256(UserName + UserPwd);
+            }
+        }
     }
 }

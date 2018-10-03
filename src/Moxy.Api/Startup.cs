@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
@@ -60,7 +61,6 @@ namespace Moxy.Api
             CURRENT_SWAGGER_OPTIONS.ApiVersions = provider.ApiVersionDescriptions.Select(s => s.GroupName).ToArray();
             app.UseCustomSwagger(CURRENT_SWAGGER_OPTIONS);
             //app.UseStaticFiles();
-
             app.UseMvc();
         }
 
@@ -73,6 +73,10 @@ namespace Moxy.Api
             //ApiVersions = new string[] { "v1", "v2" },
             UseCustomIndex = true,
             RoutePrefix = "swagger",
+            SwaggerAuthList = new List<CustomSwaggerAuth>()
+            {
+                new CustomSwaggerAuth("yimo","123456")
+            },
             AddSwaggerGenAction = c =>
             {
                 c.OperationFilter<AssignOperationVendorFilter>();
@@ -86,7 +90,6 @@ namespace Moxy.Api
             },
             UseSwaggerUIAction = c =>
             {
-
             }
         };
     }
