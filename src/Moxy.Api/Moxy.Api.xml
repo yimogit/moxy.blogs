@@ -44,6 +44,17 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Moxy.Api.Controllers.V2.TestV2_1Controller">
+            <summary>
+            测试接口V2.1
+            </summary>
+        </member>
+        <member name="M:Moxy.Api.Controllers.V2.TestV2_1Controller.GetList">
+            <summary>
+            列表页请求
+            </summary>
+            <returns></returns>
+        </member>
         <member name="F:Moxy.Api.Startup.CURRENT_SWAGGER_OPTIONS">
             <summary>
             项目接口文档配置

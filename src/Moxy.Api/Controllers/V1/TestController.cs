@@ -11,7 +11,8 @@ namespace Moxy.Api.Controllers.V1
     /// <summary>
     /// 测试接口
     /// </summary>
-    [Route("api/v1/test")]
+    [ApiVersion("1.0")]
+    [Route("api/v{api-version:apiVersion}/test")]
     [ApiController]
     public class TestController : ControllerBase
     {
@@ -23,7 +24,7 @@ namespace Moxy.Api.Controllers.V1
         [Route("list")]
         public IActionResult GetList()
         {
- 
+
             return Ok(new { version = "list-v1" });
         }
         /// <summary>

@@ -30,6 +30,7 @@ namespace Moxy.Swagger.Builder
                 {
                     c.DocumentFilter<TagDescriptionsDocumentFilter>();
                 }
+                c.OperationFilter<SwaggerDefaultValueFilter>();
                 options.AddSwaggerGenAction?.Invoke(c);
 
             });

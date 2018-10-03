@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -33,24 +34,33 @@ namespace Moxy.Api
         {
             services.AddMvc(c =>
             {
-                c.Conventions.Add(new ApiExplorerGroupPerVersionConvention());
+                //c.Conventions.Add(new ApiExplorerGroupPerVersionConvention());
 
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //版本控制
+            services.AddMvcCore().AddVersionedApiExplorer(o => o.GroupNameFormat = "'v'VVV");
+            services.AddApiVersioning(option =>
+            {
+                // allow a client to call you without specifying an api version
+                // since we haven't configured it otherwise, the assumed api version will be 1.0
+                option.AssumeDefaultVersionWhenUnspecified = true;
+                option.ReportApiVersions = false;
+            });
 
             services.AddCustomSwagger(CURRENT_SWAGGER_OPTIONS);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            CURRENT_SWAGGER_OPTIONS.ApiVersions = provider.ApiVersionDescriptions.Select(s => s.GroupName).ToArray();
             app.UseCustomSwagger(CURRENT_SWAGGER_OPTIONS);
             app.UseStaticFiles();
             app.UseMvc();
-
         }
 
         /// <summary>
@@ -63,7 +73,7 @@ namespace Moxy.Api
             UseCustomIndex = true,
             ControllerTags = new List<Tag>()
             {
-                new Tag(){ Name="Test",Description="测试接口"}
+                //new Tag(){ Name="Test",Description="测试接口"}
             },
             UseSwaggerUIAction = c =>
             {
@@ -71,10 +81,8 @@ namespace Moxy.Api
             },
             AddSwaggerGenAction = c =>
             {
-                //还是应该放到外面去定义，不应该有耦合的
                 c.OperationFilter<AssignOperationVendorFilter>();
-                //typeof(CustsomSwaggerOptions).GetTypeInfo().Assembly.GetName()
-                var filePath = System.IO.Path.Combine(System.AppContext.BaseDirectory, "Moxy.Api.xml");
+                var filePath = System.IO.Path.Combine(System.AppContext.BaseDirectory, typeof(Program).GetTypeInfo().Assembly.GetName().Name + ".xml");
                 c.IncludeXmlComments(filePath);
             }
         };

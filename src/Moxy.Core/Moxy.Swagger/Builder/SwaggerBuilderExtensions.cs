@@ -32,6 +32,7 @@ namespace Moxy.Swagger.Builder
                 {
                     c.UseCustomSwaggerIndex();
                 }
+                
                 foreach (var item in options.ApiVersions)
                 {
                     c.SwaggerEndpoint($"/swagger/{item}/swagger.json", $"{item}");
@@ -47,8 +48,8 @@ namespace Moxy.Swagger.Builder
         /// <returns></returns>
         public static void UseCustomSwaggerIndex(this SwaggerUIOptions c)
         {
-            c.IndexStream = () => typeof(CustsomSwaggerOptions).GetTypeInfo().Assembly
-                          .GetManifestResourceStream("Moxy.Swagger.index.html");
+            var currentAssembly = typeof(CustsomSwaggerOptions).GetTypeInfo().Assembly;
+            c.IndexStream = () => currentAssembly.GetManifestResourceStream($"{currentAssembly.GetName().Name}.index.html");
         }
     }
 }
