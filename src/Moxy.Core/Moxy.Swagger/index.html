@@ -98,12 +98,12 @@
             window.swagger_config = configObject;
             document.getElementsByTagName('span')[0].innerText = document.getElementsByTagName('span')[0].innerText.replace('swagger', '项目接口文档')
             document.getElementsByTagName('span')[1].innerText = document.getElementsByTagName('span')[1].innerText.replace('Select a spec', '版本选择')
-            if (swagger_config.customAuth) {
+            if (configObject.customAuth) {
                 var logOutEle = document.createElement('button');
                 logOutEle.className = "btn ";
                 logOutEle.innerText = "退出";
                 logOutEle.onclick = function () {
-                    location.href=configObject.loginUrl;
+                    location.href = configObject.logoutUrl;
                 }
                 document.getElementsByClassName('topbar-wrapper')[0].appendChild(logOutEle)
             }

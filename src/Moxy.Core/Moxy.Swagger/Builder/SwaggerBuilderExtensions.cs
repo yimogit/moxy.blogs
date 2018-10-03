@@ -21,6 +21,7 @@ namespace Moxy.Swagger.Builder
         public static IApplicationBuilder UseCustomSwagger(this IApplicationBuilder app, CustsomSwaggerOptions options)
         {
             app
+            .UseCustomSwaggerAuth(options)
             .UseSwagger(opt =>
             {
                 if (options.UseSwaggerAction == null) return;
@@ -39,57 +40,74 @@ namespace Moxy.Swagger.Builder
                 {
                     c.ConfigObject["customAuth"] = true;
                     c.ConfigObject["loginUrl"] = $"/{options.RoutePrefix}/login.html";
+                    c.ConfigObject["logoutUrl"] = $"/{options.RoutePrefix}/logout";
                 }
                 foreach (var item in options.ApiVersions)
                 {
                     c.SwaggerEndpoint($"/swagger/{item}/swagger.json", $"{item}");
                 }
                 options.UseSwaggerUIAction?.Invoke(c);
-            }).UseCustomSwaggerAuth(options);
+            });
             return app;
         }
+        private const string SWAGGER_ATUH_COOKIE = nameof(SWAGGER_ATUH_COOKIE);
         private static IApplicationBuilder UseCustomSwaggerAuth(this IApplicationBuilder app, CustsomSwaggerOptions options)
         {
             if (options.SwaggerAuthList.Count == 0)
                 return app;
+            var currentAssembly = typeof(CustsomSwaggerOptions).GetTypeInfo().Assembly;
             app.Use(async (context, next) =>
             {
-                var whiteList = new List<string>() { $"/{options.RoutePrefix}/index.html", $"/{options.RoutePrefix}/login.html" };
-                if (!whiteList.Contains(context.Request.Path.Value))
+                var _method = context.Request.Method.ToLower();
+                var _path = context.Request.Path.Value;
+                if (_path.IndexOf($"/{options.RoutePrefix}") != 0)
                 {
-                    //非swagger页面
                     await next();
                     return;
                 }
-                else if (context.Request.Path != $"/{options.RoutePrefix}/login.html" && options.SwaggerAuthList.Any(s => !string.IsNullOrEmpty(s.AuthStr) && s.AuthStr == context.Request.Cookies["swagger_auth"]))
+                else if (_path == $"/{options.RoutePrefix}/login.html")
                 {
-                    //验证身份
-                    await next();
-                    return;
-                }
-                //swagger login
-                else if (context.Request.Method.ToLower() == "post")
-                {
-                    var userModel = new CustomSwaggerAuth(context.Request.Form["userName"], context.Request.Form["userPwd"]);
-                    if (!options.SwaggerAuthList.Any(e => e.UserName == userModel.UserName && e.UserPwd == userModel.UserPwd))
+                    //登录
+                    if (_method == "get")
                     {
-                        await context.Response.WriteAsync("login error!");
+                        var stream = currentAssembly.GetManifestResourceStream($"{currentAssembly.GetName().Name}.login.html");
+                        byte[] buffer = new byte[stream.Length];
+                        stream.Read(buffer, 0, buffer.Length);
+                        context.Response.ContentType = "text/html;charset=utf-8";
+                        context.Response.StatusCode = StatusCodes.Status200OK;
+                        context.Response.Body.Write(buffer, 0, buffer.Length);
                         return;
                     }
-                    context.Response.Cookies.Append("swagger_auth_name", userModel.UserName);
-                    context.Response.Cookies.Append("swagger_auth", userModel.AuthStr);
-                    context.Response.Redirect($"/{options.RoutePrefix}");
+                    else if (_method == "post")
+                    {
+                        var userModel = new CustomSwaggerAuth(context.Request.Form["userName"], context.Request.Form["userPwd"]);
+                        if (!options.SwaggerAuthList.Any(e => e.UserName == userModel.UserName && e.UserPwd == userModel.UserPwd))
+                        {
+                            await context.Response.WriteAsync("login error!");
+                            return;
+                        }
+                        //context.Response.Cookies.Append("swagger_auth_name", userModel.UserName);
+                        context.Response.Cookies.Append(SWAGGER_ATUH_COOKIE, userModel.AuthStr);
+                        context.Response.Redirect($"/{options.RoutePrefix}");
+                        return;
+                    }
+                }
+                else if (_path == $"/{options.RoutePrefix}/logout")
+                {
+                    //退出
+                    context.Response.Cookies.Delete(SWAGGER_ATUH_COOKIE);
+                    context.Response.Redirect($"/{options.RoutePrefix}/login.html");
+                    return;
                 }
                 else
                 {
-                    var currentAssembly = typeof(CustsomSwaggerOptions).GetTypeInfo().Assembly;
-                    var stream = currentAssembly.GetManifestResourceStream($"{currentAssembly.GetName().Name}.login.html");
-                    byte[] buffer = new byte[stream.Length];
-                    stream.Read(buffer, 0, buffer.Length);
-                    context.Response.ContentType = "text/html;charset=utf-8";
-                    context.Response.StatusCode = StatusCodes.Status200OK;
-                    context.Response.Body.Write(buffer, 0, buffer.Length);
+                    if (!options.SwaggerAuthList.Any(s => !string.IsNullOrEmpty(s.AuthStr) && s.AuthStr == context.Request.Cookies[SWAGGER_ATUH_COOKIE]))
+                    {
+                        context.Response.Redirect($"/{options.RoutePrefix}/login.html");
+                        return;
+                    }
                 }
+                await next();
             });
             return app;
         }
