@@ -319,3 +319,8 @@ document.getElementsByTagName(
 
 - [官方示例](https://github.com/domaindrivendev/Swashbuckle.AspNetCore/tree/master/test/WebSites)
 - [Asp.Net Core 中使用 Swagger，你不得不踩的坑](https://www.cnblogs.com/gdsblog/p/9279814.html)
+
+## 完整 Demo 下载
+
+- [Github 预览](https://github.com/yimogit/moxy.blogs/tree/af3ef01c1bc67b530f057e7c28ab798aaf14199a)
+- [博客园下载](https://files.cnblogs.com/files/morang/Swashbuckle.AspNetCore3_Demo.zip)
