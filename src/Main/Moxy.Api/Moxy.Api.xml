@@ -15,10 +15,11 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Moxy.Api.Controllers.V1.TestController.GetDetail">
+        <member name="M:Moxy.Api.Controllers.V1.TestController.GetDetail(System.Int32)">
             <summary>
             详情页请求
             </summary>
+            <param name="page">页码</param>
             <returns></returns>
         </member>
         <member name="M:Moxy.Api.Controllers.V1.TestController.Post(System.String)">

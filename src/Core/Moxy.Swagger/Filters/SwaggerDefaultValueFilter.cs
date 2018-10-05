@@ -23,18 +23,24 @@ namespace Moxy.Swagger.Filters
             // REF: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/413
             foreach (var parameter in operation.Parameters.OfType<NonBodyParameter>())
             {
-                var description = context.ApiDescription.ParameterDescriptions.First(p => p.Name == parameter.Name);
-
+                var description = context.ApiDescription.ParameterDescriptions.FirstOrDefault(p => p.Name == parameter.Name);
+                if (description == null)
+                    return;
                 if (parameter.Description == null)
                 {
                     parameter.Description = description.ModelMetadata.Description;
                 }
 
-                if (parameter.Default == null)
+                if (description.RouteInfo != null)
                 {
-                    parameter.Default = description.RouteInfo.DefaultValue;
+                    parameter.Required |= !description.RouteInfo.IsOptional;
+                    if (parameter.Default == null)
+                        parameter.Default = description.RouteInfo.DefaultValue;
                 }
-                parameter.Required |= !description.RouteInfo.IsOptional;
+                //else
+                //{
+                //    parameter.Required = description.ModelMetadata.IsRequired;
+                //}
             }
         }
     }
