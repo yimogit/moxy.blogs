@@ -1,77 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Moxy.EntityFramework;
-using Moxy.Services.Article;
 using Moxy.Swagger;
 using Moxy.Swagger.Builder;
 using Moxy.Swagger.Filters;
-using Swashbuckle.AspNetCore.Swagger;
 
-namespace Moxy.Api
+namespace Moxy.EntityFramework.Tests
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+
+            builder.AddEnvironmentVariables();
+            Configuration = builder.Build();
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc(c =>
-            {
-                //c.Conventions.Add(new ApiExplorerGroupPerVersionConvention());
-
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            //版本控制
-            services.AddMvcCore().AddVersionedApiExplorer(o => o.GroupNameFormat = "'v'VVV");
-            services.AddApiVersioning(option =>
-            {
-                // allow a client to call you without specifying an api version
-                // since we haven't configured it otherwise, the assumed api version will be 1.0
-                option.AssumeDefaultVersionWhenUnspecified = true;
-                option.ReportApiVersions = false;
-            });
-
+        {  
+            // use in memory for testing.
             services
                 //.AddDbContext<MoxyDbContext>(opt => opt.UseMySql("server=127.0.0.1;uid=root;pwd=123456;database=moxy_blogs_db_v2"))
-                .AddDbContext<MoxyDbContext>(opt => opt.UseInMemoryDatabase("MoxyDB"));
-            services.AddTransient<IArticleService, ArticleService>();
+                .AddDbContext<MoxyDbContext>(opt => opt.UseInMemoryDatabase("MoxyDB"))
+                .AddUnitOfWork<MoxyDbContext>();
 
             services.AddCustomSwagger(CURRENT_SWAGGER_OPTIONS);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApiVersionDescriptionProvider provider)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            //自动检测存在的版本
-            CURRENT_SWAGGER_OPTIONS.ApiVersions = provider.ApiVersionDescriptions.Select(s => s.GroupName).ToArray();
             app.UseCustomSwagger(CURRENT_SWAGGER_OPTIONS);
-            //app.UseStaticFiles();
             app.UseMvc();
         }
-
         /// <summary>
         /// 项目接口文档配置
         /// </summary>

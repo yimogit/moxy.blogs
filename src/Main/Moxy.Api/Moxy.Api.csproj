@@ -6,16 +6,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>.\Moxy.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Moxy.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>.\Moxy.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Moxy.Api.xml</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Moxy.Api.xml" />
-  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
@@ -29,6 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Application\Moxy.EntityFramework\Moxy.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\Application\Moxy.Services\Moxy.Services.csproj" />
     <ProjectReference Include="..\..\Core\Moxy.Swagger\Moxy.Swagger.csproj" />
   </ItemGroup>
 

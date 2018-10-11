@@ -29,7 +29,6 @@ namespace Moxy.Swagger.Builder
             })
             .UseSwaggerUI(c =>
             {
-                if (options.ApiVersions == null) return;
                 c.RoutePrefix = options.RoutePrefix;
                 c.DocumentTitle = options.ProjectName;
                 if (options.UseCustomIndex)
@@ -42,6 +41,7 @@ namespace Moxy.Swagger.Builder
                     c.ConfigObject["loginUrl"] = $"/{options.RoutePrefix}/login.html";
                     c.ConfigObject["logoutUrl"] = $"/{options.RoutePrefix}/logout";
                 }
+                if (options.ApiVersions == null) return;// options.ApiVersions = new string[] { "v1" };
                 foreach (var item in options.ApiVersions)
                 {
                     c.SwaggerEndpoint($"/swagger/{item}/swagger.json", $"{item}");

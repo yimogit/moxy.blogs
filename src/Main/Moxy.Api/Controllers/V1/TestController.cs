@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Moxy.Services.Article;
 
 namespace Moxy.Api.Controllers.V1
 {
@@ -17,6 +18,11 @@ namespace Moxy.Api.Controllers.V1
     [ApiController]
     public class TestController : ControllerBase
     {
+        private readonly IArticleService _articleService;
+        public TestController(IArticleService articleService)
+        {
+            _articleService = articleService;
+        }
         /// <summary>
         /// 列表页请求
         /// </summary>
@@ -47,6 +53,23 @@ namespace Moxy.Api.Controllers.V1
         [HttpPost]
         public void Post([FromBody, Required] string value)
         {
+        }
+        /// <summary>
+        /// 创建文章分类
+        /// </summary>
+        /// <param name="categoryName"></param>
+        /// <param name="categoryDesc"></param>
+        /// <returns></returns>
+        [Route("create")]
+        [HttpPost]
+        public IActionResult CreateCategory(string categoryName, string categoryDesc)
+        {
+            var category = _articleService.CreateCategory(new EntityFramework.Domain.ArticleCategory()
+            {
+                CategoryName = categoryName,
+                CategoryDesc = categoryDesc
+            });
+            return Ok(category);
         }
     }
 }

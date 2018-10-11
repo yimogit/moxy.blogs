@@ -7,7 +7,7 @@ namespace Moxy.Tests
     public class BaseTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void Î»ÔËËã·û²âÊÔ()
         {
             var a = false;
             a |= true;
