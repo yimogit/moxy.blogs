@@ -12,12 +12,8 @@ namespace Moxy.Swagger.Builder
 {
     public static class CustomSwaggerServiceCollectionExtensions
     {
-        public static IServiceCollection AddCustomSwagger(this IServiceCollection services)
-        {
-            return AddCustomSwagger(services, new CustsomSwaggerOptions());
-        }
 
-        public static IServiceCollection AddCustomSwagger(this IServiceCollection services, CustsomSwaggerOptions options)
+        public static IServiceCollection AddSwaggerCustom(this IServiceCollection services, CustsomSwaggerOptions options)
         {
             services.AddSwaggerGen(c =>
              {

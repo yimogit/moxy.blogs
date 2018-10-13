@@ -55,7 +55,7 @@ namespace Moxy.Api
                 .AddDbContext<MoxyDbContext>(opt => opt.UseInMemoryDatabase("MoxyDB"));
             services.AddTransient<IArticleService, ArticleService>();
 
-            services.AddCustomSwagger(CURRENT_SWAGGER_OPTIONS);
+            services.AddSwaggerCustom(CURRENT_SWAGGER_OPTIONS);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,8 +67,12 @@ namespace Moxy.Api
             }
             //自动检测存在的版本
             CURRENT_SWAGGER_OPTIONS.ApiVersions = provider.ApiVersionDescriptions.Select(s => s.GroupName).ToArray();
-            app.UseCustomSwagger(CURRENT_SWAGGER_OPTIONS);
-            //app.UseStaticFiles();
+            //访问验证
+            CURRENT_SWAGGER_OPTIONS.SwaggerAuthList = Configuration.GetSection("SwaggerCustomAuth")
+                .GetChildren()
+                .Select(s => s.Get<CustomSwaggerAuth>()).ToList();
+            app.UseSwaggerCustom(CURRENT_SWAGGER_OPTIONS);
+
             app.UseMvc();
         }
 
@@ -78,13 +82,8 @@ namespace Moxy.Api
         private CustsomSwaggerOptions CURRENT_SWAGGER_OPTIONS = new CustsomSwaggerOptions()
         {
             ProjectName = "墨玄涯博客接口",
-            ApiVersions = new string[] { "v1" },
             UseCustomIndex = true,
             RoutePrefix = "swagger",
-            SwaggerAuthList = new List<CustomSwaggerAuth>()
-            {
-                new CustomSwaggerAuth("yimo","123456")
-            },
             AddSwaggerGenAction = c =>
             {
                 c.OperationFilter<AssignOperationVendorFilter>();

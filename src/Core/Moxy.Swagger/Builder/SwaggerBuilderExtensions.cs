@@ -14,14 +14,10 @@ namespace Moxy.Swagger.Builder
 {
     public static class SwaggerBuilderExtensions
     {
-        public static IApplicationBuilder UseCustomSwagger(this IApplicationBuilder app)
-        {
-            return UseCustomSwagger(app, new CustsomSwaggerOptions());
-        }
-        public static IApplicationBuilder UseCustomSwagger(this IApplicationBuilder app, CustsomSwaggerOptions options)
+        public static IApplicationBuilder UseSwaggerCustom(this IApplicationBuilder app, CustsomSwaggerOptions options)
         {
             app
-            .UseCustomSwaggerAuth(options)
+            .UseSwaggerCustomAuth(options)
             .UseSwagger(opt =>
             {
                 if (options.UseSwaggerAction == null) return;
@@ -51,9 +47,9 @@ namespace Moxy.Swagger.Builder
             return app;
         }
         private const string SWAGGER_ATUH_COOKIE = nameof(SWAGGER_ATUH_COOKIE);
-        private static IApplicationBuilder UseCustomSwaggerAuth(this IApplicationBuilder app, CustsomSwaggerOptions options)
+        private static IApplicationBuilder UseSwaggerCustomAuth(this IApplicationBuilder app, CustsomSwaggerOptions options)
         {
-            if (options.SwaggerAuthList.Count == 0)
+            if (options?.SwaggerAuthList.Count == 0)
                 return app;
             var currentAssembly = typeof(CustsomSwaggerOptions).GetTypeInfo().Assembly;
             app.Use(async (context, next) =>
