@@ -51,7 +51,7 @@ namespace Moxy.Api
             });
 
             services
-                //.AddDbContext<MoxyDbContext>(opt => opt.UseMySql("server=127.0.0.1;uid=root;pwd=123456;database=moxy_blogs_db_v2"))
+                //.AddDbContext<MoxyDbContext>(opt => opt.UseMySql(Configuration.GetConnectionString("Default")))
                 .AddDbContext<MoxyDbContext>(opt => opt.UseInMemoryDatabase("MoxyDB"));
             services.AddTransient<IArticleService, ArticleService>();
 

@@ -4,7 +4,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Moxy.Domain\Moxy.Domain.csproj" />
     <ProjectReference Include="..\Moxy.EntityFramework\Moxy.EntityFramework.csproj" />
   </ItemGroup>
 

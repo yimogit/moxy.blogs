@@ -48,7 +48,7 @@ namespace Moxy.EntityFramework.Tests.Controllers
                 e.Id,
                 e.CategoryName,
                 e.CategoryDesc
-            }, pageIndex: pageIndex, pageSize: pageSize);
+            }, pageIndex: pageIndex - 1, pageSize: pageSize);
             return Ok(result);
         }
         /// <summary>

@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moxy.Swagger", "src\Core\Mo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moxy.Tests", "src\Tests\Moxy.Tests\Moxy.Tests.csproj", "{52466A2E-EEE3-478F-AED5-3D2220CB2F28}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moxy.Domain", "src\Application\Moxy.Domain\Moxy.Domain.csproj", "{02562D8B-3852-4023-BE2D-04DA8FC57FA5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moxy.Api", "src\Main\Moxy.Api\Moxy.Api.csproj", "{D841908D-B618-46B7-A359-A9571208CC3E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moxy.EntityFramework", "src\Application\Moxy.EntityFramework\Moxy.EntityFramework.csproj", "{1DBF47E1-5BA3-4651-BE48-D7A84C1DAB82}"
@@ -25,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moxy.Services", "src\Applic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moxy.Core", "src\Application\Moxy.Core\Moxy.Core.csproj", "{D6E65314-0F78-49E9-AC2D-E43B7D2DF772}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moxy.EntityFramework.Tests", "src\Tests\Moxy.EntityFramework.Tests\Moxy.EntityFramework.Tests.csproj", "{1DCE1252-9D60-4EAA-8A3D-969EEA80C0B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moxy.EntityFramework.Tests", "src\Tests\Moxy.EntityFramework.Tests\Moxy.EntityFramework.Tests.csproj", "{1DCE1252-9D60-4EAA-8A3D-969EEA80C0B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,6 @@ Global
 		{52466A2E-EEE3-478F-AED5-3D2220CB2F28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52466A2E-EEE3-478F-AED5-3D2220CB2F28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52466A2E-EEE3-478F-AED5-3D2220CB2F28}.Release|Any CPU.Build.0 = Release|Any CPU
-		{02562D8B-3852-4023-BE2D-04DA8FC57FA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02562D8B-3852-4023-BE2D-04DA8FC57FA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02562D8B-3852-4023-BE2D-04DA8FC57FA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02562D8B-3852-4023-BE2D-04DA8FC57FA5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D841908D-B618-46B7-A359-A9571208CC3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D841908D-B618-46B7-A359-A9571208CC3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D841908D-B618-46B7-A359-A9571208CC3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -72,7 +66,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4371E979-F06F-4A41-AC44-106A41838498} = {D192A0BF-601E-49A8-8928-58C8E9AFE128}
 		{52466A2E-EEE3-478F-AED5-3D2220CB2F28} = {21B13DE2-C22E-4BE3-9886-AD0D22243FD1}
-		{02562D8B-3852-4023-BE2D-04DA8FC57FA5} = {E3936381-997F-49A8-B6A9-AB3F4C02ABB0}
 		{D841908D-B618-46B7-A359-A9571208CC3E} = {5405570A-1F8B-40A2-A62A-882279C81717}
 		{1DBF47E1-5BA3-4651-BE48-D7A84C1DAB82} = {E3936381-997F-49A8-B6A9-AB3F4C02ABB0}
 		{6D92FC01-AEEE-43FB-B744-7969D1B0B9AD} = {E3936381-997F-49A8-B6A9-AB3F4C02ABB0}

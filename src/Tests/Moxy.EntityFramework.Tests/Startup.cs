@@ -37,11 +37,11 @@ namespace Moxy.EntityFramework.Tests
         {  
             // use in memory for testing.
             services
-                //.AddDbContext<MoxyDbContext>(opt => opt.UseMySql("server=127.0.0.1;uid=root;pwd=123456;database=moxy_blogs_db_v2"))
-                .AddDbContext<MoxyDbContext>(opt => opt.UseInMemoryDatabase("MoxyDB"))
+                .AddDbContext<MoxyDbContext>(opt => opt.UseMySql(Configuration.GetConnectionString("Default")))
+                //.AddDbContext<MoxyDbContext>(opt => opt.UseInMemoryDatabase("MoxyDB"))
                 .AddUnitOfWork<MoxyDbContext>();
 
-            services.AddCustomSwagger(CURRENT_SWAGGER_OPTIONS);
+            services.AddSwaggerCustom(CURRENT_SWAGGER_OPTIONS);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -52,7 +52,7 @@ namespace Moxy.EntityFramework.Tests
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCustomSwagger(CURRENT_SWAGGER_OPTIONS);
+            app.UseSwaggerCustom(CURRENT_SWAGGER_OPTIONS);
             app.UseMvc();
         }
         /// <summary>

@@ -7,9 +7,9 @@ using System.Text;
 namespace Moxy.EntityFramework.Domain
 {
     [Table("article")]
-    public class Article
+    public partial class Article
     {
-        [Column("id"), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, Column("id"), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         /// <summary>
         /// 编码
@@ -37,11 +37,6 @@ namespace Moxy.EntityFramework.Domain
         [Column("tags"), MaxLength(300)]
         public string Tags { get; set; }
         /// <summary>
-        /// 分类ID
-        /// </summary>
-        [Column("category_id")]
-        public int CategoryId { get; set; }
-        /// <summary>
         /// 是否发布
         /// </summary>
         [Column("is_release")]
@@ -51,6 +46,12 @@ namespace Moxy.EntityFramework.Domain
         /// </summary>
         [Column("release_time")]
         public DateTime? ReleaseTime { get; set; }
+
+        /// <summary>
+        /// 分类
+        /// </summary>
+        [Column("category_id")]
+        public int? CategoryId { get; set; }
 
     }
 }

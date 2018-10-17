@@ -10,6 +10,9 @@ namespace Moxy.EntityFramework
     {
         public DbSet<Article> Article { get; set; }
         public DbSet<ArticleCategory> ArticleCategory { get; set; }
+        public DbSet<SysAdmin> SysAdmin { get; set; }
+        public DbSet<SysConfig> SysConfig { get; set; }
+
         public MoxyDbContext(DbContextOptions<MoxyDbContext> options)
             : base(options)
         {
@@ -20,7 +23,6 @@ namespace Moxy.EntityFramework
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             base.OnModelCreating(modelBuilder);
         }
     }

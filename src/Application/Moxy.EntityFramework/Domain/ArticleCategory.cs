@@ -7,9 +7,9 @@ using System.Text;
 namespace Moxy.EntityFramework.Domain
 {
     [Table("article_category")]
-    public class ArticleCategory
+    public partial class ArticleCategory
     {
-        [Column("id"), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key,Column("id"), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         /// <summary>
         /// 分类名称
