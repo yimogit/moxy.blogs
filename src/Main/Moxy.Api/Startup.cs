@@ -14,8 +14,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Moxy.EntityFramework;
+using Moxy.Data;
 using Moxy.Services.Article;
+using Moxy.Services.System;
 using Moxy.Swagger;
 using Moxy.Swagger.Builder;
 using Moxy.Swagger.Filters;
@@ -38,7 +39,6 @@ namespace Moxy.Api
             services.AddMvc(c =>
             {
                 //c.Conventions.Add(new ApiExplorerGroupPerVersionConvention());
-
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //版本控制
             services.AddMvcCore().AddVersionedApiExplorer(o => o.GroupNameFormat = "'v'VVV");
@@ -51,8 +51,9 @@ namespace Moxy.Api
             });
 
             services
-                //.AddDbContext<MoxyDbContext>(opt => opt.UseMySql(Configuration.GetConnectionString("Default")))
-                .AddDbContext<MoxyDbContext>(opt => opt.UseInMemoryDatabase("MoxyDB"));
+                .AddDbContext<MoxyDbContext>(opt => opt.UseMySql(Configuration.GetConnectionString("Default")));
+            //.AddDbContext<MoxyDbContext>(opt => opt.UseInMemoryDatabase("MoxyDB"));
+            services.AddTransient<ISystemService, SystemService>();
             services.AddTransient<IArticleService, ArticleService>();
 
             services.AddSwaggerCustom(CURRENT_SWAGGER_OPTIONS);
@@ -66,7 +67,7 @@ namespace Moxy.Api
                 app.UseDeveloperExceptionPage();
             }
             //自动检测存在的版本
-            CURRENT_SWAGGER_OPTIONS.ApiVersions = provider.ApiVersionDescriptions.Select(s => s.GroupName).ToArray();
+            CURRENT_SWAGGER_OPTIONS.ApiVersions = provider.ApiVersionDescriptions.Select(s => s.GroupName).ToList();
             //访问验证
             CURRENT_SWAGGER_OPTIONS.SwaggerAuthList = Configuration.GetSection("SwaggerCustomAuth")
                 .GetChildren()

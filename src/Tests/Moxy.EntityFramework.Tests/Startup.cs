@@ -34,7 +34,7 @@ namespace Moxy.EntityFramework.Tests
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {  
+        {
             // use in memory for testing.
             services
                 .AddDbContext<MoxyDbContext>(opt => opt.UseMySql(Configuration.GetConnectionString("Default")))
@@ -61,7 +61,7 @@ namespace Moxy.EntityFramework.Tests
         private CustsomSwaggerOptions CURRENT_SWAGGER_OPTIONS = new CustsomSwaggerOptions()
         {
             ProjectName = "墨玄涯博客接口",
-            ApiVersions = new string[] { "v1" },
+            ApiVersions = new List<string>() { "v1" },
             UseCustomIndex = true,
             RoutePrefix = "swagger",
             SwaggerAuthList = new List<CustomSwaggerAuth>()

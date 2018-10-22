@@ -1,4 +1,4 @@
-﻿using Moxy.EntityFramework.Domain;
+﻿using Moxy.Data.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +7,6 @@ namespace Moxy.Services.Article
 {
     public interface IArticleService
     {
-        ArticleCategory CreateCategory(ArticleCategory input);
+        CmsCategory CreateCategory(CmsCategory input);
     }
 }

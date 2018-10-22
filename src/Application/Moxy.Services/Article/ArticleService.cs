@@ -1,5 +1,5 @@
-﻿using Moxy.EntityFramework;
-using Moxy.EntityFramework.Domain;
+﻿using Moxy.Data;
+using Moxy.Data.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,9 +13,9 @@ namespace Moxy.Services.Article
         {
             _dbContext = dbContext;
         }
-        public ArticleCategory CreateCategory(ArticleCategory input)
+        public CmsCategory CreateCategory(CmsCategory input)
         {
-            _dbContext.Add<ArticleCategory>(input);
+            _dbContext.Add<CmsCategory>(input);
             _dbContext.SaveChanges();
             return input;
             //return _articleRepository.Insert(input);

@@ -1,17 +1,14 @@
-﻿using Moxy.EntityFramework.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace Moxy.EntityFramework.Domain
+namespace Moxy.Data.Domain
 {
-    [Table("article")]
-    public partial class Article : BaseEntity
+    [Table("cms_article")]
+    public partial class CmsArticle : BaseEntity<int>
     {
-        [Key, Column("id"), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
         /// <summary>
         /// 编码
         /// </summary>

@@ -11,7 +11,7 @@ namespace Moxy.Swagger
     public class CustsomSwaggerOptions
     {
         public CustsomSwaggerOptions() { }
-        public CustsomSwaggerOptions(string projectName, string[] apiVersions)
+        public CustsomSwaggerOptions(string projectName, List<string> apiVersions)
         {
             ProjectName = projectName;
             ApiVersions = apiVersions;
@@ -24,7 +24,7 @@ namespace Moxy.Swagger
         /// <summary>
         /// 接口文档显示版本
         /// </summary>
-        public string[] ApiVersions { get; set; }
+        public List<string> ApiVersions { get; set; }
         /// <summary>
         /// 接口文档访问路由前缀
         /// </summary>
