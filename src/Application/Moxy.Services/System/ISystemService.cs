@@ -13,5 +13,6 @@ namespace Moxy.Services.System
         /// <param name="input"></param>
         /// <returns></returns>
         OperateResult Login(AdminAccoutInputDto input);
+        OperateResult InitSystem();
     }
 }

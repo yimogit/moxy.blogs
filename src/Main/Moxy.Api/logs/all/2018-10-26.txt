@@ -1,0 +1,1002 @@
+================记录时间：2018-10-26 21:09:33,730 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 21:09:34,124 线程ID:[7] 日志级别：INFO  ================
+Request finished in 411.9102ms 200 
+
+================记录时间：2018-10-26 21:09:35,077 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/favicon.ico  
+
+================记录时间：2018-10-26 21:09:35,079 线程ID:[7] 日志级别：INFO  ================
+Request finished in 2.5373ms 200 
+
+================记录时间：2018-10-26 21:09:35,759 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 45
+
+================记录时间：2018-10-26 21:09:35,769 线程ID:[7] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 21:09:35,981 线程ID:[7] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 21:09:36,744 线程ID:[7] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+
+================记录时间：2018-10-26 21:09:36,817 线程ID:[7] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 827.9752ms
+
+================记录时间：2018-10-26 21:09:36,836 线程ID:[7] 日志级别：INFO  ================
+Request finished in 1077.6273ms 400 application/json; charset=utf-8
+
+================记录时间：2018-10-26 21:09:46,938 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 45
+
+================记录时间：2018-10-26 21:09:46,939 线程ID:[7] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 21:09:46,943 线程ID:[7] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 21:09:46,948 线程ID:[7] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+
+================记录时间：2018-10-26 21:09:46,949 线程ID:[7] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 5.7641ms
+
+================记录时间：2018-10-26 21:09:46,949 线程ID:[7] 日志级别：INFO  ================
+Request finished in 10.7029ms 400 application/json; charset=utf-8
+
+================记录时间：2018-10-26 21:11:26,733 线程ID:[17] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 21:11:26,734 线程ID:[17] 日志级别：INFO  ================
+Request finished in 0.8699ms 200 
+
+================记录时间：2018-10-26 21:11:27,072 线程ID:[17] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/favicon.ico  
+
+================记录时间：2018-10-26 21:11:27,074 线程ID:[17] 日志级别：INFO  ================
+Request finished in 2.1217ms 200 
+
+================记录时间：2018-10-26 21:23:51,652 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 21:23:52,256 线程ID:[7] 日志级别：INFO  ================
+Request finished in 609.0714ms 200 text/html
+
+================记录时间：2018-10-26 21:23:53,232 线程ID:[8] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/v1/swagger.json  
+
+================记录时间：2018-10-26 21:23:53,307 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-32x32.png  
+
+================记录时间：2018-10-26 21:23:53,380 线程ID:[7] 日志级别：INFO  ================
+Request finished in 72.7174ms 200 
+
+================记录时间：2018-10-26 21:23:53,414 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-16x16.png  
+
+================记录时间：2018-10-26 21:23:53,416 线程ID:[7] 日志级别：INFO  ================
+Request finished in 2.1252ms 200 
+
+================记录时间：2018-10-26 21:23:53,878 线程ID:[8] 日志级别：INFO  ================
+Request finished in 645.7302ms 200 application/json;charset=utf-8
+
+================记录时间：2018-10-26 21:24:00,868 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 45
+
+================记录时间：2018-10-26 21:24:00,883 线程ID:[7] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 21:24:01,093 线程ID:[7] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 21:24:01,978 线程ID:[7] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+
+================记录时间：2018-10-26 21:24:02,023 线程ID:[7] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 920.0607ms
+
+================记录时间：2018-10-26 21:24:02,046 线程ID:[7] 日志级别：INFO  ================
+Request finished in 1178.5704ms 400 application/json; charset=utf-8
+
+================记录时间：2018-10-26 21:26:02,260 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 21:26:02,735 线程ID:[9] 日志级别：INFO  ================
+Request finished in 479.7648ms 200 text/html
+
+================记录时间：2018-10-26 21:26:03,725 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/v1/swagger.json  
+
+================记录时间：2018-10-26 21:26:03,800 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-32x32.png  
+
+================记录时间：2018-10-26 21:26:03,840 线程ID:[9] 日志级别：INFO  ================
+Request finished in 40.5512ms 200 
+
+================记录时间：2018-10-26 21:26:03,858 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-16x16.png  
+
+================记录时间：2018-10-26 21:26:03,861 线程ID:[9] 日志级别：INFO  ================
+Request finished in 3.5197ms 200 
+
+================记录时间：2018-10-26 21:26:04,351 线程ID:[7] 日志级别：INFO  ================
+Request finished in 625.9599ms 200 application/json;charset=utf-8
+
+================记录时间：2018-10-26 21:26:12,262 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 45
+
+================记录时间：2018-10-26 21:26:12,274 线程ID:[9] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 21:26:12,439 线程ID:[9] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 21:26:13,112 线程ID:[9] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+
+================记录时间：2018-10-26 21:26:13,154 线程ID:[9] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 709.0121ms
+
+================记录时间：2018-10-26 21:26:13,170 线程ID:[9] 日志级别：INFO  ================
+Request finished in 908.2573ms 400 application/json; charset=utf-8
+
+================记录时间：2018-10-26 21:27:56,876 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 21:27:57,303 线程ID:[7] 日志级别：INFO  ================
+Request finished in 434.6309ms 200 text/html
+
+================记录时间：2018-10-26 21:27:58,260 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/v1/swagger.json  
+
+================记录时间：2018-10-26 21:27:58,311 线程ID:[8] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-32x32.png  
+
+================记录时间：2018-10-26 21:27:58,345 线程ID:[8] 日志级别：INFO  ================
+Request finished in 34.7033ms 200 
+
+================记录时间：2018-10-26 21:27:58,363 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-16x16.png  
+
+================记录时间：2018-10-26 21:27:58,365 线程ID:[10] 日志级别：INFO  ================
+Request finished in 2.7448ms 200 
+
+================记录时间：2018-10-26 21:27:58,691 线程ID:[7] 日志级别：INFO  ================
+Request finished in 430.9078ms 200 application/json;charset=utf-8
+
+================记录时间：2018-10-26 21:28:13,847 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 45
+
+================记录时间：2018-10-26 21:28:13,854 线程ID:[7] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 21:28:14,038 线程ID:[7] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 21:28:14,741 线程ID:[7] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+
+================记录时间：2018-10-26 21:28:14,785 线程ID:[7] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 736.0367ms
+
+================记录时间：2018-10-26 21:28:14,799 线程ID:[7] 日志级别：INFO  ================
+Request finished in 951.6418ms 400 application/json; charset=utf-8
+
+================记录时间：2018-10-26 21:29:01,344 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 21:29:01,784 线程ID:[10] 日志级别：INFO  ================
+Request finished in 452.6192ms 200 text/html
+
+================记录时间：2018-10-26 21:29:02,406 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/v1/swagger.json  
+
+================记录时间：2018-10-26 21:29:02,451 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-32x32.png  
+
+================记录时间：2018-10-26 21:29:02,486 线程ID:[10] 日志级别：INFO  ================
+Request finished in 35.1058ms 200 
+
+================记录时间：2018-10-26 21:29:02,503 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-16x16.png  
+
+================记录时间：2018-10-26 21:29:02,506 线程ID:[10] 日志级别：INFO  ================
+Request finished in 3.3103ms 200 
+
+================记录时间：2018-10-26 21:29:02,877 线程ID:[9] 日志级别：INFO  ================
+Request finished in 471.1392ms 200 application/json;charset=utf-8
+
+================记录时间：2018-10-26 21:29:13,115 线程ID:[8] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 45
+
+================记录时间：2018-10-26 21:29:15,862 线程ID:[8] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 21:29:16,061 线程ID:[8] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 21:29:25,857 线程ID:[8] 日志级别：INFO  ================
+Executing action method Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) with arguments (Moxy.Services.System.Dtos.AdminAccoutInputDto) - Validation state: Valid
+
+================记录时间：2018-10-26 21:29:28,958 线程ID:[8] 日志级别：INFO  ================
+Executed action method Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 3094.2462ms.
+
+================记录时间：2018-10-26 21:29:29,091 线程ID:[8] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Moxy.Services.System.Dtos.AdminAccoutInputDto'.
+
+================记录时间：2018-10-26 21:29:29,180 线程ID:[8] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 13104.955ms
+
+================记录时间：2018-10-26 21:29:29,204 线程ID:[8] 日志级别：INFO  ================
+Request finished in 16093.6033ms 200 application/json; charset=utf-8
+
+================记录时间：2018-10-26 21:31:10,154 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 21:31:10,604 线程ID:[10] 日志级别：INFO  ================
+Request finished in 473.4025ms 200 text/html
+
+================记录时间：2018-10-26 21:31:12,180 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/v1/swagger.json  
+
+================记录时间：2018-10-26 21:31:12,224 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-32x32.png  
+
+================记录时间：2018-10-26 21:31:12,261 线程ID:[9] 日志级别：INFO  ================
+Request finished in 37.4659ms 200 
+
+================记录时间：2018-10-26 21:31:12,286 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-16x16.png  
+
+================记录时间：2018-10-26 21:31:12,287 线程ID:[9] 日志级别：INFO  ================
+Request finished in 2.391ms 200 
+
+================记录时间：2018-10-26 21:31:12,350 线程ID:[10] 日志级别：INFO  ================
+Request finished in 169.6804ms 200 application/json;charset=utf-8
+
+================记录时间：2018-10-26 21:31:16,968 线程ID:[12] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 45
+
+================记录时间：2018-10-26 21:31:16,982 线程ID:[12] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 21:31:17,150 线程ID:[12] 日志级别：INFO  ================
+Request finished in 182.7194ms 200 
+
+================记录时间：2018-10-26 21:31:17,225 线程ID:[12] 日志级别：INFO  ================
+Connection id "0HLHR8T58362B", Request id "0HLHR8T58362B:00000003": the application completed without reading the entire request body.
+
+================记录时间：2018-10-26 21:31:21,181 线程ID:[12] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 45
+
+================记录时间：2018-10-26 21:31:21,181 线程ID:[12] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 21:31:21,191 线程ID:[12] 日志级别：INFO  ================
+Request finished in 10.6833ms 200 
+
+================记录时间：2018-10-26 21:31:21,192 线程ID:[12] 日志级别：INFO  ================
+Connection id "0HLHR8T58362A", Request id "0HLHR8T58362A:00000003": the application completed without reading the entire request body.
+
+================记录时间：2018-10-26 21:31:22,356 线程ID:[12] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 45
+
+================记录时间：2018-10-26 21:31:22,356 线程ID:[12] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 21:31:22,360 线程ID:[12] 日志级别：INFO  ================
+Request finished in 3.932ms 200 
+
+================记录时间：2018-10-26 21:31:22,360 线程ID:[12] 日志级别：INFO  ================
+Connection id "0HLHR8T58362B", Request id "0HLHR8T58362B:00000004": the application completed without reading the entire request body.
+
+================记录时间：2018-10-26 21:32:00,605 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 21:32:00,994 线程ID:[10] 日志级别：INFO  ================
+Request finished in 392.3261ms 200 text/html
+
+================记录时间：2018-10-26 21:32:01,705 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/v1/swagger.json  
+
+================记录时间：2018-10-26 21:32:01,777 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-32x32.png  
+
+================记录时间：2018-10-26 21:32:01,810 线程ID:[9] 日志级别：INFO  ================
+Request finished in 33.0203ms 200 
+
+================记录时间：2018-10-26 21:32:01,831 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-16x16.png  
+
+================记录时间：2018-10-26 21:32:01,834 线程ID:[7] 日志级别：INFO  ================
+Request finished in 2.9384ms 200 
+
+================记录时间：2018-10-26 21:32:02,190 线程ID:[10] 日志级别：INFO  ================
+Request finished in 485.8024ms 200 application/json;charset=utf-8
+
+================记录时间：2018-10-26 21:32:11,393 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 45
+
+================记录时间：2018-10-26 21:32:11,403 线程ID:[7] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 21:32:11,589 线程ID:[7] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 21:32:12,158 线程ID:[7] 日志级别：INFO  ================
+Executing action method Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) with arguments (Moxy.Services.System.Dtos.AdminAccoutInputDto) - Validation state: Valid
+
+================记录时间：2018-10-26 21:32:12,165 线程ID:[7] 日志级别：INFO  ================
+Executed action method Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 2.8814ms.
+
+================记录时间：2018-10-26 21:32:12,219 线程ID:[7] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Moxy.Services.System.Dtos.AdminAccoutInputDto'.
+
+================记录时间：2018-10-26 21:32:12,257 线程ID:[7] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 662.2692ms
+
+================记录时间：2018-10-26 21:32:12,271 线程ID:[7] 日志级别：INFO  ================
+Request finished in 878.2137ms 200 application/json; charset=utf-8
+
+================记录时间：2018-10-26 21:32:30,840 线程ID:[8] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 21:32:31,226 线程ID:[8] 日志级别：INFO  ================
+Request finished in 387.8354ms 200 text/html
+
+================记录时间：2018-10-26 21:32:32,383 线程ID:[8] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/v1/swagger.json  
+
+================记录时间：2018-10-26 21:32:32,442 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-32x32.png  
+
+================记录时间：2018-10-26 21:32:32,480 线程ID:[9] 日志级别：INFO  ================
+Request finished in 36.6918ms 200 
+
+================记录时间：2018-10-26 21:32:32,497 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-16x16.png  
+
+================记录时间：2018-10-26 21:32:32,500 线程ID:[9] 日志级别：INFO  ================
+Request finished in 2.677ms 200 
+
+================记录时间：2018-10-26 21:32:32,861 线程ID:[8] 日志级别：INFO  ================
+Request finished in 478.0769ms 200 application/json;charset=utf-8
+
+================记录时间：2018-10-26 21:33:10,930 线程ID:[3] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 45
+
+================记录时间：2018-10-26 21:33:10,940 线程ID:[3] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 21:33:11,143 线程ID:[3] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 21:33:12,315 线程ID:[3] 日志级别：INFO  ================
+Executing action method Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) with arguments (Moxy.Services.System.Dtos.AdminAccoutInputDto) - Validation state: Valid
+
+================记录时间：2018-10-26 21:33:12,321 线程ID:[3] 日志级别：INFO  ================
+Executed action method Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 2.8807ms.
+
+================记录时间：2018-10-26 21:33:12,385 线程ID:[3] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Moxy.Services.System.Dtos.AdminAccoutInputDto'.
+
+================记录时间：2018-10-26 21:33:12,445 线程ID:[3] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 711.0142ms
+
+================记录时间：2018-10-26 21:33:12,468 线程ID:[3] 日志级别：INFO  ================
+Request finished in 1539.3517ms 200 application/json; charset=utf-8
+
+================记录时间：2018-10-26 21:33:19,151 线程ID:[15] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 39
+
+================记录时间：2018-10-26 21:33:19,151 线程ID:[15] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 21:33:19,156 线程ID:[15] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 21:33:19,182 线程ID:[15] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+
+================记录时间：2018-10-26 21:33:19,186 线程ID:[15] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 30.5392ms
+
+================记录时间：2018-10-26 21:33:19,187 线程ID:[15] 日志级别：INFO  ================
+Request finished in 36.1907ms 400 application/json; charset=utf-8
+
+================记录时间：2018-10-26 21:33:41,965 线程ID:[8] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 21:33:42,340 线程ID:[8] 日志级别：INFO  ================
+Request finished in 376.2692ms 200 text/html
+
+================记录时间：2018-10-26 21:33:43,234 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/v1/swagger.json  
+
+================记录时间：2018-10-26 21:33:43,321 线程ID:[8] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-32x32.png  
+
+================记录时间：2018-10-26 21:33:43,366 线程ID:[8] 日志级别：INFO  ================
+Request finished in 44.2546ms 200 
+
+================记录时间：2018-10-26 21:33:43,388 线程ID:[8] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-16x16.png  
+
+================记录时间：2018-10-26 21:33:43,391 线程ID:[8] 日志级别：INFO  ================
+Request finished in 2.6434ms 200 
+
+================记录时间：2018-10-26 21:33:43,732 线程ID:[10] 日志级别：INFO  ================
+Request finished in 499.2749ms 200 application/json;charset=utf-8
+
+================记录时间：2018-10-26 21:54:28,801 线程ID:[43] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://127.0.0.1:6622/iisintegration  0
+
+================记录时间：2018-10-26 21:54:28,803 线程ID:[43] 日志级别：INFO  ================
+Request finished in 1.7788ms 202 
+
+================记录时间：2018-10-26 22:21:23,309 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 22:21:23,746 线程ID:[7] 日志级别：INFO  ================
+Request finished in 446.4206ms 200 text/html
+
+================记录时间：2018-10-26 22:21:25,208 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/v1/swagger.json  
+
+================记录时间：2018-10-26 22:21:25,269 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-32x32.png  
+
+================记录时间：2018-10-26 22:21:25,319 线程ID:[10] 日志级别：INFO  ================
+Request finished in 49.6829ms 200 
+
+================记录时间：2018-10-26 22:21:25,338 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-16x16.png  
+
+================记录时间：2018-10-26 22:21:25,340 线程ID:[10] 日志级别：INFO  ================
+Request finished in 2.2508ms 200 
+
+================记录时间：2018-10-26 22:21:25,634 线程ID:[7] 日志级别：INFO  ================
+Request finished in 426.2149ms 200 application/json;charset=utf-8
+
+================记录时间：2018-10-26 22:21:45,433 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 51
+
+================记录时间：2018-10-26 22:21:45,451 线程ID:[10] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 22:21:45,674 线程ID:[10] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 22:21:46,345 线程ID:[10] 日志级别：INFO  ================
+Executing action method Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) with arguments (Moxy.Services.System.Dtos.AdminAccoutInputDto) - Validation state: Valid
+
+================记录时间：2018-10-26 22:21:46,396 线程ID:[10] 日志级别：INFO  ================
+Executed action method Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 48.4886ms.
+
+================记录时间：2018-10-26 22:21:46,462 线程ID:[10] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Moxy.Services.System.Dtos.AdminAccoutInputDto'.
+
+================记录时间：2018-10-26 22:21:46,511 线程ID:[10] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 830.5555ms
+
+================记录时间：2018-10-26 22:21:46,527 线程ID:[10] 日志级别：INFO  ================
+Request finished in 1093.8094ms 200 application/json; charset=utf-8
+
+================记录时间：2018-10-26 22:21:54,705 线程ID:[12] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 26
+
+================记录时间：2018-10-26 22:21:54,706 线程ID:[12] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 22:21:54,712 线程ID:[12] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 22:21:54,740 线程ID:[12] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+
+================记录时间：2018-10-26 22:21:54,745 线程ID:[12] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 32.6207ms
+
+================记录时间：2018-10-26 22:21:54,745 线程ID:[12] 日志级别：INFO  ================
+Request finished in 40.9541ms 400 application/json; charset=utf-8
+
+================记录时间：2018-10-26 22:25:57,127 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 22:25:57,424 线程ID:[8] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 26
+
+================记录时间：2018-10-26 22:25:57,440 线程ID:[8] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 22:25:57,599 线程ID:[7] 日志级别：INFO  ================
+Request finished in 475.2972ms 200 text/html
+
+================记录时间：2018-10-26 22:25:57,799 线程ID:[8] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 22:25:59,139 线程ID:[8] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+
+================记录时间：2018-10-26 22:25:59,214 线程ID:[8] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 1402.3013ms
+
+================记录时间：2018-10-26 22:25:59,228 线程ID:[8] 日志级别：INFO  ================
+Request finished in 1804.053ms 400 application/json; charset=utf-8
+
+================记录时间：2018-10-26 22:26:00,165 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/v1/swagger.json  
+
+================记录时间：2018-10-26 22:26:00,211 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-32x32.png  
+
+================记录时间：2018-10-26 22:26:00,239 线程ID:[9] 日志级别：INFO  ================
+Request finished in 28.9009ms 200 
+
+================记录时间：2018-10-26 22:26:00,252 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-16x16.png  
+
+================记录时间：2018-10-26 22:26:00,255 线程ID:[9] 日志级别：INFO  ================
+Request finished in 2.7191ms 200 
+
+================记录时间：2018-10-26 22:26:00,507 线程ID:[7] 日志级别：INFO  ================
+Request finished in 341.9243ms 200 application/json;charset=utf-8
+
+================记录时间：2018-10-26 22:26:08,412 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 3
+
+================记录时间：2018-10-26 22:26:08,413 线程ID:[9] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 22:26:08,417 线程ID:[9] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 22:26:08,429 线程ID:[9] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+
+================记录时间：2018-10-26 22:26:08,430 线程ID:[9] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 12.3303ms
+
+================记录时间：2018-10-26 22:26:08,430 线程ID:[9] 日志级别：INFO  ================
+Request finished in 17.7767ms 400 application/json; charset=utf-8
+
+================记录时间：2018-10-26 22:26:15,291 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 51
+
+================记录时间：2018-10-26 22:26:15,291 线程ID:[7] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 22:26:15,291 线程ID:[7] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 22:26:15,318 线程ID:[7] 日志级别：INFO  ================
+Executing action method Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) with arguments (Moxy.Services.System.Dtos.AdminAccoutInputDto) - Validation state: Valid
+
+================记录时间：2018-10-26 22:26:15,326 线程ID:[7] 日志级别：INFO  ================
+Executed action method Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 4.8838ms.
+
+================记录时间：2018-10-26 22:26:15,334 线程ID:[7] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Moxy.Services.System.Dtos.AdminAccoutInputDto'.
+
+================记录时间：2018-10-26 22:26:15,336 线程ID:[7] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 44.6987ms
+
+================记录时间：2018-10-26 22:26:15,336 线程ID:[7] 日志级别：INFO  ================
+Request finished in 45.6097ms 200 application/json; charset=utf-8
+
+================记录时间：2018-10-26 22:26:23,739 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 27
+
+================记录时间：2018-10-26 22:26:23,739 线程ID:[7] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 22:26:23,740 线程ID:[7] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 22:26:23,740 线程ID:[7] 日志级别：INFO  ================
+Executing action method Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) with arguments (Moxy.Services.System.Dtos.AdminAccoutInputDto) - Validation state: Valid
+
+================记录时间：2018-10-26 22:26:23,740 线程ID:[7] 日志级别：INFO  ================
+Executed action method Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0071ms.
+
+================记录时间：2018-10-26 22:26:23,740 线程ID:[7] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Moxy.Services.System.Dtos.AdminAccoutInputDto'.
+
+================记录时间：2018-10-26 22:26:23,740 线程ID:[7] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 0.7091ms
+
+================记录时间：2018-10-26 22:26:23,741 线程ID:[7] 日志级别：INFO  ================
+Request finished in 1.4717ms 200 application/json; charset=utf-8
+
+================记录时间：2018-10-26 22:26:27,071 线程ID:[8] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/swagger-ui-bundle.js.map  
+
+================记录时间：2018-10-26 22:26:27,075 线程ID:[8] 日志级别：INFO  ================
+Request finished in 3.8814ms 200 
+
+================记录时间：2018-10-26 22:26:27,082 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/swagger-ui-standalone-preset.js.map  
+
+================记录时间：2018-10-26 22:26:27,085 线程ID:[10] 日志级别：INFO  ================
+Request finished in 2.8361ms 200 
+
+================记录时间：2018-10-26 22:26:27,108 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/swagger-ui.css.map  
+
+================记录时间：2018-10-26 22:26:27,110 线程ID:[9] 日志级别：INFO  ================
+Request finished in 1.7028ms 200 
+
+================记录时间：2018-10-26 22:26:32,447 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 21
+
+================记录时间：2018-10-26 22:26:32,447 线程ID:[10] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 22:26:32,448 线程ID:[10] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 22:26:32,448 线程ID:[10] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+
+================记录时间：2018-10-26 22:26:32,449 线程ID:[10] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 0.9158ms
+
+================记录时间：2018-10-26 22:26:32,449 线程ID:[10] 日志级别：INFO  ================
+Request finished in 2.5438ms 400 application/json; charset=utf-8
+
+================记录时间：2018-10-26 22:29:20,872 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 22:29:21,279 线程ID:[10] 日志级别：INFO  ================
+Request finished in 410.5955ms 200 text/html
+
+================记录时间：2018-10-26 22:29:22,504 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/v1/swagger.json  
+
+================记录时间：2018-10-26 22:29:22,571 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-32x32.png  
+
+================记录时间：2018-10-26 22:29:22,605 线程ID:[10] 日志级别：INFO  ================
+Request finished in 33.7796ms 200 
+
+================记录时间：2018-10-26 22:29:22,650 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-16x16.png  
+
+================记录时间：2018-10-26 22:29:22,652 线程ID:[10] 日志级别：INFO  ================
+Request finished in 2.4102ms 200 
+
+================记录时间：2018-10-26 22:29:23,025 线程ID:[9] 日志级别：INFO  ================
+Request finished in 521.1692ms 200 application/json;charset=utf-8
+
+================记录时间：2018-10-26 22:29:39,693 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 45
+
+================记录时间：2018-10-26 22:29:39,700 线程ID:[10] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 22:29:39,892 线程ID:[10] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 22:29:40,469 线程ID:[10] 日志级别：INFO  ================
+Executing action method Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) with arguments (Moxy.Services.System.Dtos.AdminAccoutInputDto) - Validation state: Valid
+
+================记录时间：2018-10-26 22:29:40,475 线程ID:[10] 日志级别：INFO  ================
+Executed action method Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 2.9896ms.
+
+================记录时间：2018-10-26 22:29:40,530 线程ID:[10] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Moxy.Services.System.Dtos.AdminAccoutInputDto'.
+
+================记录时间：2018-10-26 22:29:40,574 线程ID:[10] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 669.8863ms
+
+================记录时间：2018-10-26 22:29:40,587 线程ID:[10] 日志级别：INFO  ================
+Request finished in 894.2366ms 200 application/json; charset=utf-8
+
+================记录时间：2018-10-26 22:29:45,546 线程ID:[8] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 39
+
+================记录时间：2018-10-26 22:29:45,546 线程ID:[8] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 22:29:45,550 线程ID:[8] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 22:29:45,583 线程ID:[8] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+
+================记录时间：2018-10-26 22:29:45,586 线程ID:[8] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 35.5628ms
+
+================记录时间：2018-10-26 22:29:45,586 线程ID:[8] 日志级别：INFO  ================
+Request finished in 40.7365ms 400 application/json; charset=utf-8
+
+================记录时间：2018-10-26 22:30:28,240 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/swagger-ui-bundle.js.map  
+
+================记录时间：2018-10-26 22:30:28,251 线程ID:[10] 日志级别：INFO  ================
+Request finished in 10.266ms 200 
+
+================记录时间：2018-10-26 22:30:28,256 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/swagger-ui-standalone-preset.js.map  
+
+================记录时间：2018-10-26 22:30:28,258 线程ID:[10] 日志级别：INFO  ================
+Request finished in 1.8211ms 200 
+
+================记录时间：2018-10-26 22:30:28,359 线程ID:[15] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/swagger-ui.css.map  
+
+================记录时间：2018-10-26 22:30:28,361 线程ID:[15] 日志级别：INFO  ================
+Request finished in 2.1154ms 200 
+
+================记录时间：2018-10-26 22:30:29,542 线程ID:[15] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 39
+
+================记录时间：2018-10-26 22:30:29,544 线程ID:[15] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 22:30:29,545 线程ID:[15] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 22:30:29,546 线程ID:[15] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+
+================记录时间：2018-10-26 22:30:29,546 线程ID:[15] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 1.1712ms
+
+================记录时间：2018-10-26 22:30:29,546 线程ID:[15] 日志级别：INFO  ================
+Request finished in 6.0398ms 400 application/json; charset=utf-8
+
+================记录时间：2018-10-26 22:31:09,119 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 22:31:09,644 线程ID:[7] 日志级别：INFO  ================
+Request finished in 533.1819ms 200 text/html
+
+================记录时间：2018-10-26 22:31:11,194 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/v1/swagger.json  
+
+================记录时间：2018-10-26 22:31:11,258 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-32x32.png  
+
+================记录时间：2018-10-26 22:31:11,293 线程ID:[9] 日志级别：INFO  ================
+Request finished in 35.1714ms 200 
+
+================记录时间：2018-10-26 22:31:11,308 线程ID:[8] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-16x16.png  
+
+================记录时间：2018-10-26 22:31:11,310 线程ID:[8] 日志级别：INFO  ================
+Request finished in 2.2813ms 200 
+
+================记录时间：2018-10-26 22:31:11,606 线程ID:[7] 日志级别：INFO  ================
+Request finished in 411.742ms 200 application/json;charset=utf-8
+
+================记录时间：2018-10-26 22:37:00,745 线程ID:[8] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 45
+
+================记录时间：2018-10-26 22:37:00,840 线程ID:[8] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 22:37:01,122 线程ID:[8] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 22:37:01,826 线程ID:[8] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+
+================记录时间：2018-10-26 22:37:01,957 线程ID:[8] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 828.989ms
+
+================记录时间：2018-10-26 22:37:02,000 线程ID:[8] 日志级别：INFO  ================
+Request finished in 1256.793ms 400 application/json; charset=utf-8
+
+================记录时间：2018-10-26 22:44:04,151 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 22:44:04,653 线程ID:[9] 日志级别：INFO  ================
+Request finished in 501.6214ms 200 text/html
+
+================记录时间：2018-10-26 22:44:06,450 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/v1/swagger.json  
+
+================记录时间：2018-10-26 22:44:06,501 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-32x32.png  
+
+================记录时间：2018-10-26 22:44:06,536 线程ID:[7] 日志级别：INFO  ================
+Request finished in 35.6219ms 200 
+
+================记录时间：2018-10-26 22:44:06,570 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-16x16.png  
+
+================记录时间：2018-10-26 22:44:06,572 线程ID:[7] 日志级别：INFO  ================
+Request finished in 1.8946ms 200 
+
+================记录时间：2018-10-26 22:44:06,973 线程ID:[9] 日志级别：INFO  ================
+Request finished in 523.1781ms 200 application/json;charset=utf-8
+
+================记录时间：2018-10-26 22:44:34,344 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 45
+
+================记录时间：2018-10-26 22:44:34,354 线程ID:[7] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 22:44:34,545 线程ID:[7] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 22:44:35,147 线程ID:[7] 日志级别：INFO  ================
+Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+
+================记录时间：2018-10-26 22:44:35,185 线程ID:[7] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 633.4927ms
+
+================记录时间：2018-10-26 22:44:35,198 线程ID:[7] 日志级别：INFO  ================
+Request finished in 853.7728ms 400 application/json; charset=utf-8
+
+================记录时间：2018-10-26 23:20:38,253 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 23:20:38,670 线程ID:[9] 日志级别：INFO  ================
+Request finished in 417.3948ms 200 text/html
+
+================记录时间：2018-10-26 23:20:39,540 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/v1/swagger.json  
+
+================记录时间：2018-10-26 23:20:39,714 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-32x32.png  
+
+================记录时间：2018-10-26 23:20:39,770 线程ID:[9] 日志级别：INFO  ================
+Request finished in 55.7144ms 200 
+
+================记录时间：2018-10-26 23:20:39,808 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-16x16.png  
+
+================记录时间：2018-10-26 23:20:39,816 线程ID:[7] 日志级别：INFO  ================
+Request finished in 8.0174ms 200 
+
+================记录时间：2018-10-26 23:20:40,114 线程ID:[10] 日志级别：INFO  ================
+Request finished in 574.2604ms 200 application/json;charset=utf-8
+
+================记录时间：2018-10-26 23:20:56,360 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 45
+
+================记录时间：2018-10-26 23:20:56,371 线程ID:[10] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 23:20:56,617 线程ID:[10] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 23:20:57,371 线程ID:[10] 日志级别：INFO  ================
+Executing JsonResult, writing value of type 'Moxy.OperateResult'.
+
+================记录时间：2018-10-26 23:20:57,395 线程ID:[10] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 770.177ms
+
+================记录时间：2018-10-26 23:20:57,415 线程ID:[10] 日志级别：INFO  ================
+Request finished in 1053.9927ms 200 application/json; charset=utf-8
+
+================记录时间：2018-10-26 23:51:10,132 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 23:51:10,583 线程ID:[10] 日志级别：INFO  ================
+Request finished in 460.085ms 200 text/html
+
+================记录时间：2018-10-26 23:51:11,822 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/v1/swagger.json  
+
+================记录时间：2018-10-26 23:51:12,026 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-32x32.png  
+
+================记录时间：2018-10-26 23:51:12,060 线程ID:[7] 日志级别：INFO  ================
+Request finished in 34.0741ms 200 
+
+================记录时间：2018-10-26 23:51:12,122 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-16x16.png  
+
+================记录时间：2018-10-26 23:51:12,124 线程ID:[7] 日志级别：INFO  ================
+Request finished in 2.2093ms 200 
+
+================记录时间：2018-10-26 23:51:12,416 线程ID:[10] 日志级别：INFO  ================
+Request finished in 596.0307ms 200 application/json;charset=utf-8
+
+================记录时间：2018-10-26 23:51:32,461 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 23:51:32,937 线程ID:[10] 日志级别：INFO  ================
+Request finished in 480.1444ms 200 text/html
+
+================记录时间：2018-10-26 23:51:35,181 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/v1/swagger.json  
+
+================记录时间：2018-10-26 23:51:35,210 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-32x32.png  
+
+================记录时间：2018-10-26 23:51:35,236 线程ID:[9] 日志级别：INFO  ================
+Request finished in 26.4942ms 200 
+
+================记录时间：2018-10-26 23:51:35,254 线程ID:[7] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-16x16.png  
+
+================记录时间：2018-10-26 23:51:35,257 线程ID:[7] 日志级别：INFO  ================
+Request finished in 3.1035ms 200 
+
+================记录时间：2018-10-26 23:51:35,514 线程ID:[10] 日志级别：INFO  ================
+Request finished in 333.3189ms 200 application/json;charset=utf-8
+
+================记录时间：2018-10-26 23:51:36,857 线程ID:[9] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 45
+
+================记录时间：2018-10-26 23:51:36,870 线程ID:[9] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 23:51:37,072 线程ID:[9] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 23:51:37,858 线程ID:[9] 日志级别：INFO  ================
+Executing JsonResult, writing value of type 'Moxy.OperateResult'.
+
+================记录时间：2018-10-26 23:51:37,897 线程ID:[9] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 815.0138ms
+
+================记录时间：2018-10-26 23:51:37,917 线程ID:[9] 日志级别：INFO  ================
+Request finished in 1059.453ms 200 application/json; charset=utf-8
+
+================记录时间：2018-10-26 23:51:45,451 线程ID:[8] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 41
+
+================记录时间：2018-10-26 23:51:45,451 线程ID:[8] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 23:51:45,461 线程ID:[8] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 23:51:45,469 线程ID:[8] 日志级别：INFO  ================
+Executing JsonResult, writing value of type 'Moxy.OperateResult'.
+
+================记录时间：2018-10-26 23:51:45,470 线程ID:[8] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 8.3368ms
+
+================记录时间：2018-10-26 23:51:45,470 线程ID:[8] 日志级别：INFO  ================
+Request finished in 19.4817ms 200 application/json; charset=utf-8
+
+================记录时间：2018-10-26 23:52:09,202 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/index.html  
+
+================记录时间：2018-10-26 23:52:09,575 线程ID:[10] 日志级别：INFO  ================
+Request finished in 378.0863ms 200 text/html
+
+================记录时间：2018-10-26 23:52:10,394 线程ID:[10] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/v1/swagger.json  
+
+================记录时间：2018-10-26 23:52:10,462 线程ID:[8] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-32x32.png  
+
+================记录时间：2018-10-26 23:52:10,496 线程ID:[8] 日志级别：INFO  ================
+Request finished in 34.3649ms 200 
+
+================记录时间：2018-10-26 23:52:10,510 线程ID:[8] 日志级别：INFO  ================
+Request starting HTTP/1.1 GET http://localhost:64832/swagger/favicon-16x16.png  
+
+================记录时间：2018-10-26 23:52:10,513 线程ID:[8] 日志级别：INFO  ================
+Request finished in 2.8444ms 200 
+
+================记录时间：2018-10-26 23:52:10,824 线程ID:[10] 日志级别：INFO  ================
+Request finished in 429.858ms 200 application/json;charset=utf-8
+
+================记录时间：2018-10-26 23:52:17,338 线程ID:[8] 日志级别：INFO  ================
+Request starting HTTP/1.1 POST http://localhost:64832/admin/api/v1.0/Account/login application/json-patch+json 45
+
+================记录时间：2018-10-26 23:52:17,348 线程ID:[8] 日志级别：INFO  ================
+Policy execution successful.
+
+================记录时间：2018-10-26 23:52:17,532 线程ID:[8] 日志级别：INFO  ================
+Route matched with {action = "Login", controller = "Account"}. Executing action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api)
+
+================记录时间：2018-10-26 23:52:18,181 线程ID:[8] 日志级别：INFO  ================
+Executing JsonResult, writing value of type 'Moxy.OperateResult'.
+
+================记录时间：2018-10-26 23:52:18,208 线程ID:[8] 日志级别：INFO  ================
+Executed action Moxy.Api.Controllers.V1.Admin.AccountController.Login (Moxy.Api) in 668.1762ms
+
+================记录时间：2018-10-26 23:52:18,218 线程ID:[8] 日志级别：INFO  ================
+Request finished in 880.2921ms 200 application/json; charset=utf-8
+

@@ -83,7 +83,10 @@ namespace Moxy.Swagger.Builder
                             return;
                         }
                         //context.Response.Cookies.Append("swagger_auth_name", userModel.UserName);
-                        context.Response.Cookies.Append(SWAGGER_ATUH_COOKIE, userModel.AuthStr);
+                        context.Response.Cookies.Append(SWAGGER_ATUH_COOKIE, userModel.AuthStr, new CookieOptions()
+                        {
+                            Expires = DateTime.Now.AddMonths(1)
+                        });
                         context.Response.Redirect($"/{options.RoutePrefix}");
                         return;
                     }

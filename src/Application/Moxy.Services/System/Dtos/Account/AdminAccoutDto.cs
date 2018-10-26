@@ -16,6 +16,7 @@ namespace Moxy.Services.System.Dtos
         {
             get
             {
+                if (string.IsNullOrEmpty(AdminPwd)) return string.Empty;
                 return SecurityHelper.EncryptDES(AdminPwd);
             }
         }
@@ -28,6 +29,7 @@ namespace Moxy.Services.System.Dtos
         {
             get
             {
+                if (string.IsNullOrEmpty(AdminName)) return string.Empty;
                 return SecurityHelper.EncryptDES(AdminName + AdminKey);
             }
         }

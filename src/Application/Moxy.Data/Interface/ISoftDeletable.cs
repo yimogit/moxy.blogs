@@ -6,7 +6,7 @@ namespace Moxy.Data
 {
     public interface ISoftDeletable
     {
-        bool? IsDeleted { get; set; }
+        bool IsDeleted { get; set; }
         string DeletedBy { get; set; }
         DateTime? DeletedAt { get; set; }
     }

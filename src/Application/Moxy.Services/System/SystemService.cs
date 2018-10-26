@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Moxy.Data.Domain;
 
 namespace Moxy.Services.System
 {
@@ -39,6 +40,19 @@ namespace Moxy.Services.System
                 AdminName = existItem.AdminName
             };
             return OperateResult.Succeed("登录成功", output);
+        }
+
+        public OperateResult InitSystem()
+        {
+            _dbContext.SysAdmin.Add(new SysAdmin()
+            {
+                AdminName = "yimo",
+                AdminPwd = Moxy.Utils.SecurityHelper.EncryptDES("123456"),
+                AdminKey = new Random().Next(0, int.MaxValue).ToString(),
+                IsEnable = true,
+            });
+            _dbContext.SaveChanges();
+            return OperateResult.Succeed("");
         }
     }
 }

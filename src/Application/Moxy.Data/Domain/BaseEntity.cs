@@ -13,7 +13,7 @@ namespace Moxy.Data
         public virtual T Id { get; set; }
         [Column("created_at")]
         public virtual DateTime CreatedAt { get; set; }
-        [Column("created_by"), MaxLength(100)]
+        [Column("created_by"), StringLength(100)]
         public virtual string CreatedBy { get; set; }
 
     }
@@ -24,15 +24,15 @@ namespace Moxy.Data
         public virtual T Id { get; set; }
         [Column("created_at")]
         public DateTime CreatedAt { get; set; }
-        [Column("created_by"), MaxLength(100)]
+        [Column("created_by"), StringLength(100)]
         public virtual string CreatedBy { get; set; }
         [Column("updated_at")]
         public virtual DateTime? UpdatedAt { get; set; }
-        [Column("updated_by"), MaxLength(100)]
+        [Column("updated_by"), StringLength(100)]
         public virtual string UpdatedBy { get; set; }
         [Column("is_deleted")]
-        public virtual bool? IsDeleted { get; set; }
-        [Column("deleted_by"), MaxLength(100)]
+        public virtual bool IsDeleted { get; set; }
+        [Column("deleted_by"), StringLength(100)]
         public virtual string DeletedBy { get; set; }
         [Column("deleted_at")]
         public virtual DateTime? DeletedAt { get; set; }

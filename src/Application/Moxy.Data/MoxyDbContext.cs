@@ -21,6 +21,17 @@ namespace Moxy.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
         }
+        public override int SaveChanges()
+        {
+            var entries = ChangeTracker.Entries();
+            if (entries == null)
+                return base.SaveChanges();
+
+            entries.ApplyEntityAuditable("system");
+
+            return base.SaveChanges();
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //var currentAssembly = GetType().Assembly;

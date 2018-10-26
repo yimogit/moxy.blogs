@@ -15,6 +15,7 @@ instance.interceptors.request.use(
     e.url = _config.suffix ? e.url + _config.suffix : e.url
     e.params = e.params || {}
     e.headers = e.headers || {}
+    e.headers['X-Requested-With'] = 'XMLHttpRequest'
     if (localStorage.token) {
       e.headers['Authorization'] = localStorage.token
     }

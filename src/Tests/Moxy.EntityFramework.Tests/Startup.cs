@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,13 +37,16 @@ namespace Moxy.EntityFramework.Tests
         public void ConfigureServices(IServiceCollection services)
         {
             // use in memory for testing.
-            services
-                .AddDbContext<MoxyDbContext>(opt => opt.UseMySql(Configuration.GetConnectionString("Default")))
-                //.AddDbContext<MoxyDbContext>(opt => opt.UseInMemoryDatabase("MoxyDB"))
-                .AddUnitOfWork<MoxyDbContext>();
+            //services
+            //    .AddDbContext<MoxyDbContext>(opt => opt.UseMySql(Configuration.GetConnectionString("Default")))
+            //    //.AddDbContext<MoxyDbContext>(opt => opt.UseInMemoryDatabase("MoxyDB"))
+            //    .AddUnitOfWork<MoxyDbContext>();
 
-            services.AddSwaggerCustom(CURRENT_SWAGGER_OPTIONS);
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //services.AddSwaggerCustom(CURRENT_SWAGGER_OPTIONS);
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(ValidateModelStateAttribute));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_0); ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,9 +54,9 @@ namespace Moxy.EntityFramework.Tests
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
             }
-            app.UseSwaggerCustom(CURRENT_SWAGGER_OPTIONS);
+            //app.UseSwaggerCustom(CURRENT_SWAGGER_OPTIONS);
             app.UseMvc();
         }
         /// <summary>
@@ -83,5 +87,23 @@ namespace Moxy.EntityFramework.Tests
             {
             }
         };
+    }
+    public class ValidateModelStateAttribute : Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if (!context.ModelState.IsValid)
+            {
+                List<string> errorList = new List<string>();
+                foreach (var modelState in context.ModelState.Values)
+                {
+                    foreach (var error in modelState.Errors)
+                    {
+                        errorList.Add(error.ErrorMessage);
+                    }
+                }
+                context.Result = new JsonResult(new { success = false, message = errorList });
+            }
+        }
     }
 }
