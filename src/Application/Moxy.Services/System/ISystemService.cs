@@ -8,11 +8,16 @@ namespace Moxy.Services.System
     public interface ISystemService
     {
         /// <summary>
-        /// 后台登录
+        /// 管理员登录
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
         OperateResult Login(AdminAccoutInputDto input);
-        OperateResult InitSystem();
+        /// <summary>
+        /// 初始化系统
+        /// </summary>
+        /// <param name="adminName"></param>
+        /// <returns></returns>
+        OperateResult InitSystem(string adminName = "admin");
     }
 }

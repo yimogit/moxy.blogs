@@ -47,8 +47,6 @@ namespace Moxy.Api
                        mysqlOptions.ServerVersion(new Version(5, 7, 21), ServerType.MySql);
                    }
             ));
-            //services
-            //.AddDbContext<MoxyDbContext>(opt => opt.UseInMemoryDatabase("MoxyDB"));
             services.AddTransient<ISystemService, SystemService>();
             services.AddTransient<IArticleService, ArticleService>();
 
