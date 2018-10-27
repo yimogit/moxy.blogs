@@ -31,7 +31,6 @@ namespace Moxy.Api.Controllers.V1.Admin
         /// <returns></returns>
         [HttpPost]
         [Route("login")]
-        [ModelValid]
         public IActionResult Login(AdminAccoutInputDto input)
         {
             var result = _systemService.Login(input);

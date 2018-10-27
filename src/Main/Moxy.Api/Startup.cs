@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moxy.Data;
+using Moxy.Framework;
 using Moxy.Framework.Filters;
 using Moxy.Framework.Middlewares;
 using Moxy.Services.Article;
@@ -39,33 +40,25 @@ namespace Moxy.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            //readme
-            services.AddDbContextPool<MoxyDbContext>( // replace "YourDbContext" with the class name of your DbContext
-               options => options.UseMySql(Configuration.GetConnectionString("Default"), // replace with your Connection String
+            services.AddDbContextPool<MoxyDbContext>(
+               options => options.UseMySql(Configuration.GetConnectionString("Default"),
                    mysqlOptions =>
                    {
-                       mysqlOptions.ServerVersion(new Version(5, 7, 21), ServerType.MySql); // replace with your Server Version and Type
+                       mysqlOptions.ServerVersion(new Version(5, 7, 21), ServerType.MySql);
                    }
-           ));
+            ));
             //services
-            //    .AddDbContext<MoxyDbContext>(opt => opt.UseMySql(Configuration.GetConnectionString("Default")));
             //.AddDbContext<MoxyDbContext>(opt => opt.UseInMemoryDatabase("MoxyDB"));
             services.AddTransient<ISystemService, SystemService>();
             services.AddTransient<IArticleService, ArticleService>();
 
             //版本控制
             services.AddMvcCore().AddJsonFormatters().AddVersionedApiExplorer(o => o.GroupNameFormat = "'v'VVV");
+            //跨域
             services.AddCors();
-            //忽略null
-            services.AddMvc().AddJsonOptions(op =>
-            {
-                op.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
-                op.SerializerSettings.MissingMemberHandling = Newtonsoft.Json.MissingMemberHandling.Ignore;
-            });
-            //禁用默认的模型验证
-            services.Configure<ApiBehaviorOptions>(opts => opts.SuppressModelStateInvalidFilter = true);
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //模型验证策略
+            services.ConfigureModelStatePolicyCustom();
+            //版本管理
             services.AddApiVersioning(option =>
             {
                 // allow a client to call you without specifying an api version
@@ -73,7 +66,17 @@ namespace Moxy.Api
                 option.AssumeDefaultVersionWhenUnspecified = true;
                 option.ReportApiVersions = false;
             });
+            //swagger
             services.AddSwaggerCustom(CURRENT_SWAGGER_OPTIONS);
+
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddJsonOptions(op =>
+                {
+                    //忽略null值返回
+                    op.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+                    op.SerializerSettings.MissingMemberHandling = Newtonsoft.Json.MissingMemberHandling.Ignore;
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 
 ./src/Moxy.Api/Moxy.Api.xml
+/src/Main/Moxy.Api/logs

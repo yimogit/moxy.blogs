@@ -1,5 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Moxy.Tests
 {
@@ -41,6 +43,16 @@ namespace Moxy.Tests
             //不会会执行 funcTest
             test = true || funcTest("test2");
             Assert.AreEqual(testStr, "test1");
+        }
+        [TestMethod]
+        public void IDictionary测试()
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("abc", "2333");
+            dic.Add("AbC", "2333");
+            var result1 = dic.ContainsKey("Abc");
+            var result2 = dic.TryGetValue("Abc", out string ss);
+            var result3 = dic["Abc"];
         }
     }
 }

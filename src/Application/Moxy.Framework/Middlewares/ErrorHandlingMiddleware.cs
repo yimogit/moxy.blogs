@@ -23,7 +23,7 @@ namespace Moxy.Framework.Middlewares
         {
             try
             {
-                 _next(context);
+                await _next(context);
             }
             catch (Exception ex)
             {
@@ -41,7 +41,7 @@ namespace Moxy.Framework.Middlewares
             }
 
             var code = HttpStatusCode.InternalServerError;
-            if (context.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            if (context.Request.IsAjax())
             {
                 var result = JsonHelper.Serialize(OperateResult.Error(exception.Message));
                 context.Response.ContentType = "application/json;charset=utf-8";

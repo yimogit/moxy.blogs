@@ -21,11 +21,16 @@ namespace Moxy.Swagger.Filters
         {
             if (operation == null || context == null)
                 return;
+            if (operation.Parameters == null)
+                operation.Parameters = new List<IParameter>();
 
-            operation.Parameters = operation.Parameters ?? new List<IParameter>();
-
-            //operation.Parameters.Insert(0, new NonBodyParameter() { Name = "X-Token", In = "header", Description = "身份验证票据", Required = false, Type = "string" });
-
+            operation.Parameters.Add(new NonBodyParameter()
+            {
+                Name = "X-Requested-With",
+                In = "header",
+                Default = "XMLHttpRequest",
+                Type = "string"
+            });
         }
     }
 }
