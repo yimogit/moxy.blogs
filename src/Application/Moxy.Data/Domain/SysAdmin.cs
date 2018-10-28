@@ -30,5 +30,10 @@ namespace Moxy.Data.Domain
         /// </summary>
         [Column("is_enable")]
         public bool IsEnable { get; set; }
+        /// <summary>
+        /// 模块编码
+        /// </summary>
+        [Column("module_codes")]
+        public string ModuleCodes { get; set; }
     }
 }

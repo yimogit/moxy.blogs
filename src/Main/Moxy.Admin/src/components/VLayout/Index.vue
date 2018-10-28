@@ -99,7 +99,9 @@ export default {
     },
     sidebarStyle() {
       return (
-        'width:auto;height:' + (this.innerHeight - this.headerHeight) + 'px'
+        'width:auto;height:' +
+        (this.innerHeight - this.headerHeight) +
+        'px;min-width:70px;'
       )
     },
     router_cache() {

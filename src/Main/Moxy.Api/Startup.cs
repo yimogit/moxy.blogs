@@ -14,8 +14,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Moxy.Core;
 using Moxy.Data;
 using Moxy.Framework;
+using Moxy.Framework.Authentication;
 using Moxy.Framework.Filters;
 using Moxy.Framework.Middlewares;
 using Moxy.Services.Article;
@@ -47,6 +49,10 @@ namespace Moxy.Api
                        mysqlOptions.ServerVersion(new Version(5, 7, 21), ServerType.MySql);
                    }
             ));
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IWebContext, WebContext>();
+            services.AddTransient<IMoxyAuth, MoxyAuth>();
             services.AddTransient<ISystemService, SystemService>();
             services.AddTransient<IArticleService, ArticleService>();
 
@@ -103,6 +109,7 @@ namespace Moxy.Api
                 .Select(s => s.Get<CustomSwaggerAuth>()).ToList();
             app.UseSwaggerCustom(CURRENT_SWAGGER_OPTIONS);
 
+            //app.UseStaticFiles();
         }
 
         /// <summary>
@@ -122,7 +129,6 @@ namespace Moxy.Api
             },
             UseSwaggerAction = c =>
             {
-
             },
             UseSwaggerUIAction = c =>
             {

@@ -31,7 +31,7 @@ namespace Moxy.Framework.Middlewares
             }
         }
 
-        private Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             var loggerFactory = context.RequestServices.GetService<ILoggerFactory>();
             if (loggerFactory != null)
@@ -39,19 +39,7 @@ namespace Moxy.Framework.Middlewares
                 var logger = loggerFactory.CreateLogger("HandleException");
                 logger.LogError(exception, exception.Message);
             }
-
-            var code = HttpStatusCode.InternalServerError;
-            if (context.Request.IsAjax())
-            {
-                var result = JsonHelper.Serialize(OperateResult.Error(exception.Message));
-                context.Response.ContentType = "application/json;charset=utf-8";
-                context.Response.StatusCode = (int)code;
-                return context.Response.WriteAsync(result);
-            }
-
-            context.Response.ContentType = "text/html;charset=utf-8";
-            context.Response.StatusCode = (int)code;
-            return context.Response.WriteAsync("服务器错误，错误信息：" + exception.Message);
+           await context.EndWrite(OperateResult.Error("服务器错误，错误信息：" + exception.Message), HttpStatusCode.InternalServerError);
         }
     }
 }

@@ -14,6 +14,8 @@ namespace Moxy.Utils
 
         public static T Deserialize<T>(string input)
         {
+            if (string.IsNullOrEmpty(input))
+                return default(T);
             return JsonConvert.DeserializeObject<T>(input);
         }
 

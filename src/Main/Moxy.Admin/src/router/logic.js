@@ -6,18 +6,34 @@ const beforeEach = (to, from, next) => {
   if (!localStorage.token) {
     return next('/login')
   }
-  if (window.authInfo && window.authInfo.info) return next()
+  //测试登录即可
+  // if (to.path.indexOf('/test') === 0) {
+  //   return next()
+  // }
+  if (checkAuth(to.name)) return next()
   getInfo().then(res => {
-    localStorage.token = res.data.info.token
     window.authInfo = {
       info: res.data.info,
       menus: res.data.menus,
       modules: res.data.modules
     }
-    next()
+    if (checkAuth(to.name)) {
+      next()
+    } else {
+      window.__currentApp.$ui.pages.info('无访问权限')
+      if (history.length < 2) next('/login')
+    }
   })
 }
 const afterEach = (to, from) => {}
+
+function checkAuth(code) {
+  return (
+    window.authInfo &&
+    window.authInfo.modules &&
+    window.authInfo.modules.indexOf(code) > -1
+  )
+}
 
 export default {
   beforeEach,

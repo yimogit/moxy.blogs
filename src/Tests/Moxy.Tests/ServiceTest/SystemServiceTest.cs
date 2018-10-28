@@ -17,7 +17,7 @@ namespace Moxy.Tests.ServiceTest
         {
             _serviceProvider = App.Init();
             var initResult = _serviceProvider.GetService<ISystemService>()
-                .InitSystem();
+                .InitSystem("admin");
             Assert.IsTrue(initResult.Status == ResultStatus.Succeed);
         }
 
@@ -32,7 +32,7 @@ namespace Moxy.Tests.ServiceTest
             string adminPwd = initResult.GetData<Dictionary<string, string>>()["adminPwd"];
 
             var result = _serviceProvider.GetService<ISystemService>()
-                .Login(new Services.System.Dtos.AdminAccoutInputDto()
+                .AuthCheck(new Services.System.Dtos.AdminAccoutInputDto()
                 {
                     AdminName = adminName,
                     AdminPwd = adminPwd

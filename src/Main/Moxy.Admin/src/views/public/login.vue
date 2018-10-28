@@ -57,7 +57,6 @@ export default {
         this.$api.account
           .login(this.loginForm)
           .then(res => {
-            localStorage.token = res.data.token
             this.$router.push({ path: this.$codes.index_path })
           })
           .catch(() => {

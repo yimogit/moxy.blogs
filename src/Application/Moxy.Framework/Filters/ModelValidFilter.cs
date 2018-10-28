@@ -15,10 +15,6 @@ namespace Moxy.Framework.Filters
         {
             _ignoreAttr = ignoreAttr;
         }
-        public override void OnActionExecuted(ActionExecutedContext context)
-        {
-        }
-
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             if (_ignoreAttr != null && _ignoreAttr.Length > 0)
@@ -31,8 +27,8 @@ namespace Moxy.Framework.Filters
             if (!context.ModelState.IsValid)
             {
                 var errorMsg = (from item in context.ModelState
-                                 where item.Value.Errors.Any()
-                                 select item.Value.Errors[0].ErrorMessage).FirstOrDefault();
+                                where item.Value.Errors.Any()
+                                select item.Value.Errors[0].ErrorMessage).FirstOrDefault();
                 context.Result = new JsonResult(OperateResult.Error(errorMsg));
                 return;
             }

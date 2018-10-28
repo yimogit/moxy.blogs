@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Moxy.Core\Moxy.Core.csproj" />
+    <ProjectReference Include="..\Moxy.Services\Moxy.Services.csproj" />
   </ItemGroup>
 
 </Project>

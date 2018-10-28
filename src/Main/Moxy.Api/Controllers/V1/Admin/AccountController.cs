@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Moxy.Core;
+using Moxy.Framework.Authentication;
 using Moxy.Framework.Filters;
+using Moxy.Framework.Permissions;
 using Moxy.Services.System;
 using Moxy.Services.System.Dtos;
 
@@ -20,9 +24,16 @@ namespace Moxy.Api.Controllers.V1.Admin
         /// AccountController
         /// </summary>
         private readonly ISystemService _systemService;
-        public AccountController(ISystemService systemService)
+        private readonly IMoxyAuth _moxyAuth;
+        private readonly IWebContext _webContext;
+        public AccountController(ISystemService systemService
+            , IMoxyAuth moxyAuth
+            , IWebContext webContext
+            )
         {
             _systemService = systemService;
+            _moxyAuth = moxyAuth;
+            _webContext = webContext;
         }
         #region 登录
         /// <summary>
@@ -31,14 +42,20 @@ namespace Moxy.Api.Controllers.V1.Admin
         /// <returns></returns>
         [HttpPost]
         [Route("login")]
+        [AllowAnonymous]
         public IActionResult Login(AdminAccoutInputDto input)
         {
-            var result = _systemService.Login(input);
+            var result = _systemService.AuthCheck(input);
             if (result.Status == ResultStatus.Error)
             {
                 return Ok(result);
             }
-            result.Data = new { token = result.GetData<AdminAccoutOutputDto>().AdminToken };
+            var output = result.GetData<AdminAccoutOutputDto>();
+            result = _moxyAuth.SignIn(new MoxySignInModel()
+            {
+                AuthName = output.AdminName,
+                AuthKey = output.AdminKey,
+            });
             return Ok(result);
         }
         /// <summary>
@@ -49,7 +66,38 @@ namespace Moxy.Api.Controllers.V1.Admin
         [Route("getinfo")]
         public IActionResult GetInfo()
         {
-            return Ok(OperateResult.Error("ok"));
+            var i = 1;
+            return Ok(OperateResult.Succeed("ok", new
+            {
+                info = new
+                {
+                    adminName = _webContext.AuthName
+                },
+                menus = new List<dynamic>()
+                {
+                    new {
+                        menuId= i++,
+                        menuName= "控制台",
+                        menuIcon= "el-icon-menu",
+                        menuCode="home",
+                    },
+                    new {
+                        menuId= i++,
+                        menuName= "系统管理",
+                        menuIcon= "el-icon-setting",
+                        children=new List<dynamic>()
+                        {
+                            new {
+                                menuId= i++,
+                                menuName= "管理员列表",
+                                menuIcon= "el-icon-document",
+                                menuCode="system_admin_list",
+                            },
+                        }
+                    },
+                },
+                modules = new List<string>() { "home", "system_admin_list" }
+            }));
         }
         /// <summary>
         /// 初始化数据
@@ -57,10 +105,11 @@ namespace Moxy.Api.Controllers.V1.Admin
         /// <returns></returns>
         [Route("init")]
         [HttpGet]
-        public IActionResult Init()
+        [AllowAnonymous]
+        public IActionResult Init(string adminName)
         {
-            _systemService.InitSystem();
-            return Ok("初始化成功");
+            var result=_systemService.InitSystem(adminName);
+            return Ok(result);
         }
         #endregion
 

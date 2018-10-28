@@ -12,6 +12,28 @@ namespace Moxy.Swagger.Filters
     /// </summary>
     public class AssignOperationVendorFilter : IOperationFilter
     {
+        private List<IParameter> defParameters = new List<IParameter>()
+        {
+            new NonBodyParameter()
+            {
+                Name = "Authorization",
+                In = "header",
+                Default = "",
+                Type = "string"
+            }
+            ,new NonBodyParameter()
+            {
+                Name = "X-Requested-With",
+                In = "header",
+                Default = "XMLHttpRequest",
+                Type = "string"
+            }
+        };
+        public AssignOperationVendorFilter() { }
+        public AssignOperationVendorFilter(List<IParameter> parameters)
+        {
+            defParameters.AddRange(parameters);
+        }
         /// <summary>
         /// apply
         /// </summary>
@@ -23,14 +45,10 @@ namespace Moxy.Swagger.Filters
                 return;
             if (operation.Parameters == null)
                 operation.Parameters = new List<IParameter>();
-
-            operation.Parameters.Add(new NonBodyParameter()
+            foreach (var item in defParameters)
             {
-                Name = "X-Requested-With",
-                In = "header",
-                Default = "XMLHttpRequest",
-                Type = "string"
-            });
+                operation.Parameters.Add(item);
+            }
         }
     }
 }

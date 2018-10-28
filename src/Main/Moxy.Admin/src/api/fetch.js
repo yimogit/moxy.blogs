@@ -1,11 +1,12 @@
 import axios from 'axios'
 import _config from '@/_config'
 import $ui from '@/_extends/ui'
-// import qs from 'qs'
+import * as $codes from '@/_extends/codes'
+// import qs from 'qs'F
 
 const instance = axios.create({
   baseURL: _config.apiBaseUrl, // api的base_url
-  timeout: 10000 // 请求超时时间
+  timeout: process.env.NODE_ENV === 'development' ? 100000 : 10000 // 请求超时时间
   // transformRequest: data => qs.stringify(data)
 })
 // request拦截器
@@ -42,6 +43,7 @@ instance.interceptors.response.use(
       (error.message.indexOf('403') > -1 || error.message.indexOf('401') > -1)
     ) {
       err.msg = '权限校验失败，请重新登录'
+      $ui.pages.link($codes.login_path)
     }
     $ui.pages.warn(err.msg)
     console.log('err' + error) // for debug

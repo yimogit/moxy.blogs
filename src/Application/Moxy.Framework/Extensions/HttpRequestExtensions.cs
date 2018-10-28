@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
+using Moxy.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Moxy.Framework
 {
@@ -35,6 +38,21 @@ namespace Moxy.Framework
                 .Append(httRequest.Path)
                 .Append(httRequest.QueryString)
                 .ToString();
+        }
+        public static async Task EndWrite(this HttpContext httpContext, OperateResult resResult, HttpStatusCode code)
+        {
+            httpContext.Response.StatusCode = (int)code;
+            if (httpContext.Request.IsAjax())
+            {
+                var result = JsonHelper.Serialize(resResult);
+                httpContext.Response.ContentType = "application/json;charset=utf-8";
+                await httpContext.Response.WriteAsync(result);
+            }
+            else
+            {
+                httpContext.Response.ContentType = "text/html;charset=utf-8";
+                await httpContext.Response.WriteAsync(resResult.Msg);
+            }
         }
     }
 }

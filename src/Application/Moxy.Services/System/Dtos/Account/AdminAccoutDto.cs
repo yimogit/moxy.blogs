@@ -25,13 +25,5 @@ namespace Moxy.Services.System.Dtos
     {
         public string AdminName { get; set; }
         public string AdminKey { get; set; }
-        public string AdminToken
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(AdminName)) return string.Empty;
-                return SecurityHelper.EncryptDES(AdminName + AdminKey);
-            }
-        }
     }
 }

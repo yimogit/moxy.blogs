@@ -36,7 +36,7 @@ namespace Moxy.Utils
             }
             catch (Exception ex)
             {
-                return ex.Message + encryptString;
+                return null;
             }
 
         }
@@ -65,7 +65,7 @@ namespace Moxy.Utils
             }
             catch (Exception ex)
             {
-                return ex.Message + decryptString;
+                return null;
             }
 
         }
