@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Moxy.UnitOfWork\Moxy.UnitOfWork.csproj" />
     <ProjectReference Include="..\Moxy.Core\Moxy.Core.csproj" />
     <ProjectReference Include="..\Moxy.Data\Moxy.Data.csproj" />
   </ItemGroup>

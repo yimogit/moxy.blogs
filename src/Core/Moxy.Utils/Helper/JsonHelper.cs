@@ -9,7 +9,11 @@ namespace Moxy.Utils
     {
         public static string Serialize(object o)
         {
-            return JsonConvert.SerializeObject(o);
+            var setting = new JsonSerializerSettings()
+            {
+                ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver()
+            };
+            return JsonConvert.SerializeObject(o, setting);
         }
 
         public static T Deserialize<T>(string input)

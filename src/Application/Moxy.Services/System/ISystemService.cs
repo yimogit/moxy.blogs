@@ -1,11 +1,12 @@
-﻿using Moxy.Services.System.Dtos;
+﻿using Microsoft.EntityFrameworkCore;
+using Moxy.Services.System.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Moxy.Services.System
 {
-    public interface ISystemService
+    public partial interface ISystemService
     {
         /// <summary>
         /// 管理员验证
@@ -25,5 +26,15 @@ namespace Moxy.Services.System
         /// <param name="authName"></param>
         /// <param name="authKey"></param>
         OperateResult GetAuthModuleCodes(string authName, string authKey);
+
+        #region 管理员管理
+        /// <summary>
+        /// 管理员列表
+        /// </summary>
+        /// <returns></returns>
+        IPagedList<SysAdminListDto> GetAdminList(PagedCriteria pagedCriteria);
+
+        #endregion
+
     }
 }

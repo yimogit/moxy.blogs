@@ -27,10 +27,12 @@ namespace Moxy.Framework.Filters
             if (!context.ModelState.IsValid)
             {
                 var errorMsg = (from item in context.ModelState
-                                where item.Value.Errors.Any()
+                                where item.Value.Errors.Any() && !string.IsNullOrEmpty(item.Value.Errors[0].ErrorMessage)
                                 select item.Value.Errors[0].ErrorMessage).FirstOrDefault();
-                context.Result = new JsonResult(OperateResult.Error(errorMsg));
-                return;
+                if (!string.IsNullOrEmpty(errorMsg))
+                {
+                    context.Result = new JsonResult(OperateResult.Error(errorMsg));
+                }
             }
         }
     }

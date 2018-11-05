@@ -42,13 +42,17 @@ namespace Moxy.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<MoxyDbContext>(
-               options => options.UseMySql(Configuration.GetConnectionString("Default"),
-                   mysqlOptions =>
-                   {
-                       mysqlOptions.ServerVersion(new Version(5, 7, 21), ServerType.MySql);
-                   }
-            ));
+            //services.AddDbContextPool<MoxyDbContext>(options => options.UseMySql(Configuration.GetConnectionString("Default"), mysqlOptions =>
+            //{
+            //    mysqlOptions.ServerVersion(new Version(5, 7, 21), ServerType.MySql);
+            //}));
+
+            services
+                .AddDbContext<MoxyDbContext>(opt => opt.UseInMemoryDatabase("MoxyDB"))
+                .AddUnitOfWork<MoxyDbContext>();
+
+            //services
+            //.AddDbContext<MoxyDbContext>(opt => opt.UseInMemoryDatabase("MoxyDB"));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IWebContext, WebContext>();
@@ -77,8 +81,15 @@ namespace Moxy.Api
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddJsonOptions(op =>
                 {
+                    //骆驼命名法可使用DefaultContractResolver
+                    //op.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+                    //日期返回格式
+                    op.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm";
                     //忽略null值返回
                     op.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+                    //忽略循环引用
+                    op.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                    //忽略缺失的属性
                     op.SerializerSettings.MissingMemberHandling = Newtonsoft.Json.MissingMemberHandling.Ignore;
                 });
         }

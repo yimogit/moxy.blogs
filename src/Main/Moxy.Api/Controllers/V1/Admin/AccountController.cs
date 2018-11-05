@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Moxy.Core;
+using Moxy.Data.Domain;
 using Moxy.Framework.Authentication;
 using Moxy.Framework.Filters;
 using Moxy.Framework.Permissions;
@@ -108,8 +109,14 @@ namespace Moxy.Api.Controllers.V1.Admin
         [AllowAnonymous]
         public IActionResult Init(string adminName)
         {
-            var result=_systemService.InitSystem(adminName);
-            return Ok(result);
+            var result = _systemService.InitSystem(adminName);
+            var admin = result.GetData<Dictionary<string, object>>()["admin"] as SysAdmin;
+            var signResult = _moxyAuth.SignIn(new MoxySignInModel()
+            {
+                AuthName = admin.AdminName,
+                AuthKey = admin.AdminKey,
+            });
+            return Ok(signResult);
         }
         #endregion
 

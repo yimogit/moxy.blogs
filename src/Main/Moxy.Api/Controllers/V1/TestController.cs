@@ -27,10 +27,10 @@ namespace Moxy.Api.Controllers.V1
         /// <returns></returns>
         [HttpGet]
         [Route("list")]
-        public IActionResult GetList()
+        public IActionResult GetList([FromQuery]PagedCriteria pagedCriteria)
         {
 
-            return Ok(new { version = "list-v1" });
+            return Ok(new { version = "list-v1", pagedCriteria });
         }
         /// <summary>
         /// 详情页请求

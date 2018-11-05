@@ -36,15 +36,17 @@ namespace Moxy.Api.Controllers.V1.Admin
         }
         #region 管理员管理
         /// <summary>
-        /// 管理员搜索
+        /// 管理员列表
         /// </summary>
+        /// <param name="pagedCriteria"></param>
         /// <returns></returns>
         [HttpGet]
         [Route("admin/list")]
         [Permission("system_admin_list", "管理员列表", true)]
-        public IActionResult AdminList()
+        public IActionResult AdminList([FromQuery]PagedCriteria pagedCriteria)
         {
-            return Ok(OperateResult.Error("ok"));
+            var result = _systemService.GetAdminList(pagedCriteria);
+            return Ok(OperateResult.Succeed("ok", result));
         }
         /// <summary>
         /// 管理员创建

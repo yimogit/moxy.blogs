@@ -46,6 +46,7 @@ namespace Moxy.Framework
             {
                 var result = JsonHelper.Serialize(resResult);
                 httpContext.Response.ContentType = "application/json;charset=utf-8";
+
                 await httpContext.Response.WriteAsync(result);
             }
             else

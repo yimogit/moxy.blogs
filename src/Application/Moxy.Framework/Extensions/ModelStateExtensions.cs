@@ -18,17 +18,7 @@ namespace Moxy.Framework
         {
             services.Configure<ApiBehaviorOptions>(options =>
             {
-                options.InvalidModelStateResponseFactory = context =>
-                {
-                    if (!context.ModelState.IsValid)
-                    {
-                        var errorMsg = (from item in context.ModelState
-                                        where item.Value.Errors.Any()
-                                        select item.Value.Errors[0].ErrorMessage).FirstOrDefault();
-                        return new JsonResult(OperateResult.Error(errorMsg));
-                    }
-                    return options.InvalidModelStateResponseFactory(context);
-                };
+                options.SuppressModelStateInvalidFilter = true;
             });
             return services;
         }

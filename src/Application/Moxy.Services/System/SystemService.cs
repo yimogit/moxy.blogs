@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using Moxy.Data.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Moxy.Services.System
 {
@@ -14,9 +15,12 @@ namespace Moxy.Services.System
         /// SystemService
         /// </summary>
         private readonly MoxyDbContext _dbContext;
-        public SystemService(MoxyDbContext dbContext)
+        private readonly IUnitOfWork<MoxyDbContext> _unitOfWork;
+        public SystemService(MoxyDbContext dbContext
+            , IUnitOfWork<MoxyDbContext> unitOfWork)
         {
             _dbContext = dbContext;
+            _unitOfWork = unitOfWork;
         }
         /// <summary>
         /// 初始化系统
@@ -25,23 +29,23 @@ namespace Moxy.Services.System
         /// <returns></returns>
         public OperateResult InitSystem(string adminName)
         {
-            Dictionary<string, string> model = new Dictionary<string, string>();
+            Dictionary<string, object> model = new Dictionary<string, object>();
             if (_dbContext.SysAdmin.Count() == 0)
             {
                 if (string.IsNullOrEmpty(adminName))
                     return OperateResult.Error("初始化账号不能为空");
                 string adminPwd = new Random().Next(100000, 999999).ToString();
-                _dbContext.SysAdmin.Add(new SysAdmin()
+                var admin = new SysAdmin()
                 {
                     AdminName = adminName,
                     AdminPwd = Moxy.Utils.SecurityHelper.EncryptDES(adminPwd),
                     AdminKey = new Random().Next(0, int.MaxValue).ToString(),
                     IsEnable = true,
                     ModuleCodes = "*"
-                });
+                };
+                _dbContext.SysAdmin.Add(admin);
                 _dbContext.SaveChanges();
-                model.Add("adminName", adminName);
-                model.Add("adminPwd", adminPwd);
+                model.Add("admin", admin);
             }
             return OperateResult.Succeed("初始化系统成功", model);
         }
@@ -85,6 +89,16 @@ namespace Moxy.Services.System
                 return OperateResult.Error("账号未分配任何权限");
 
             return OperateResult.Succeed("ok", existItem.ModuleCodes);
+        }
+
+        /// <summary>
+        /// 管理员列表
+        /// </summary>
+        /// <returns></returns>
+        public IPagedList<SysAdminListDto> GetAdminList(PagedCriteria pagedCriteria)
+        {
+            var query = _unitOfWork.GetRepository<SysAdmin>().Table.Select(s => new SysAdminListDto(s));
+            return query.ToPagedList(pagedCriteria);
         }
     }
 }

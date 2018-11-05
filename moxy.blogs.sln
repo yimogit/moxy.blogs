@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moxy.Utils", "src\Core\Moxy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moxy.Framework", "src\Application\Moxy.Framework\Moxy.Framework.csproj", "{750C4ECB-0098-4C5C-B9BF-A603BA9D64B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moxy.UnitOfWork", "src\Core\Moxy.UnitOfWork\Moxy.UnitOfWork.csproj", "{623E4C52-CD8E-443D-B7BB-EA6469844A71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{750C4ECB-0098-4C5C-B9BF-A603BA9D64B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{750C4ECB-0098-4C5C-B9BF-A603BA9D64B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{750C4ECB-0098-4C5C-B9BF-A603BA9D64B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{623E4C52-CD8E-443D-B7BB-EA6469844A71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{623E4C52-CD8E-443D-B7BB-EA6469844A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{623E4C52-CD8E-443D-B7BB-EA6469844A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{623E4C52-CD8E-443D-B7BB-EA6469844A71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +98,7 @@ Global
 		{9DD31879-BF3E-46DD-838C-E0F339CE1AA7} = {E3936381-997F-49A8-B6A9-AB3F4C02ABB0}
 		{9E662E9C-D9CF-4B5B-8A7B-C0D4EC9ED9AD} = {D192A0BF-601E-49A8-8928-58C8E9AFE128}
 		{750C4ECB-0098-4C5C-B9BF-A603BA9D64B4} = {E3936381-997F-49A8-B6A9-AB3F4C02ABB0}
+		{623E4C52-CD8E-443D-B7BB-EA6469844A71} = {D192A0BF-601E-49A8-8928-58C8E9AFE128}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {529E56C3-8A30-4D4A-85C8-725F0B4293E9}
