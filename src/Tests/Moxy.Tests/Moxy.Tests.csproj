@@ -41,4 +41,6 @@
     <ProjectReference Include="..\..\Core\Moxy.Utils\Moxy.Utils.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+
 </Project>

@@ -15,12 +15,12 @@ using Moxy.Services.System.Dtos;
 namespace Moxy.Api.Controllers.V1.Admin
 {
     /// <summary>
-    /// 系统给管理接口
+    /// 系统管理接口
     /// </summary>
     public class SystemController : BaseAdminController
     {
         /// <summary>
-        /// AccountController
+        /// SystemController
         /// </summary>
         private readonly ISystemService _systemService;
         private readonly IMoxyAuth _moxyAuth;

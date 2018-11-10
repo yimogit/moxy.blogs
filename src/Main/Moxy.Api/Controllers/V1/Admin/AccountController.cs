@@ -44,7 +44,7 @@ namespace Moxy.Api.Controllers.V1.Admin
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
-        public IActionResult Login(AdminAccoutInputDto input)
+        public IActionResult Login([FromBody]AdminAccoutInputDto input)
         {
             var result = _systemService.AuthCheck(input);
             if (result.Status == ResultStatus.Error)
@@ -110,13 +110,7 @@ namespace Moxy.Api.Controllers.V1.Admin
         public IActionResult Init(string adminName)
         {
             var result = _systemService.InitSystem(adminName);
-            var admin = result.GetData<Dictionary<string, object>>()["admin"] as SysAdmin;
-            var signResult = _moxyAuth.SignIn(new MoxySignInModel()
-            {
-                AuthName = admin.AdminName,
-                AuthKey = admin.AdminKey,
-            });
-            return Ok(signResult);
+            return Ok(result);
         }
         #endregion
 

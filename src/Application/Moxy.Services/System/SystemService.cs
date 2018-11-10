@@ -29,25 +29,26 @@ namespace Moxy.Services.System
         /// <returns></returns>
         public OperateResult InitSystem(string adminName)
         {
-            Dictionary<string, object> model = new Dictionary<string, object>();
-            if (_dbContext.SysAdmin.Count() == 0)
+            if (_dbContext.SysAdmin.Count() > 0)
             {
-                if (string.IsNullOrEmpty(adminName))
-                    return OperateResult.Error("初始化账号不能为空");
-                string adminPwd = new Random().Next(100000, 999999).ToString();
-                var admin = new SysAdmin()
-                {
-                    AdminName = adminName,
-                    AdminPwd = Moxy.Utils.SecurityHelper.EncryptDES(adminPwd),
-                    AdminKey = new Random().Next(0, int.MaxValue).ToString(),
-                    IsEnable = true,
-                    ModuleCodes = "*"
-                };
-                _dbContext.SysAdmin.Add(admin);
-                _dbContext.SaveChanges();
-                model.Add("admin", admin);
+                return OperateResult.Succeed("系统已初始化");
             }
-            model.Add("admin", _dbContext.SysAdmin.FirstOrDefault());
+            if (string.IsNullOrEmpty(adminName))
+                return OperateResult.Error("初始化账号不能为空");
+            Dictionary<string, object> model = new Dictionary<string, object>();
+            string adminPwd = new Random().Next(100000, 999999).ToString();
+            var admin = new SysAdmin()
+            {
+                AdminName = adminName,
+                AdminPwd = Moxy.Utils.SecurityHelper.EncryptDES(adminPwd),
+                AdminKey = new Random().Next(0, int.MaxValue).ToString(),
+                IsEnable = true,
+                ModuleCodes = "*"
+            };
+            _dbContext.SysAdmin.Add(admin);
+            _dbContext.SaveChanges();
+            model.Add("管理员账号：", adminName);
+            model.Add("管理员密码：", adminPwd);
             return OperateResult.Succeed("初始化系统成功", model);
         }
 

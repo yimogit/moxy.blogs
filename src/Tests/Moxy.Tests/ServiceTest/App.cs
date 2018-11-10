@@ -24,17 +24,24 @@ namespace Moxy.Tests.ServiceTest
                                 .Build();
             IServiceCollection services = new ServiceCollection();
             services.AddLogging(e => e.AddLog4Net("log4net.config"));
-
-            //services.AddDbContextPool<MoxyDbContext>(
-            //   options => options.UseMySql(Configuration.GetConnectionString("Default"),
-            //       mysqlOptions =>
-            //       {
-            //           mysqlOptions.ServerVersion(new Version(5, 7, 21), ServerType.MySql);
-            //       }
-            //));
-
             services
-            .AddDbContext<MoxyDbContext>(opt => opt.UseInMemoryDatabase("MoxyDB"));
+                    .AddDbContext<MoxyDbContext>(opt =>
+                    {
+                        //优先使用mysql
+                        if (!string.IsNullOrEmpty(Configuration.GetConnectionString("MySql")))
+                        {
+                            opt.UseMySql(Configuration.GetConnectionString("MySql"));
+                        }
+                        else if (!string.IsNullOrEmpty(Configuration.GetConnectionString("Memory")))
+                        {
+                            opt.UseInMemoryDatabase(Configuration.GetConnectionString("Memory"));
+                        }
+                        else
+                        {
+                            throw new NotImplementedException("请配置数据库连接字符串");
+                        }
+                    })
+                    .AddUnitOfWork<MoxyDbContext>();
 
             services.AddTransient<ISystemService, SystemService>();
             services.AddTransient<IArticleService, ArticleService>();
