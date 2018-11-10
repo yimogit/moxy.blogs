@@ -32,7 +32,30 @@ namespace Moxy.Services.System
         /// 管理员列表
         /// </summary>
         /// <returns></returns>
-        IPagedList<SysAdminListDto> GetAdminList(PagedCriteria pagedCriteria);
+        IPagedList<SysAdminListDto> GetAdminList(SysAdminSearchRequest request);
+        /// <summary>
+        /// 管理员列表
+        /// </summary>
+        /// <returns></returns>
+        SysAdminItemDto GetAdminItem(int id);
+
+        /// <summary>
+        /// 创建管理员
+        /// </summary>
+        /// <returns></returns>
+        OperateResult CreateAdmin(SysAdminInputDto input);
+
+        /// <summary>
+        /// 修改管理员
+        /// </summary>
+        /// <returns></returns>
+        OperateResult UpdateAdmin(SysAdminInputDto input);
+
+        /// <summary>
+        /// 删除管理员
+        /// </summary>
+        /// <returns></returns>
+        OperateResult DeleteAdmin(List<int> ids);
 
         #endregion
 

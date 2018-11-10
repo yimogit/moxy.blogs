@@ -60,7 +60,7 @@ export default {
       loading: true,
       pagedCriteria: {
         pageSize: 10,
-        pageIndex: 1,
+        pageIndex: 0,
         columnName: '',
         columnOrder: ''
       },
@@ -144,8 +144,8 @@ export default {
       this.loadAction(search)
         .then(res => {
           if (res.status !== 1) return
-          this.tableData.rows = res.data.rows
-          this.tableData.total = res.data.total
+          this.tableData.rows = res.data.items
+          this.tableData.total = res.data.totalCount
         })
         .finally(() => {
           this.hideLoading()

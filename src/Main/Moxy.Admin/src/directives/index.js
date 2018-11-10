@@ -1,8 +1,7 @@
 export default {
   auth: {
     inserted: (el, binding) => {
-      const authModules = (window.authInfo && window.authInfo.modules) || []
-      if (binding.value && authModules.indexOf(binding.value) === -1) {
+      if (binding.value && !checkAuth(binding.value)) {
         if (binding.arg === 'remove') {
           el.remove()
         } else {
@@ -12,4 +11,13 @@ export default {
       }
     }
   }
+}
+
+function checkAuth(code) {
+  return (
+    window.authInfo &&
+    window.authInfo.modules &&
+    (window.authInfo.modules.indexOf(code) > -1 ||
+      window.authInfo.modules[0] === '*')
+  )
 }

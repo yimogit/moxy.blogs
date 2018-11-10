@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper.Attributes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -74,7 +75,11 @@ namespace Moxy.Api
             services.AddTransient<IMoxyAuth, MoxyAuth>();
             services.AddTransient<ISystemService, SystemService>();
             services.AddTransient<IArticleService, ArticleService>();
-
+            //AddAutoMapper
+            AutoMapper.Mapper.Initialize(config =>
+            {
+                typeof(Services.System.Dtos.AdminAccoutInputDto).Assembly.MapTypes(config);
+            });
             //版本控制
             services.AddMvcCore().AddJsonFormatters().AddVersionedApiExplorer(o => o.GroupNameFormat = "'v'VVV");
             //跨域

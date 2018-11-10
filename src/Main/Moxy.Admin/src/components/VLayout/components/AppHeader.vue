@@ -2,7 +2,7 @@
   <el-row :gutter="24">
     <el-col :xs="10" :sm="8" :md="8">
       <div>
-        <router-link to="/" style="text-decoration: none;">XXX 管理系统</router-link>
+        <router-link to="/" style="text-decoration: none;">墨玄涯博客管理系统</router-link>
       </div>
     </el-col>
     <el-col :xs="0" :sm="8" :md="8" class="hidden-xs-only">
@@ -11,7 +11,7 @@
       </div>
     </el-col>
     <el-col :xs="14" :sm="8" :md="8" class="text-right">
-      <v-theme-picker/>
+      <v-theme-picker />
       <el-dropdown trigger="click" placement="bottom-end" @command="handleClick">
         <el-button type="text">
           {{adminName}}

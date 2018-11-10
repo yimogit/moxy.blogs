@@ -31,7 +31,8 @@ function checkAuth(code) {
   return (
     window.authInfo &&
     window.authInfo.modules &&
-    window.authInfo.modules.indexOf(code) > -1
+    (window.authInfo.modules.indexOf(code) > -1 ||
+      window.authInfo.modules[0] === '*')
   )
 }
 

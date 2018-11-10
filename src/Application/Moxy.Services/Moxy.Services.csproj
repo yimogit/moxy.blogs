@@ -3,10 +3,17 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Attributes" Version="6.0.1" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Moxy.UnitOfWork\Moxy.UnitOfWork.csproj" />
     <ProjectReference Include="..\Moxy.Core\Moxy.Core.csproj" />
     <ProjectReference Include="..\Moxy.Data\Moxy.Data.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="System\Dtos\Request\" />
   </ItemGroup>
 
 </Project>

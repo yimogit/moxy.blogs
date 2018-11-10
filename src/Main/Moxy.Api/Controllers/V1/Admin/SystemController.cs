@@ -43,9 +43,22 @@ namespace Moxy.Api.Controllers.V1.Admin
         [HttpGet]
         [Route("admin/list")]
         [Permission("system_admin_list", "管理员列表", true)]
-        public IActionResult AdminList(PagedCriteria pagedCriteria)
+        public IActionResult AdminList(SysAdminSearchRequest request)
         {
-            var result = _systemService.GetAdminList(pagedCriteria);
+            var result = _systemService.GetAdminList(request);
+            return Ok(OperateResult.Succeed("ok", result));
+        }
+        /// <summary>
+        /// 管理员信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("admin/item")]
+        [Permission("system_admin_item", "管理员信息", false)]
+        public IActionResult AdminItem(int id)
+        {
+            var result = _systemService.GetAdminItem(id);
             return Ok(OperateResult.Succeed("ok", result));
         }
         /// <summary>
@@ -55,9 +68,11 @@ namespace Moxy.Api.Controllers.V1.Admin
         [HttpPost]
         [Route("admin/create")]
         [Permission("system_admin_create", "管理员创建", true)]
-        public IActionResult AdminCreate()
+        [ModelValid]
+        public IActionResult AdminCreate([FromBody]SysAdminInputDto input)
         {
-            return Ok(OperateResult.Error("ok"));
+            var result = _systemService.CreateAdmin(input);
+            return Ok(result);
         }
         /// <summary>
         /// 管理员编辑
@@ -66,9 +81,11 @@ namespace Moxy.Api.Controllers.V1.Admin
         [HttpPost]
         [Route("admin/edit")]
         [Permission("system_admin_edit", "管理员编辑", false)]
-        public IActionResult AdminEdit()
+        [ModelValid("AdminPwd")]
+        public IActionResult AdminEdit([FromBody]SysAdminInputDto input)
         {
-            return Ok(OperateResult.Error("ok"));
+            var result = _systemService.UpdateAdmin(input);
+            return Ok(result);
         }
         /// <summary>
         /// 删除管理员
@@ -76,10 +93,11 @@ namespace Moxy.Api.Controllers.V1.Admin
         /// <returns></returns>
         [HttpPost]
         [Route("admin/delete")]
-        [Permission("system_admin_delete", "管理员删除", false)]
-        public IActionResult DeleteAdmin()
+        [Permission("system_admin_del", "管理员删除", false)]
+        public IActionResult DeleteAdmin([FromBody]IdsRequest<int> request)
         {
-            return Ok(OperateResult.Error("ok"));
+            var result = _systemService.DeleteAdmin(request.Ids);
+            return Ok(result);
         }
         #endregion
 

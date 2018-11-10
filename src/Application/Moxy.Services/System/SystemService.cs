@@ -6,6 +6,7 @@ using System.Text;
 using System.Linq;
 using Moxy.Data.Domain;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper.QueryableExtensions;
 
 namespace Moxy.Services.System
 {
@@ -92,15 +93,90 @@ namespace Moxy.Services.System
 
             return OperateResult.Succeed("ok", existItem.ModuleCodes);
         }
+        #region 管理员管理
+        /// <summary>
+        /// 管理员列表
+        /// </summary>
+        /// <returns></returns>
+        public IPagedList<SysAdminListDto> GetAdminList(SysAdminSearchRequest request)
+        {
+            var query = _unitOfWork.GetRepository<SysAdmin>().Table;
+            if (!string.IsNullOrEmpty(request.Keyword))
+            {
+                query = query.Where(s => s.AdminName.Contains(request.Keyword));
+            }
+            var result = query.ProjectTo<SysAdminListDto>().ToPagedList(request);
+            return result;
+        }
 
         /// <summary>
         /// 管理员列表
         /// </summary>
         /// <returns></returns>
-        public IPagedList<SysAdminListDto> GetAdminList(PagedCriteria pagedCriteria)
+        public SysAdminItemDto GetAdminItem(int id)
         {
-            var query = _unitOfWork.GetRepository<SysAdmin>().Table.Select(s => new SysAdminListDto(s));
-            return query.ToPagedList(pagedCriteria);
+            var query = _unitOfWork.GetRepository<SysAdmin>().Table
+                .Where(s => s.Id == id)
+                .ProjectTo<SysAdminItemDto>();
+            return query.FirstOrDefault();
         }
+        /// <summary>
+        /// 创建管理员
+        /// </summary>
+        /// <returns></returns>
+        public OperateResult CreateAdmin(SysAdminInputDto input)
+        {
+            if (_unitOfWork.GetRepository<SysAdmin>().Table.Any(s => s.AdminName == input.AdminName))
+            {
+                return OperateResult.Error("已存在此管理员");
+            }
+            var entity = AutoMapper.Mapper.Map<SysAdmin>(input);
+            entity.AdminKey = new Random().Next(0, int.MaxValue).ToString();
+            entity.AdminPwd = Moxy.Utils.SecurityHelper.EncryptDES(input.AdminPwd);
+            _unitOfWork.GetRepository<SysAdmin>().Insert(entity);
+            var row = _unitOfWork.SaveChanges();
+            return row > 0 ? OperateResult.Succeed("创建成功") : OperateResult.Error("创建失败");
+        }
+
+        /// <summary>
+        /// 修改管理员
+        /// </summary>
+        /// <returns></returns>
+        public OperateResult UpdateAdmin(SysAdminInputDto input)
+        {
+            if (_unitOfWork.GetRepository<SysAdmin>().Table.Any(s => s.Id != input.Id && s.AdminName == input.AdminName))
+            {
+                return OperateResult.Error("已存在此管理员");
+            }
+            var existItem = _unitOfWork.GetRepository<SysAdmin>().Table.FirstOrDefault(s => s.Id == input.Id);
+            if (existItem == null)
+                return OperateResult.Error("数据不存在");
+            existItem.AdminName = input.AdminName;
+            if (!string.IsNullOrEmpty(input.AdminPwd))
+            {
+                existItem.AdminPwd = Utils.SecurityHelper.EncryptDES(input.AdminPwd);
+                existItem.AdminKey = new Random().Next(0, int.MaxValue).ToString();
+            }
+            existItem.IsEnable = input.IsEnable;
+            existItem.ModuleCodes = input.ModuleCodes;
+            existItem.UpdatedAt = DateTime.Now;
+            var row = _unitOfWork.SaveChanges();
+            return row > 0 ? OperateResult.Succeed("修改成功") : OperateResult.Error("修改失败");
+        }
+
+        /// <summary>
+        /// 删除管理员
+        /// </summary>
+        /// <returns></returns>
+        public OperateResult DeleteAdmin(List<int> ids)
+        {
+            var delItems = _unitOfWork.GetRepository<SysAdmin>().Table.Where(s => ids.Contains(s.Id));
+            _unitOfWork.GetRepository<SysAdmin>().Delete(delItems);
+            _unitOfWork.SaveChanges();
+            return OperateResult.Succeed("执行成功");
+        }
+
+
+        #endregion
     }
 }

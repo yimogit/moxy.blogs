@@ -3,8 +3,8 @@
     <el-row>
       <el-col :span="18">
         <el-form :inline="true">
-          <el-form-item label="关键字">
-            <el-input type="text" v-model="search.keyword">
+          <el-form-item label="管理员名称">
+            <el-input type="text" v-model="search.keyword" clearable>
               <el-button slot="append" icon="el-icon-search" @click="e=>this.$refs.mytable.loadData()"></el-button>
             </el-input>
           </el-form-item>
@@ -14,7 +14,7 @@
         <v-btn-create @click="showDialog({})" auth="system_admin_create">添加管理员</v-btn-create>
       </el-col>
     </el-row>
-    <v-table-pager :loadAction="$api.system.getAdminList" :loadSearch="search" ref="mytable" :show-checkbox="true" radio-key="id" :hide-pager="false" @handle-radio="e=>$ui.pages.info(e.adminName)" @handle-checkbox="e=>{checkList=e;$ui.pages.info(e.map(s=>s.adminName))}">
+    <v-table-pager :loadAction="$api.system.getAdminList" :loadSearch="search" ref="mytable" :show-checkbox="true" :hide-pager="false">
       <el-table-column prop="adminName" label="管理员名称">
       </el-table-column>
       <el-table-column label="是否启用">
@@ -27,7 +27,7 @@
       <el-table-column width="180" label="操作">
         <template slot-scope="prop">
           <v-btn-edit @click="$ui.pages.link('/system/admin/edit/'+prop.row.id)" auth="system_admin_edit" icon="el-icon-document">编辑</v-btn-edit>
-          <v-btn-del @click="delAdmin" auth="system_admin_del">删除</v-btn-del>
+          <v-btn-del @click="delAdmin(prop.row.id)" auth="system_admin_delete">删除</v-btn-del>
         </template>
       </el-table-column>
     </v-table-pager>
@@ -71,7 +71,7 @@ export default {
     },
     delAdmin(id) {
       this.$ui.pages.confirm('确认删除？').then(res => {
-        this.$api.system.delAdmin({ id: id }).then(res => {
+        this.$api.system.delAdmin({ ids: [id] }).then(res => {
           if (res.status !== 1) return
           this.$ui.pages.success(res.msg)
         })

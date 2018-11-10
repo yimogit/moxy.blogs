@@ -61,7 +61,7 @@ namespace Moxy.Framework.Permissions
                 //用户权限未包含特性标记中的code则无权限
                 return context.HttpContext.EndWrite(OperateResult.Error("无权限访问"), HttpStatusCode.Unauthorized);
             }
-            //特性标记存在其中则
+
             return base.OnActionExecutionAsync(context, next);
         }
     }

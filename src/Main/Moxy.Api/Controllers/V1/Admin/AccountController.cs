@@ -97,7 +97,7 @@ namespace Moxy.Api.Controllers.V1.Admin
                         }
                     },
                 },
-                modules = new List<string>() { "home", "system_admin_list" }
+                modules = new List<string>() { "*" }
             }));
         }
         /// <summary>
