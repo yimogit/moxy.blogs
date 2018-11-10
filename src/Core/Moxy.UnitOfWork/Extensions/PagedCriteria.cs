@@ -6,7 +6,7 @@ namespace Moxy
 {
     public class PagedCriteria
     {
-        public PagedCriteria(int pageSize = int.MaxValue, int pageIndex = 1)
+        public PagedCriteria(int pageSize = int.MaxValue, int pageIndex = 0)
         {
             this.PageSize = pageSize;
             this.PageIndex = Math.Max(0, pageIndex);
@@ -16,7 +16,7 @@ namespace Moxy
         public PagedCriteria()
         {
             PageSize = int.MaxValue;
-            PageIndex = 1;
+            PageIndex = 0;
         }
 
         public int PageSize { get; set; }
