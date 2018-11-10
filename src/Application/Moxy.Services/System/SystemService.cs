@@ -47,6 +47,7 @@ namespace Moxy.Services.System
                 _dbContext.SaveChanges();
                 model.Add("admin", admin);
             }
+            model.Add("admin", _dbContext.SysAdmin.FirstOrDefault());
             return OperateResult.Succeed("初始化系统成功", model);
         }
 

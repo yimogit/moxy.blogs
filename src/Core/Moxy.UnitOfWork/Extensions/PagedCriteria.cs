@@ -9,7 +9,7 @@ namespace Moxy
         public PagedCriteria(int pageSize = int.MaxValue, int pageIndex = 1)
         {
             this.PageSize = pageSize;
-            this.PageIndex = pageIndex;
+            this.PageIndex = Math.Max(0, pageIndex);
         }
 
 

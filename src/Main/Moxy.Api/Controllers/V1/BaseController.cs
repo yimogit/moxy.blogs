@@ -10,7 +10,6 @@ using Moxy.Services.System.Dtos;
 namespace Moxy.Api.Controllers.V1
 {
 
-    [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{api-version:apiVersion}/[controller]")]
     public class BaseApiController : ControllerBase

@@ -11,12 +11,12 @@ namespace Moxy
     {
         public static IPagedList<T> ToPagedList<T>(this IQueryable<T> superset, PagedCriteria pagedCriteria)
         {
-            return superset.ToPagedList<T>(pagedCriteria.PageIndex, pagedCriteria.PageSize, 1);
+            return superset.ToPagedList<T>(Math.Max(pagedCriteria.PageIndex, 0), pagedCriteria.PageSize, 0);
         }
 
         public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> source, PagedCriteria pagedCriteria)
         {
-            return await source.ToPagedListAsync<T>(pagedCriteria.PageIndex, pagedCriteria.PageSize, 1);
+            return await source.ToPagedListAsync<T>(Math.Max(pagedCriteria.PageIndex, 0) , pagedCriteria.PageSize, 0);
         }
     }
 }

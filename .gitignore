@@ -260,5 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 
-./src/Moxy.Api/Moxy.Api.xml
 /src/Main/Moxy.Api/logs
+/src/Main/Moxy.Api/appsettings.*.json

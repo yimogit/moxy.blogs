@@ -13,7 +13,6 @@ namespace Moxy.Api.Controllers.V1.Admin
 {
 
     [Area("admin")]
-    [ApiController]
     [ApiVersion("1.0")]
     [Route("[area]/api/v{api-version:apiVersion}/[controller]")]
     [AdminAuth]

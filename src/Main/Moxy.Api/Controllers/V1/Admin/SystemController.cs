@@ -43,7 +43,7 @@ namespace Moxy.Api.Controllers.V1.Admin
         [HttpGet]
         [Route("admin/list")]
         [Permission("system_admin_list", "管理员列表", true)]
-        public IActionResult AdminList([FromQuery]PagedCriteria pagedCriteria)
+        public IActionResult AdminList(PagedCriteria pagedCriteria)
         {
             var result = _systemService.GetAdminList(pagedCriteria);
             return Ok(OperateResult.Succeed("ok", result));
