@@ -18,6 +18,5 @@ namespace Moxy.Api.Controllers.V1.Admin
     [AdminAuth]
     public class BaseAdminController : ControllerBase
     {
-
     }
 }

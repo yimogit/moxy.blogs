@@ -139,6 +139,10 @@ export default {
         this.loading = false
       })
     },
+    search() {
+      this.showLoading()
+      this.loadData()
+    },
     loadData() {
       var search = Object.assign(this.pagedCriteria, this.loadSearch)
       this.loadAction(search)

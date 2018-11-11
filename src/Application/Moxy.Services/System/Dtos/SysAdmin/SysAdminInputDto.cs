@@ -29,5 +29,9 @@ namespace Moxy.Services.System.Dtos
         /// 模块编码
         /// </summary>
         public string ModuleCodes { get; set; }
+        /// <summary>
+        /// 模块编码
+        /// </summary>
+        public string Menus { get; set; }
     }
 }

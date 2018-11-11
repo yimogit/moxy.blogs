@@ -31,14 +31,6 @@ export default {
         title: '管理员编辑',
         pname: 'system_admin_list'
       }
-    },
-    {
-      path: 'role/list',
-      name: 'system_role_list',
-      component: _import('system/role/list'),
-      meta: {
-        auth: true
-      }
     }
   ]
 }

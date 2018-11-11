@@ -26,6 +26,7 @@ namespace Moxy.Services.System
         /// <param name="authName"></param>
         /// <param name="authKey"></param>
         OperateResult GetAuthModuleCodes(string authName, string authKey);
+        OperateResult GetAdminAuthInfo(string authName);
 
         #region 管理员管理
         /// <summary>

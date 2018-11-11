@@ -39,7 +39,7 @@ namespace Moxy.Framework.Middlewares
                 var logger = loggerFactory.CreateLogger("HandleException");
                 logger.LogError(exception, exception.Message);
             }
-           await context.EndWrite(OperateResult.Error("服务器错误，错误信息：" + exception.Message), HttpStatusCode.InternalServerError);
+           await context.EndWrite(OperateResult.Error("服务器错误，错误信息：" + exception.Message+",堆栈异常："+exception.StackTrace), HttpStatusCode.InternalServerError);
         }
     }
 }

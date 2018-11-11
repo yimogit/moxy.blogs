@@ -31,7 +31,7 @@ namespace Moxy.Framework
                 var signResult = _moxyAuth.CheckSign();
                 if (signResult.Status == ResultStatus.Error)
                     return null;
-                _authName = signResult.GetData<MoxySignInModel>().AuthName;
+                _authName = signResult.GetData<MoxySignInModel>()?.AuthName;
                 return _authName;
             }
         }

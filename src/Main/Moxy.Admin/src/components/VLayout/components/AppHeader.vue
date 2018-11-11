@@ -37,7 +37,7 @@ export default {
   },
   data() {
     return {
-      adminName: window.authInfo && window.authInfo.info.adminName,
+      adminName: window.authInfo && window.authInfo.authName,
       disabledTab: localStorage.DISABLE_TAB === 'true'
     }
   },

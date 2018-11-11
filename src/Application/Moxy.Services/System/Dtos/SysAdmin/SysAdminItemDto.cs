@@ -19,5 +19,6 @@ namespace Moxy.Services.System.Dtos
         /// </summary>
         public bool IsEnable { get; set; }
         public string ModuleCodes { get; set; }
+        public string Menus { get; set; }
     }
 }

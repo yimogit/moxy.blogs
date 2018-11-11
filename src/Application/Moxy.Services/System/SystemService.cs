@@ -50,6 +50,7 @@ namespace Moxy.Services.System
             _dbContext.SaveChanges();
             model.Add("管理员账号：", adminName);
             model.Add("管理员密码：", adminPwd);
+            model.Add("管理员列表：", "/system/admin/list");
             return OperateResult.Succeed("初始化系统成功", model);
         }
 
@@ -92,6 +93,24 @@ namespace Moxy.Services.System
                 return OperateResult.Error("账号未分配任何权限");
 
             return OperateResult.Succeed("ok", existItem.ModuleCodes);
+        }
+
+        public OperateResult GetAdminAuthInfo(string authName)
+        {
+            var existItem = _dbContext.SysAdmin.FirstOrDefault(e => e.AdminName == authName);
+            if (existItem == null)
+                return OperateResult.Error("获取账号信息失败");
+            if (!existItem.IsEnable)
+                return OperateResult.Error("账号未启用");
+            if (string.IsNullOrEmpty(existItem.ModuleCodes))
+                return OperateResult.Error("账号未分配任何权限");
+
+            return OperateResult.Succeed("ok", new
+            {
+                authName = existItem.AdminName,
+                menus = Utils.JsonHelper.Deserialize(existItem.Menus),
+                modules = existItem.ModuleCodes.Split(',').ToList()
+            });
         }
         #region 管理员管理
         /// <summary>
@@ -159,6 +178,7 @@ namespace Moxy.Services.System
             }
             existItem.IsEnable = input.IsEnable;
             existItem.ModuleCodes = input.ModuleCodes;
+            existItem.Menus = input.Menus;
             existItem.UpdatedAt = DateTime.Now;
             var row = _unitOfWork.SaveChanges();
             return row > 0 ? OperateResult.Succeed("修改成功") : OperateResult.Error("修改失败");

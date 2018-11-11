@@ -15,6 +15,13 @@ export function getAdminItem(params) {
   })
 }
 
+export function getAdminModules() {
+  return request({
+    url: '/v1/system/admin/modules',
+    method: 'get'
+  })
+}
+
 export function createAdmin(data) {
   return request({
     url: '/v1/system/admin/create',

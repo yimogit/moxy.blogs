@@ -5,7 +5,7 @@
         <el-form :inline="true">
           <el-form-item label="管理员名称">
             <el-input type="text" v-model="search.keyword" clearable>
-              <el-button slot="append" icon="el-icon-search" @click="e=>this.$refs.mytable.loadData()"></el-button>
+              <el-button slot="append" icon="el-icon-search" @click="e=>this.$refs.mytable.search()"></el-button>
             </el-input>
           </el-form-item>
         </el-form>
@@ -14,7 +14,7 @@
         <v-btn-create @click="showDialog({})" auth="system_admin_create">添加管理员</v-btn-create>
       </el-col>
     </el-row>
-    <v-table-pager :loadAction="$api.system.getAdminList" :loadSearch="search" ref="mytable" :show-checkbox="true" :hide-pager="false">
+    <v-table-pager :loadAction="$api.system.getAdminList" :loadSearch="search" ref="mytable" :show-checkbox="true" :hide-pager="false" @handle-checkbox="e=>checkList=e">
       <el-table-column prop="adminName" label="管理员名称">
       </el-table-column>
       <el-table-column label="是否启用">

@@ -13,7 +13,7 @@ const beforeEach = (to, from, next) => {
   if (checkAuth(to.name)) return next()
   getInfo().then(res => {
     window.authInfo = {
-      info: res.data.info,
+      authName: res.data.authName,
       menus: res.data.menus,
       modules: res.data.modules
     }

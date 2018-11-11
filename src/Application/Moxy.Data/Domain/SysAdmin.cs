@@ -35,5 +35,7 @@ namespace Moxy.Data.Domain
         /// </summary>
         [Column("module_codes")]
         public string ModuleCodes { get; set; }
+        [Column("menus")]
+        public string Menus { get; set; }
     }
 }

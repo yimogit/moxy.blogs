@@ -59,7 +59,7 @@ export default {
           .then(res => {
             this.$router.push({ path: this.$codes.index_path })
           })
-          .catch(() => {
+          .finally(() => {
             this.loading = false
           })
       })

@@ -34,9 +34,15 @@ namespace Moxy.Framework.Permissions
             //获取接口的权限编码列表
             var permissionCodes = context.Filters
                 .Where(e => e is PermissionAttribute)
-                .Select(e => e as PermissionAttribute)
-                .Select(s => s.ModuleCode)
+                .Select(e => (e as PermissionAttribute).ModuleCode)
                 .ToList();
+            // 添加依赖权限
+            var relyCodes = context.Filters
+                .Where(e => e is RelyPermissionAttribute)
+                .Select(e => (e as RelyPermissionAttribute).Codes).ToList();
+
+            relyCodes.ForEach(s => permissionCodes.AddRange(s));
+
             if (permissionCodes.Count == 0)
             {
                 //无权限标识，只要登录即可访问
