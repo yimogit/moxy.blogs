@@ -11,29 +11,68 @@
         <el-form-item label="是否启用">
           <el-switch v-model="form.isEnable"></el-switch>
         </el-form-item>
-        <el-form-item label="是否超级管理员">
-          <el-switch v-model="supportAdmin"></el-switch>
-        </el-form-item>
-        <el-form-item label="模块权限" v-if="!supportAdmin">
-          <el-checkbox-group v-model="checkedModules">
+        <el-form-item label="权限设置">
+          <el-switch v-model="supportAdmin" active-text="超级管理员" inactive-text="权限分配"></el-switch>
+          <el-checkbox-group v-model="checkedModules" v-if="!supportAdmin">
             <template v-for="(modules,key,keyIndex) in moduleDics">
               <template v-for="(item,index) in modules">
                 <br v-if="item.isPage&&keyIndex>0" :key="key+'_'+index" />
-                <el-checkbox :label="item.moduleCode" :key="item.moduleCode">{{item.moduleName}}</el-checkbox>
+                <el-checkbox class="module_checkbox" :label="item.moduleCode" :key="item.moduleCode">{{item.moduleName}}</el-checkbox>
               </template>
             </template>
           </el-checkbox-group>
         </el-form-item>
-        <el-form-item label="自定义菜单">
-          <el-input type="textarea" :rows="5" placeholder="JSON" v-model="form.menus">
+        <el-form-item label="菜单设置">
+          <el-switch v-model="menusModel.editJson" active-text="JSON编辑" inactive-text="可视化编辑"></el-switch>
+          <el-input type="textarea" :rows="5" placeholder="JSON" v-model="form.menus" v-if="menusModel.editJson">
           </el-input>
-
+          <div v-else>
+            <v-table-tree :data="menusModel.tableData" v-if="menusModel.tableData" expand-all ref="mytreetable" :columns="menusModel.columns">
+              <!-- <el-table-column prop="menuName" label="菜单名称">
+              </el-table-column> -->
+              <el-table-column prop="menuCode" label="菜单编码">
+              </el-table-column>
+              <el-table-column prop="menuUrl" label="菜单路径">
+              </el-table-column>
+              <el-table-column prop="menuIcon" label="菜单图标">
+              </el-table-column>
+              <el-table-column label="操作" :render-header="renderHeader" width="200">
+                <template slot-scope="prop">
+                  <v-btn-create text="" @click="addMenuItem(prop.row.menuId)">
+                  </v-btn-create>
+                  <v-btn-edit text="" @click="editMenuItem(prop.row)"></v-btn-edit>
+                  <v-btn-del text="" @click="removeMenuItem(prop.row)"></v-btn-del>
+                </template>
+              </el-table-column>
+            </v-table-tree>
+          </div>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit">保存</el-button>
           <el-button @click="submitCallback(false)">取消</el-button>
         </el-form-item>
       </el-form>
+
+      <el-dialog :title="menusModel.editModel.menuId>0?'菜单编辑':'添加菜单'" :visible.sync="menusModel.editDialog">
+        <el-form :model="menusModel.editModel" label-width="100px">
+          <el-form-item label="菜单名称">
+            <el-input v-model="menusModel.editModel.menuName"></el-input>
+          </el-form-item>
+          <el-form-item label="菜单编码">
+            <el-input v-model="menusModel.editModel.menuCode"></el-input>
+          </el-form-item>
+          <el-form-item label="菜单路径">
+            <el-input v-model="menusModel.editModel.menuUrl"></el-input>
+          </el-form-item>
+          <el-form-item label="菜单图标">
+            <el-input v-model="menusModel.editModel.menuIcon"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="menusModel.editDialog = false">取 消</el-button>
+          <el-button type="primary" @click="dialogSubmit">确 定</el-button>
+        </div>
+      </el-dialog>
     </el-col>
   </el-row>
 </template>
@@ -43,10 +82,32 @@ export default {
   data() {
     return {
       supportAdmin: false,
+      menusModel: {
+        editJson: true,
+        editDialog: false,
+        columns: [
+          {
+            text: '菜单名称',
+            value: 'menuName',
+            width: 250
+          }
+        ],
+        tableData: null,
+        editModel: {}
+      },
       form: {},
       submit_loading: false,
       moduleDics: {},
       checkedModules: []
+    }
+  },
+  watch: {
+    'menusModel.editJson': {
+      handler(val) {
+        if (!val) {
+          this.menusModel.tableData = JSON.parse(this.form.menus || '[]')
+        }
+      }
     }
   },
   created() {
@@ -70,6 +131,7 @@ export default {
           this.form = res.data
           this.supportAdmin = res.data.moduleCodes === '*'
           this.checkedModules = res.data.moduleCodes.split(',')
+          this.menusModel.editJson = false
         })
         .catch(() => {
           this.submit_loading = false
@@ -96,7 +158,134 @@ export default {
     },
     submitCallback(r) {
       this.$emit('submit', r)
+    },
+    renderHeader(createElement, { column, $index }) {
+      return createElement('v-btn-create', {
+        attrs: { text: '' },
+        on: {
+          click: s => {
+            this.addMenuItem()
+          }
+        }
+      })
+    },
+    addMenuItem(parentId) {
+      this.menusModel.editModel = { parentId: parentId }
+      this.menusModel.editDialog = true
+    },
+    editMenuItem(row) {
+      this.menusModel.editModel = Object.assign({}, row)
+      this.menusModel.editDialog = true
+    },
+    changeItem(menuId, checkNext) {
+      var oldItems = JSON.parse(this.form.menus || '[]')
+      var newItems = []
+      if (!menuId) checkNext(oldItems)
+      else update(oldItems, newItems)
+      this.menusModel.tableData = menuId ? newItems : oldItems
+      this.form.menus = JSON.stringify(this.menusModel.tableData)
+      function update(items, nItems) {
+        items.forEach(item => {
+          var nItem = Object.assign({}, item, { children: [] })
+          if (item.menuId === menuId && !checkNext(nItem)) {
+            return
+          }
+          if (item.children && item.children.length > 0) {
+            update(item.children, nItem.children)
+          }
+          nItems.push(nItem)
+        })
+      }
+    },
+    dialogSubmit() {
+      var model = this.menusModel.editModel
+      if (model.menuId) {
+        this.changeItem(model.menuId, item => {
+          item.menuName = model.menuName
+          item.menuCode = model.menuCode
+          item.menuIcon = model.menuIcon
+          item.menuUrl = model.menuUrl
+          return true
+        })
+      } else if (model.parentId) {
+        this.changeItem(model.parentId, item => {
+          var nItem = {}
+          nItem.menuId = Date.now()
+          nItem.menuName = model.menuName
+          nItem.menuCode = model.menuCode
+          nItem.menuIcon = model.menuIcon
+          nItem.menuUrl = model.menuUrl
+          item.children.push(nItem)
+          return true
+        })
+      } else if (!model.parentId && !model.menuId) {
+        this.changeItem(null, items => {
+          var nItem = {}
+          nItem.menuId = Date.now()
+          nItem.menuName = model.menuName
+          nItem.menuCode = model.menuCode
+          nItem.menuIcon = model.menuIcon
+          nItem.menuUrl = model.menuUrl
+          items.push(nItem)
+          return true
+        })
+      }
+      this.menusModel.editDialog = false
+
+      // var oldItems = JSON.parse(this.form.menus)
+      // var newItems = []
+      // var model = this.menusModel.editModel
+      // update(oldItems, newItems)
+      // this.menusModel.editDialog = false
+      // this.menusModel.tableData = newItems
+      // this.form.menus = JSON.stringify(this.menusModel.tableData)
+      // function update(items, nItems) {
+      //   items.forEach(item => {
+      //     var nItem = Object.assign({}, item)
+      //     if (item.menuId === model.menuId) {
+      //       //修改
+      //       nItem = Object.assign(nItem, model)
+      //     } else if (item.children && item.children.length > 0) {
+      //       var chils = []
+      //       update(item.children, chils)
+      //       nItem.children = chils
+      //     }
+      //     nItems.push(nItem)
+      //   })
+      // }
+    },
+    removeMenuItem(row) {
+      this.changeItem(row.menuId, item => {
+        return false
+      })
+
+      // this.menusModel.editDialog = false
+      // var oldItems = JSON.parse(this.form.menus)
+      // var newItems = []
+      // var id = row.menuId
+      // remove(oldItems, newItems)
+      // this.menusModel.tableData = newItems
+      // this.form.menus = JSON.stringify(this.menusModel.tableData)
+      // function remove(items, nItems) {
+      //   items.forEach(item => {
+      //     var nItem = Object.assign({}, item)
+      //     if (item.menuId === id) {
+      //       return
+      //       //删除
+      //     } else if (item.children && item.children.length > 0) {
+      //       var chils = []
+      //       remove(item.children, chils)
+      //       nItem.children = chils
+      //     }
+      //     nItems.push(nItem)
+      //   })
+      // }
     }
   }
 }
 </script>
+<style>
+.module_checkbox {
+  min-width: 120px;
+}
+</style>

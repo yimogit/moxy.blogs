@@ -9,7 +9,8 @@ export default {
       name: 'system_admin_list',
       component: _import('system/admin/list'),
       meta: {
-        auth: true
+        auth: true,
+        title: '管理员列表'
       }
     },
     {

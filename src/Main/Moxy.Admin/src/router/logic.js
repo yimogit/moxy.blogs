@@ -17,7 +17,7 @@ const beforeEach = (to, from, next) => {
       menus: res.data.menus,
       modules: res.data.modules
     }
-    if (checkAuth(to.name)) {
+    if (checkAuth(to.name) || to.meta.default === true) {
       next()
     } else {
       window.__currentApp.$ui.pages.info('无访问权限')

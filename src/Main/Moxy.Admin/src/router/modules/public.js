@@ -9,7 +9,7 @@ export const homeRouter = [
         path: '',
         name: 'home',
         component: _import('dashboard/index'),
-        meta: { auth: true }
+        meta: { auth: true, title: '欢迎页', default: true }
       }
     ]
   },
