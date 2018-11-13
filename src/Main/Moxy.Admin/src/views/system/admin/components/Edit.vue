@@ -17,7 +17,7 @@
             <template v-for="(modules,key,keyIndex) in moduleDics">
               <template v-for="(item,index) in modules">
                 <br v-if="item.isPage&&keyIndex>0" :key="key+'_'+index" />
-                <el-checkbox class="module_checkbox" :label="item.moduleCode" :key="item.moduleCode">{{item.moduleName}}</el-checkbox>
+                <el-checkbox class="module_checkbox" @change="e=>changeModule(e,item)" :label="item.moduleCode" :key="item.moduleCode">{{item.moduleName}}</el-checkbox>
               </template>
             </template>
           </el-checkbox-group>
@@ -28,9 +28,9 @@
           </el-input>
           <div v-else>
             <v-table-tree :data="menusModel.tableData" v-if="menusModel.tableData" expand-all ref="mytreetable" :columns="menusModel.columns">
-              <!-- <el-table-column prop="menuName" label="菜单名称">
-              </el-table-column> -->
               <el-table-column prop="menuCode" label="菜单编码">
+              </el-table-column>
+              <el-table-column prop="menuSort" label="菜单排序">
               </el-table-column>
               <el-table-column prop="menuUrl" label="菜单路径">
               </el-table-column>
@@ -53,13 +53,16 @@
         </el-form-item>
       </el-form>
 
-      <el-dialog :title="menusModel.editModel.menuId>0?'菜单编辑':'添加菜单'" :visible.sync="menusModel.editDialog">
+      <el-dialog :title="menusModel.editModel.menuId>0?'菜单编辑':'添加菜单'" append-to-body :visible.sync="menusModel.editDialog">
         <el-form :model="menusModel.editModel" label-width="100px">
           <el-form-item label="菜单名称">
             <el-input v-model="menusModel.editModel.menuName"></el-input>
           </el-form-item>
           <el-form-item label="菜单编码">
             <el-input v-model="menusModel.editModel.menuCode"></el-input>
+          </el-form-item>
+          <el-form-item label="菜单排序">
+            <el-input v-model="menusModel.editModel.menuSort"></el-input>
           </el-form-item>
           <el-form-item label="菜单路径">
             <el-input v-model="menusModel.editModel.menuUrl"></el-input>
@@ -89,7 +92,7 @@ export default {
           {
             text: '菜单名称',
             value: 'menuName',
-            width: 250
+            width: 200
           }
         ],
         tableData: null,
@@ -159,6 +162,21 @@ export default {
     submitCallback(r) {
       this.$emit('submit', r)
     },
+    changeModule(val, item) {
+      if (val && item.isPage) {
+        //添加一级菜单
+        this.changeItem(null, items => {
+          if (items.find(s => s.menuCode === item.moduleCode)) return true
+          var nItem = {}
+          nItem.menuId = Date.now()
+          nItem.menuName = item.moduleName
+          nItem.menuCode = item.moduleCode
+          items.push(nItem)
+          return true
+        })
+      }
+      // console.log(this.menusModel.tableData)
+    },
     renderHeader(createElement, { column, $index }) {
       return createElement('v-btn-create', {
         attrs: { text: '' },
@@ -182,7 +200,7 @@ export default {
       var newItems = []
       if (!menuId) checkNext(oldItems)
       else update(oldItems, newItems)
-      this.menusModel.tableData = menuId ? newItems : oldItems
+      this.menusModel.tableData = sort(menuId ? newItems : oldItems)
       this.form.menus = JSON.stringify(this.menusModel.tableData)
       function update(items, nItems) {
         items.forEach(item => {
@@ -196,90 +214,69 @@ export default {
           nItems.push(nItem)
         })
       }
+      //降序 menuSort
+      function sort(items) {
+        items.forEach(item => {
+          if (item.children && item.children.length > 0) {
+            item.children = sort(item.children)
+          }
+        })
+        return items.sort(compareDown('menuSort'))
+      }
+      function compareDown(propertyName) {
+        return function(obj1, obj2) {
+          var value1 = Number(obj1[propertyName]) || 0
+          var value2 = Number(obj2[propertyName]) || 0
+          return value2 - value1
+        }
+      }
     },
     dialogSubmit() {
+      var asyncKeys = [
+        'menuName',
+        'menuCode',
+        'menuIcon',
+        'menuUrl',
+        'menuSort'
+      ]
       var model = this.menusModel.editModel
       if (model.menuId) {
+        //修改菜单
         this.changeItem(model.menuId, item => {
-          item.menuName = model.menuName
-          item.menuCode = model.menuCode
-          item.menuIcon = model.menuIcon
-          item.menuUrl = model.menuUrl
+          asyncKeys.forEach(e => {
+            item[e] = model[e]
+          })
           return true
         })
       } else if (model.parentId) {
+        //添加一级子菜单
         this.changeItem(model.parentId, item => {
           var nItem = {}
           nItem.menuId = Date.now()
-          nItem.menuName = model.menuName
-          nItem.menuCode = model.menuCode
-          nItem.menuIcon = model.menuIcon
-          nItem.menuUrl = model.menuUrl
+          asyncKeys.forEach(e => {
+            nItem[e] = model[e]
+          })
           item.children.push(nItem)
           return true
         })
       } else if (!model.parentId && !model.menuId) {
+        //添加一级菜单
         this.changeItem(null, items => {
           var nItem = {}
           nItem.menuId = Date.now()
-          nItem.menuName = model.menuName
-          nItem.menuCode = model.menuCode
-          nItem.menuIcon = model.menuIcon
-          nItem.menuUrl = model.menuUrl
+          asyncKeys.forEach(e => {
+            nItem[e] = model[e]
+          })
           items.push(nItem)
           return true
         })
       }
       this.menusModel.editDialog = false
-
-      // var oldItems = JSON.parse(this.form.menus)
-      // var newItems = []
-      // var model = this.menusModel.editModel
-      // update(oldItems, newItems)
-      // this.menusModel.editDialog = false
-      // this.menusModel.tableData = newItems
-      // this.form.menus = JSON.stringify(this.menusModel.tableData)
-      // function update(items, nItems) {
-      //   items.forEach(item => {
-      //     var nItem = Object.assign({}, item)
-      //     if (item.menuId === model.menuId) {
-      //       //修改
-      //       nItem = Object.assign(nItem, model)
-      //     } else if (item.children && item.children.length > 0) {
-      //       var chils = []
-      //       update(item.children, chils)
-      //       nItem.children = chils
-      //     }
-      //     nItems.push(nItem)
-      //   })
-      // }
     },
     removeMenuItem(row) {
       this.changeItem(row.menuId, item => {
         return false
       })
-
-      // this.menusModel.editDialog = false
-      // var oldItems = JSON.parse(this.form.menus)
-      // var newItems = []
-      // var id = row.menuId
-      // remove(oldItems, newItems)
-      // this.menusModel.tableData = newItems
-      // this.form.menus = JSON.stringify(this.menusModel.tableData)
-      // function remove(items, nItems) {
-      //   items.forEach(item => {
-      //     var nItem = Object.assign({}, item)
-      //     if (item.menuId === id) {
-      //       return
-      //       //删除
-      //     } else if (item.children && item.children.length > 0) {
-      //       var chils = []
-      //       remove(item.children, chils)
-      //       nItem.children = chils
-      //     }
-      //     nItems.push(nItem)
-      //   })
-      // }
     }
   }
 }

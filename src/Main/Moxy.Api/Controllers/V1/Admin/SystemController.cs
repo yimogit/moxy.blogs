@@ -101,10 +101,10 @@ namespace Moxy.Api.Controllers.V1.Admin
         {
             return Ok(OperateResult.Succeed("ok", GetModuleList()));
         }
-        private Dictionary<string, List<PermissionAttribute>> GetModuleList()
+        private Dictionary<string, List<dynamic>> GetModuleList()
         {
             Assembly assembly = Assembly.Load(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
-            Dictionary<string, List<PermissionAttribute>> dics = new Dictionary<string, List<PermissionAttribute>>();
+            Dictionary<string, List<dynamic>> dics = new Dictionary<string, List<dynamic>>();
             var types = assembly.GetTypes()
                                 .AsEnumerable()
                                 .Where(type => typeof(BaseAdminController).IsAssignableFrom(type))
@@ -113,7 +113,7 @@ namespace Moxy.Api.Controllers.V1.Admin
             foreach (var type in types)
             {
                 var members = type.GetMethods();
-                var moduleList = new List<PermissionAttribute>();
+                var moduleList = new List<dynamic>();
                 foreach (var member in members)
                 {
                     if (!typeof(IActionResult).IsAssignableFrom(member.ReturnType))
@@ -121,7 +121,13 @@ namespace Moxy.Api.Controllers.V1.Admin
                     var moduleAttr = member.GetCustomAttribute<PermissionAttribute>();
                     if (moduleAttr == null)
                         continue;
-                    moduleList.Add(moduleAttr);
+                    moduleList.Add(new
+                    {
+                        moduleAttr.ModuleName,
+                        moduleAttr.ModuleCode,
+                        moduleAttr.IsPage
+
+                    });
                 }
                 if (moduleList.Count == 0)
                     continue;

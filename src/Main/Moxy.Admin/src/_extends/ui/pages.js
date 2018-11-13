@@ -61,6 +61,7 @@ export const confirm = (content, opt) => {
 }
 
 function _currentMessage(opt) {
+  opt.dangerouslyUseHTMLString = true
   return Message(opt)
   // return window.__currentApp.$message(opt)
 }

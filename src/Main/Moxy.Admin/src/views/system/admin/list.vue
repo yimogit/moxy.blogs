@@ -74,6 +74,7 @@ export default {
         this.$api.system.delAdmin({ ids: [id] }).then(res => {
           if (res.status !== 1) return
           this.$ui.pages.success(res.msg)
+          this.$refs.mytable.loadData()
         })
       })
     }

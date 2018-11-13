@@ -26,12 +26,12 @@ namespace Moxy.Framework.Filters
             }
             if (!context.ModelState.IsValid)
             {
-                var errorMsg = (from item in context.ModelState
-                                where item.Value.Errors.Any() && !string.IsNullOrEmpty(item.Value.Errors[0].ErrorMessage)
-                                select item.Value.Errors[0].ErrorMessage).FirstOrDefault();
-                if (!string.IsNullOrEmpty(errorMsg))
+                var errorMsgs = (from item in context.ModelState
+                                 where item.Value.Errors.Any() && !string.IsNullOrEmpty(item.Value.Errors[0].ErrorMessage)
+                                 select item.Value.Errors[0].ErrorMessage).ToList();
+                if (errorMsgs.Count > 0)
                 {
-                    context.Result = new JsonResult(OperateResult.Error(errorMsg));
+                    context.Result = new JsonResult(OperateResult.Error(string.Join("<br/>", errorMsgs)));
                 }
             }
         }

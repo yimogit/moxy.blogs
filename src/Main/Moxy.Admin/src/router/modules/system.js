@@ -15,7 +15,7 @@ export default {
     },
     {
       path: 'admin/create',
-      name: 'admin_create',
+      name: 'system_admin_create',
       component: _import('system/admin/edit'),
       meta: {
         auth: true,
