@@ -12,8 +12,5 @@
     <ProjectReference Include="..\Moxy.Core\Moxy.Core.csproj" />
     <ProjectReference Include="..\Moxy.Data\Moxy.Data.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="System\Dtos\Request\" />
-  </ItemGroup>
 
 </Project>

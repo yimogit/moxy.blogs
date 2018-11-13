@@ -23,7 +23,8 @@
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
     "wangeditor": "^2.1.23",
-    "xss": "^0.3.8"
+    "xss": "^0.3.8",
+    "yimo-vue-editor": "^1.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

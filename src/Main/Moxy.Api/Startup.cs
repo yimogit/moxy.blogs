@@ -21,7 +21,7 @@ using Moxy.Framework;
 using Moxy.Framework.Authentication;
 using Moxy.Framework.Filters;
 using Moxy.Framework.Middlewares;
-using Moxy.Services.Article;
+using Moxy.Services.Cms;
 using Moxy.Services.System;
 using Moxy.Swagger;
 using Moxy.Swagger.Builder;

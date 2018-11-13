@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Moxy.Data;
-using Moxy.Services.Article;
+using Moxy.Services.Cms;
 using Moxy.Services.System;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using System;

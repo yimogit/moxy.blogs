@@ -3,7 +3,7 @@
     <el-row>
       <el-col :span="18">
         <el-form :inline="true">
-          <el-form-item label="管理员名称">
+          <el-form-item label="文章标题">
             <el-input type="text" v-model="search.keyword" clearable>
               <el-button slot="append" icon="el-icon-search" @click="e=>this.$refs.mytable.search()"></el-button>
             </el-input>
@@ -11,38 +11,38 @@
         </el-form>
       </el-col>
       <el-col :span="6" class="text-right">
-        <v-btn-create @click="showDialog({})" auth="system_admin_create">添加管理员</v-btn-create>
+        <v-btn-create @click="$ui.pages.link({name:'cms_article_create'})" auth="cms_article_create">添加文章</v-btn-create>
       </el-col>
     </el-row>
-    <v-table-pager :loadAction="$api.system.getAdminList" :loadSearch="search" ref="mytable" :show-checkbox="true" :hide-pager="false" @handle-checkbox="e=>checkList=e">
-      <el-table-column prop="adminName" label="管理员名称">
+    <v-table-pager :loadAction="$api.cms.getArticleList" :loadSearch="search" ref="mytable" :show-checkbox="true" :hide-pager="false" @handle-checkbox="e=>checkList=e">
+      <el-table-column prop="artTitle" label="文章标题">
       </el-table-column>
-      <el-table-column label="是否启用">
+      <el-table-column label="是否发布">
         <template slot-scope="prop">
-          <el-tag :type="prop.row.isEnable?'success':'info'">{{prop.row.isEnable?'是':'否'}}</el-tag>
+          <el-tag :type="prop.row.isRelease?'success':'info'">{{prop.row.isRelease?'是':'否'}}</el-tag>
         </template>
       </el-table-column>
       <el-table-column prop="createdAt" label="创建时间">
       </el-table-column>
       <el-table-column width="180" label="操作">
         <template slot-scope="prop">
-          <v-btn-edit @click="$ui.pages.link('/system/admin/edit/'+prop.row.id)" auth="system_admin_edit" icon="el-icon-document">编辑</v-btn-edit>
-          <v-btn-del @click="delAdmin(prop.row.id)" auth="system_admin_delete">删除</v-btn-del>
+          <v-btn-edit @click="$ui.pages.link('/cms/article/edit/'+prop.row.id)" auth="cms_article_edit" icon="el-icon-document">编辑</v-btn-edit>
+          <v-btn-del @click="delArticle(prop.row.id)" auth="cms_article_delete">删除</v-btn-del>
         </template>
       </el-table-column>
     </v-table-pager>
 
     <el-dialog width="80%" :title="editDialog.title" v-if="editDialog.show" :visible.sync="editDialog.show" :close-on-click-modal="false">
-      <v-admin-edit @submit="submitCallback" :id="editDialog.editId" />
+      <v-article-edit @submit="submitCallback" :id="editDialog.editId" />
     </el-dialog>
   </div>
 </template>
 
 <script>
-import VAdminEdit from './components/Edit'
+import VArticleEdit from './components/Edit'
 export default {
   components: {
-    VAdminEdit
+    VArticleEdit
   },
   data() {
     return {
@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     showDialog(row) {
-      this.editDialog.title = '管理员' + (row.id > 0 ? '编辑' : '创建')
+      this.editDialog.title = '文章' + (row.id > 0 ? '编辑' : '创建')
       this.editDialog.editId = row.id
       this.editDialog.show = true
     },
@@ -69,9 +69,9 @@ export default {
       if (!result) return
       this.$refs.mytable.loadData()
     },
-    delAdmin(id) {
+    delArticle(id) {
       this.$ui.pages.confirm('确认删除？').then(res => {
-        this.$api.system.delAdmin({ ids: [id] }).then(res => {
+        this.$api.cms.delArticle({ ids: [id] }).then(res => {
           if (res.status !== 1) return
           this.$ui.pages.success(res.msg)
           this.$refs.mytable.loadData()

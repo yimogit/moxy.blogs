@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moxy.Data.Domain;
-using Moxy.Services.Article;
+using Moxy.Services.Cms;
 
 namespace Moxy.Api.Controllers.V1
 {
@@ -62,12 +62,13 @@ namespace Moxy.Api.Controllers.V1
         [HttpPost]
         public IActionResult CreateCategory(string categoryName, string categoryDesc)
         {
-            var category = _articleService.CreateCategory(new CmsCategory()
-            {
-                CategoryName = categoryName,
-                CategoryDesc = categoryDesc
-            });
-            return Ok(category);
+            return Ok();
+            //var category = _articleService.CreateCategory(new CmsCategory()
+            //{
+            //    CategoryName = categoryName,
+            //    CategoryDesc = categoryDesc
+            //});
+            //return Ok(category);
         }
     }
 }

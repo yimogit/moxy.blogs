@@ -91,6 +91,18 @@ namespace Moxy.Api.Controllers.V1.Admin
             return Ok(result);
         }
         /// <summary>
+        /// 删除管理员
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("admin/delete")]
+        [Permission("system_admin_delete", "管理员删除")]
+        public IActionResult DeleteAdmin([FromBody]IdsRequest<int> request)
+        {
+            var result = _systemService.DeleteAdmin(request.Ids);
+            return Ok(result);
+        }
+        /// <summary>
         /// 系统模块
         /// </summary>
         /// <returns></returns>
@@ -98,10 +110,6 @@ namespace Moxy.Api.Controllers.V1.Admin
         [Route("admin/modules")]
         [HttpGet]
         public IActionResult AdminModules()
-        {
-            return Ok(OperateResult.Succeed("ok", GetModuleList()));
-        }
-        private Dictionary<string, List<dynamic>> GetModuleList()
         {
             Assembly assembly = Assembly.Load(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
             Dictionary<string, List<dynamic>> dics = new Dictionary<string, List<dynamic>>();
@@ -131,7 +139,7 @@ namespace Moxy.Api.Controllers.V1.Admin
                 }
                 if (moduleList.Count == 0)
                     continue;
-                var moduleName = type.GetCustomAttribute<MoxyModuleAttribute>()?.ModuleName ?? "通用";
+                var moduleName = type.GetCustomAttribute<MoxyModuleAttribute>()?.ModuleName ?? "默认";
                 if (dics.ContainsKey(moduleName))
                 {
                     dics[moduleName].AddRange(moduleList);
@@ -141,19 +149,7 @@ namespace Moxy.Api.Controllers.V1.Admin
                     dics.Add(moduleName, moduleList);
                 }
             }
-            return dics;
-        }
-        /// <summary>
-        /// 删除管理员
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("admin/delete")]
-        [Permission("system_admin_del", "管理员删除")]
-        public IActionResult DeleteAdmin([FromBody]IdsRequest<int> request)
-        {
-            var result = _systemService.DeleteAdmin(request.Ids);
-            return Ok(result);
+            return Ok(OperateResult.Succeed("ok", dics));
         }
         #endregion
 

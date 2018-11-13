@@ -12,7 +12,6 @@ import $ui from './ui'
 import $api from '../api'
 
 const register = function(_vue) {
-  document.title = '墨玄涯博客后台管理'
   _vue.use(ElementUI, { size: 'small' })
   // 注册全局指令，过滤器，组件
   Object.keys(directives).forEach(e => _vue.directive(e, directives[e]))
