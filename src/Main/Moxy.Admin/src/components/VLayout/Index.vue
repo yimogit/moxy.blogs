@@ -180,7 +180,6 @@ export default {
 .layout-nav-tabs {
   width: 100%;
   height: 40px;
-  z-index: 999;
 }
 .layout-nav-tabs .el-tabs__header {
   padding-left: 42px;

@@ -172,6 +172,7 @@ namespace Moxy.Services.Cms
             existItem.ArtContent = input.ArtContent;
             existItem.ArtDesc = input.ArtDesc;
             existItem.CategoryId = input.CategoryId;
+            existItem.IsRelease = input.IsRelease;
             existItem.ReleaseTime = input.ReleaseTime;
             existItem.Tags = input.Tags;
 

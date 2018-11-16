@@ -140,6 +140,7 @@ export default {
       })
     },
     search() {
+      this.pagedCriteria.pageIndex = 0
       this.showLoading()
       this.loadData()
     },

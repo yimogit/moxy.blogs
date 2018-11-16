@@ -5,11 +5,11 @@
         <el-form-item label="文章标题">
           <el-input v-model="form.artTitle"></el-input>
         </el-form-item>
+        <el-form-item label="访问地址">
+          <el-input v-model="form.entryName"></el-input>
+        </el-form-item>
         <el-form-item label="文章分类">
           <el-input v-model="form.categoryId"></el-input>
-        </el-form-item>
-        <el-form-item label="友好地址名">
-          <el-input v-model="form.entryName"></el-input>
         </el-form-item>
         <el-form-item label="文章简介">
           <el-input v-model="form.artDesc" type="textarea"></el-input>
@@ -26,7 +26,7 @@
           </el-date-picker>
         </el-form-item>
         <el-form-item label="文章内容">
-          <v-editor v-model="form.artContent"></v-editor>
+          <v-form-editor v-model="form.artContent"></v-form-editor>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit">保存</el-button>
@@ -37,10 +37,8 @@
   </el-row>
 </template>
 <script>
-import VEditor from 'yimo-vue-editor'
 export default {
   props: ['id'],
-  components: { VEditor },
   data() {
     return {
       form: {},
@@ -61,7 +59,7 @@ export default {
           if (res.status === 0) return
           this.submit_loading = false
           this.form = res.data
-          this.tags = (res.data.tags || '').split(',')
+          this.tags = (res.data.tags || '').split(',').filter(s => s)
         })
         .catch(() => {
           this.submit_loading = false

@@ -21,7 +21,7 @@
       </el-table-column>
       <el-table-column width="180" label="操作">
         <template slot-scope="prop">
-          <v-btn-edit @click="$ui.pages.link('/cms/category/edit/'+prop.row.id)" auth="cms_category_edit" icon="el-icon-document">编辑</v-btn-edit>
+          <v-btn-edit @click="showDialog(prop.row)" auth="cms_category_edit" icon="el-icon-document">编辑</v-btn-edit>
           <v-btn-del @click="delCategory(prop.row.id)" auth="cms_category_delete">删除</v-btn-del>
         </template>
       </el-table-column>
