@@ -15,8 +15,7 @@
           <el-input v-model="form.artDesc" type="textarea"></el-input>
         </el-form-item>
         <el-form-item label="文章标签">
-          <el-select v-model="tags" multiple filterable allow-create default-first-option placeholder="请选择文章标签">
-          </el-select>
+          <v-form-tags v-model="form.tags" placeholder="请选择文章标签" />
         </el-form-item>
         <el-form-item label="是否发布">
           <el-switch v-model="form.isRelease"></el-switch>
@@ -42,7 +41,6 @@ export default {
   data() {
     return {
       form: {},
-      tags: [],
       submit_loading: false
     }
   },
@@ -59,7 +57,6 @@ export default {
           if (res.status === 0) return
           this.submit_loading = false
           this.form = res.data
-          this.tags = (res.data.tags || '').split(',').filter(s => s)
         })
         .catch(() => {
           this.submit_loading = false
@@ -67,7 +64,6 @@ export default {
     },
     onSubmit() {
       this.submit_loading = true
-      this.form.tags = this.tags.join(',')
       this.$api.cms[this.id ? 'editArticle' : 'createArticle'](this.form)
         .then(res => {
           if (res.status === 0) return

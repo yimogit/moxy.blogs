@@ -131,13 +131,17 @@ export default {
     clickTab(tab) {
       var currentRoute = this.pageTabs.find(e => e.tabKey === this.currentTab)
       if (!currentRoute) return this.$ui.pages.link(this.$codes.index_path)
-      this.$ui.pages.link(currentRoute.tabRoute)
+      this.$ui.pages.link(currentRoute.tabRoute)``
     },
     removeTab(targetName) {
       this.pageTabs = this.pageTabs.filter(e => e.tabKey !== targetName)
       const currentRoute =
         this.pageTabs.length > 0 &&
         this.pageTabs[this.pageTabs.length - 1].tabRoute
+
+      if (targetName !== this.currentTab) {
+        return
+      }
       if (!currentRoute) {
         return this.$ui.pages.link(this.$codes.index_path)
       }
@@ -184,5 +188,9 @@ export default {
 .layout-nav-tabs .el-tabs__header {
   padding-left: 42px;
   padding-top: 2px;
+}
+.layout-nav-tabs .el-tabs__item:focus.is-active.is-focus:not(:active) {
+  box-shadow: 0px 0px 0px;
+  -webkit-box-shadow: 0px 0px 0px;
 }
 </style>
