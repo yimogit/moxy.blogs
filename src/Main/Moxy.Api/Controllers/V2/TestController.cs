@@ -13,7 +13,6 @@ namespace Moxy.Api.Controllers.V2
     /// </summary>
     [ApiVersion("2.0")]
     [Route("api/v{api-version:apiVersion}/test")]
-    [ApiController]
     public class TestController : ControllerBase
     {
         /// <summary>

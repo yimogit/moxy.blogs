@@ -14,7 +14,7 @@ namespace Moxy.Api.Controllers.V1
     /// <summary>
     /// 测试接口
     /// </summary>
-    public class TestController : BaseApiController
+    public class TestController : BaseSiteController
     {
         private readonly IArticleService _articleService;
         public TestController(IArticleService articleService)
