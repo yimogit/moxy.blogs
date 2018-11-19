@@ -1,5 +1,5 @@
 <template>
-  <el-button :size="size" type="primary" v-auth="auth" @click="$emit('click')">
+  <el-button :size="size" type="primary" :disabled="disabled" :loading="loading" v-auth="auth" @click="$emit('click')">
     <slot name="icon">
       <i :class="icon"></i>
     </slot>

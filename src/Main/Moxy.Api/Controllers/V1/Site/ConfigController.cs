@@ -15,6 +15,7 @@ namespace Moxy.Api.Controllers.V1.Site
     /// <summary>
     /// 通用接口
     /// </summary>
+    [ControllerName("config")]
     public class ConfigController : BaseSiteController
     {
         private readonly IWebContext _webContext;
@@ -32,13 +33,17 @@ namespace Moxy.Api.Controllers.V1.Site
         {
             var menus = new List<dynamic>()
             {
+
                 new { menuName="首页",menuUrl="/"},
                 new { menuName="关于",menuUrl="/about"},
                 new { menuName="MeTools",menuUrl="http://tools.yimo.link"},
             };
             var result = new
             {
-                siteName = "墨玄涯个人博客",
+                siteTitle = "墨玄涯个人博客",
+                siteKeywords = "墨玄涯,个人博客",
+                siteDescription = "墨玄涯的个人博客",
+                siteName = "墨玄涯博客",
                 footer = "备案号：蜀ICP备11002373号-1",
                 menus,
             };

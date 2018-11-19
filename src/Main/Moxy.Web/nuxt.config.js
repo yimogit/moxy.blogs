@@ -29,7 +29,10 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '~plugins/axios.js', ssr: true }],
+  plugins: [
+    { src: '~/plugins/ctx-inject.js', ssr: true },
+    { src: '~/plugins/vue-inject.js', ssr: false }
+  ],
 
   /*
    ** Nuxt.js modules

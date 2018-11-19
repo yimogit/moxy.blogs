@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Moxy.Services.Cms.Dtos
 {
-    public class CategorySearchRequest:PagedCriteria
+    public class CategorySearch:PagedCriteria
     {
         public string Keyword { get; set; }
     }

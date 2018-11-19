@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Moxy.Services.Cms.Dtos
+namespace Moxy.Services.Cms.Dtos.Article
 {
     [MapsFrom(typeof(CmsArticle), ReverseMap = true)]
     public class ArticleInputDto
@@ -23,6 +23,7 @@ namespace Moxy.Services.Cms.Dtos
         /// <summary>
         /// 文章内容
         /// </summary>
+        [Required(ErrorMessage = "文章内容不能为空")]
         public string ArtContent { get; set; }
         /// <summary>
         /// 文章简介

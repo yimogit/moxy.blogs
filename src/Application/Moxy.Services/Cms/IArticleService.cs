@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Moxy.Data.Domain;
 using Moxy.Services.Cms.Dtos;
+using Moxy.Services.Cms.Dtos.Article;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +15,7 @@ namespace Moxy.Services.Cms
         /// 文章分类列表
         /// </summary>
         /// <returns></returns>
-        IPagedList<CategoryListDto> GetCategoryList(CategorySearchRequest request);
+        IPagedList<CategoryListDto> GetCategoryList(CategorySearch search);
         /// <summary>
         /// 文章分类列表
         /// </summary>
@@ -46,7 +47,7 @@ namespace Moxy.Services.Cms
         /// 文章列表
         /// </summary>
         /// <returns></returns>
-        IPagedList<ArticleListDto> GetArticleList(ArticleSearchRequest request);
+        IPagedList<ArticleListDto> GetArticleList(ArticleSearch search);
         /// <summary>
         /// 文章列表
         /// </summary>
@@ -70,7 +71,21 @@ namespace Moxy.Services.Cms
         /// </summary>
         /// <returns></returns>
         OperateResult DeleteArticle(List<int> ids);
+        /// <summary>
+        /// 置顶文章操作
+        /// </summary>
+        /// <returns></returns>
+        OperateResult SetTopArticle(ArticleSetTopInputDto input);
 
+        #endregion
+
+        #region 前台接口
+        /// <summary>
+        /// 获取推荐文章
+        /// </summary>
+        /// <param name="top"></param>
+        /// <returns></returns>
+        List<ArticleTopListOutputDto> GetArticleTopList(ArticleTopSearch search);
         #endregion
     }
 }

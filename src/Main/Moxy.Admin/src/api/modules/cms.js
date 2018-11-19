@@ -36,6 +36,13 @@ export function delArticle(data) {
     data: data
   })
 }
+export function setTopArticle(data) {
+  return request({
+    url: '/v1/cms/article/settop',
+    method: 'POST',
+    data: data
+  })
+}
 
 //#endregion
 

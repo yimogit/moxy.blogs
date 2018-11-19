@@ -43,7 +43,11 @@ instance.interceptors.response.use(
       (error.message.indexOf('403') > -1 || error.message.indexOf('401') > -1)
     ) {
       err.msg = '权限校验失败，请重新登录'
-      $ui.pages.link($codes.login_path)
+      setTimeout(() => {
+        $ui.pages.confirm('是否重新登录？').then(res => {
+          $ui.pages.link($codes.login_path)
+        })
+      }, 1000)
     }
     $ui.pages.warn(err.msg)
     console.log('err' + error) // for debug

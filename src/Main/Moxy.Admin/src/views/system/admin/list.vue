@@ -71,6 +71,7 @@ export default {
     },
     delAdmin(id) {
       this.$ui.pages.confirm('确认删除？').then(res => {
+        this.$refs.mytable.showLoading()
         this.$api.system.delAdmin({ ids: [id] }).then(res => {
           if (res.status !== 1) return
           this.$ui.pages.success(res.msg)

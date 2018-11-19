@@ -1,22 +1,6 @@
 <template>
   <div>
     <div class="blank"></div>
-    <div class="sbox f_l"> <span>个人博客</span>
-      <h2>个人博客，我为什么要用帝国cms？</h2>
-      <p>选择帝国cms，做一个博客系统，很多人都说是大材小用。确实是有那种感觉，因为cms有很多功能表用不上。但是帝国cms的安装包也就才6M，如果你放一张高清的1920的图，都比这安装包大！我就来说一说我为什么要用帝国cms。</p>
-      <a href="/" class="read">点击阅读</a>
-    </div>
-    <div class="sbox f_l ml"> <span>学无止境</span>
-      <h2>个人博客，属于我的小世界！</h2>
-      <p>个人博客，用来做什么？我刚开始就把它当做一个我吐槽心情的地方，也就相当于一个网络记事本，写上一些关于自己生活工作中的小情小事，也会放上一些照片，音乐。每天工作回家后就能访问自己的网站，一边听着音乐，一边写写文章。</p>
-      <a href="/" class="read">点击阅读</a>
-    </div>
-    <div class="sbox f_r"> <span>程序人生</span>
-      <h2>程序员请放下你的技术情节，与你的同伴一起进步</h2>
-      <p>如果说掌握一门赖以生计的技术是技术人员要学会的第一课的话， 那么我觉得技术人员要真正学会的第二课，不是技术，而是业务、交流与协作</p>
-      <a href="#" class="read">点击阅读</a>
-    </div>
-    <div class="blank"></div>
     <div class="blogs">
       <div class="bloglist">
         <h2><a href="#" title="程序员请放下你的技术情节，与你的同伴一起进步">程序员请放下你的技术情节，与你的同伴一起进步</a></h2>
@@ -54,34 +38,6 @@
         </ul>
       </div>
       <div class="paihang">
-        <h2>点击排行</h2>
-        <ul>
-          <li><a href="#" target="_blank" title="个人博客，属于我的小世界！">个人博客，属于我的小世界！</a></li>
-          <li><a href="#" target="_blank" title="作为一个设计师,如果遭到质疑你是否能恪守自己的原则?">作为一个设计师,如果遭到质疑你是否能恪守自己的原则</a></li>
-          <li><a href="#" target="_blank" title="Come on,行动起来吧!我们和时间来一场赛跑!">Come on,行动起来吧!我们和时间来一场赛跑!</a></li>
-          <li><a href="#" target="_blank" title="或许换一个活法,能让你走出阴霾">或许换一个活法,能让你走出阴霾</a></li>
-          <li><a href="#" target="_blank" title="即便是坑，我也想要拉你入伙！">即便是坑，我也想要拉你入伙！</a></li>
-          <li><a href="#" target="_blank" title="女程序员职业生涯该如何发展？">女程序员职业生涯该如何发展？</a></li>
-          <li><a href="#" target="_blank" title="个人博客，属于我的小世界！">个人博客，属于我的小世界！</a></li>
-          <li><a href="#" target="_blank" title="作为一个设计师,如果遭到质疑你是否能恪守自己的原则?">作为一个设计师,如果遭到质疑你是否能恪守自己的原则</a></li>
-          <li><a href="#" target="_blank" title="女程序员职业生涯该如何发展？">女程序员职业生涯该如何发展？</a></li>
-        </ul>
-      </div>
-      <div class="paihang">
-        <h2>站长推荐</h2>
-        <ul>
-          <li><a href="#" target="_blank" title="个人博客，属于我的小世界！">个人博客，属于我的小世界！</a></li>
-          <li><a href="#" target="_blank" title="作为一个设计师,如果遭到质疑你是否能恪守自己的原则?">作为一个设计师,如果遭到质疑你是否能恪守自己的原则</a></li>
-          <li><a href="#" target="_blank" title="Come on,行动起来吧!我们和时间来一场赛跑!">Come on,行动起来吧!我们和时间来一场赛跑!</a></li>
-          <li><a href="#" target="_blank" title="或许换一个活法,能让你走出阴霾">或许换一个活法,能让你走出阴霾</a></li>
-          <li><a href="#" target="_blank" title="即便是坑，我也想要拉你入伙！">即便是坑，我也想要拉你入伙！</a></li>
-          <li><a href="#" target="_blank" title="女程序员职业生涯该如何发展？">女程序员职业生涯该如何发展？</a></li>
-          <li><a href="#" target="_blank" title="个人博客，属于我的小世界！">个人博客，属于我的小世界！</a></li>
-          <li><a href="#" target="_blank" title="作为一个设计师,如果遭到质疑你是否能恪守自己的原则?">作为一个设计师,如果遭到质疑你是否能恪守自己的原则</a></li>
-          <li><a href="#" target="_blank" title="女程序员职业生涯该如何发展？">女程序员职业生涯该如何发展？</a></li>
-        </ul>
-      </div>
-      <div class="paihang">
         <h2>友情链接</h2>
         <ul>
           <li><a href="http://www.yangqq.com">杨青个人博客</a></li>
@@ -95,6 +51,19 @@
 
 <script>
 export default {
-  components: {}
+  data() {
+    return {
+      indexList: [],
+      categoryList: [],
+      hotList: [],
+      recommendList: [],
+      friendList: []
+    }
+  },
+  asyncData(context) {
+    // console.log(context.app.$api)
+    // called every time before loading the component
+    return { name: 'World' }
+  }
 }
 </script>

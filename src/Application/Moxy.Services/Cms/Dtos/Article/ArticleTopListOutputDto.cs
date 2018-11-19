@@ -7,7 +7,7 @@ using System.Text;
 namespace Moxy.Services.Cms.Dtos.Article
 {
     [MapsFrom(typeof(CmsArticle), ReverseMap = true)]
-    public class ArticleListDto
+    public class ArticleTopListOutputDto
     {
         public int Id { get; set; }
         /// <summary>
@@ -19,21 +19,8 @@ namespace Moxy.Services.Cms.Dtos.Article
         /// </summary>
         public string ArtTitle { get; set; }
         /// <summary>
-        /// 是否发布
-        /// </summary>
-        public bool IsRelease { get; set; }
-        /// <summary>
-        /// 是否置顶
-        /// </summary>
-        public bool? IsSetTop { get; set; }
-        /// <summary>
         /// 发布时间
         /// </summary>
         public DateTime? ReleaseTime { get; set; }
-        /// <summary>
-        /// 分类
-        /// </summary>
-        public int? CategoryId { get; set; }
-        public DateTime CreatedAt { get; set; }
     }
 }

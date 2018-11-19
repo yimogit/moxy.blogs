@@ -4,6 +4,8 @@ export default {
     type: String,
     icon: String,
     text: String,
+    disabled: Boolean,
+    loading: Boolean,
     size: {
       type: String,
       default: 'small'

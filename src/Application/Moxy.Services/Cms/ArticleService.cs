@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Moxy.Data;
 using Moxy.Data.Domain;
 using Moxy.Services.Cms.Dtos;
+using Moxy.Services.Cms.Dtos.Article;
 using Moxy.Utils;
 using System;
 using System.Collections.Generic;
@@ -30,14 +31,14 @@ namespace Moxy.Services.Cms
         /// 文章分类列表
         /// </summary>
         /// <returns></returns>
-        public IPagedList<CategoryListDto> GetCategoryList(CategorySearchRequest request)
+        public IPagedList<CategoryListDto> GetCategoryList(CategorySearch search)
         {
             var query = _unitOfWork.GetRepository<CmsCategory>().Table;
-            if (!string.IsNullOrEmpty(request.Keyword))
+            if (!string.IsNullOrEmpty(search.Keyword))
             {
-                query = query.Where(s => s.CategoryName.Contains(request.Keyword));
+                query = query.Where(s => s.CategoryName.Contains(search.Keyword));
             }
-            var result = query.ProjectTo<CategoryListDto>().ToPagedList(request);
+            var result = query.ProjectTo<CategoryListDto>().ToPagedList(search);
             return result;
         }
 
@@ -105,14 +106,22 @@ namespace Moxy.Services.Cms
         /// 文章列表
         /// </summary>
         /// <returns></returns>
-        public IPagedList<ArticleListDto> GetArticleList(ArticleSearchRequest request)
+        public IPagedList<ArticleListDto> GetArticleList(ArticleSearch search)
         {
             var query = _unitOfWork.GetRepository<CmsArticle>().Table;
-            if (!string.IsNullOrEmpty(request.Keyword))
+            if (search.IsSetTop.HasValue)
             {
-                query = query.Where(s => s.ArtTitle.Contains(request.Keyword));
+                query = query.Where(s => s.IsSetTop == search.IsSetTop);
             }
-            var result = query.ProjectTo<ArticleListDto>().ToPagedList(request);
+            if (search.IsRelease.HasValue)
+            {
+                query = query.Where(s => s.IsRelease == search.IsRelease);
+            }
+            if (!string.IsNullOrEmpty(search.Keyword))
+            {
+                query = query.Where(s => s.ArtTitle.Contains(search.Keyword) || s.ArtContent.Contains(search.Keyword));
+            }
+            var result = query.ProjectTo<ArticleListDto>().ToPagedList(search);
             return result;
         }
 
@@ -193,6 +202,39 @@ namespace Moxy.Services.Cms
             return OperateResult.Succeed("执行成功");
         }
 
+        /// <summary>
+        /// 置顶文章
+        /// </summary>
+        /// <returns></returns>
+        public OperateResult SetTopArticle(ArticleSetTopInputDto input)
+        {
+            var optItems = _unitOfWork.GetRepository<CmsArticle>().Table.Where(s => input.Ids.Contains(s.Id));
+            foreach (var item in optItems)
+            {
+                item.IsSetTop = input.IsSet;
+            }
+            _unitOfWork.SaveChanges();
+            return OperateResult.Succeed("执行成功");
+        }
+        #endregion
+        #region 前台接口
+
+        /// <summary>
+        /// 获取推荐文章
+        /// </summary>
+        /// <param name="top"></param>
+        /// <returns></returns>
+        public List<ArticleTopListOutputDto> GetArticleTopList(ArticleTopSearch search)
+        {
+            var now = DateTime.Now;
+            var query = _unitOfWork.GetRepository<CmsArticle>().Table.Where(s => s.IsRelease && s.ReleaseTime >= now);
+            if (search.FilterBySetTop.HasValue)
+            {
+                query = query.Where(s => s.IsSetTop == search.FilterBySetTop);
+            }
+            var result = query.ProjectTo<ArticleTopListOutputDto>().ToList();
+            return result;
+        }
         #endregion
     }
 }

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Moxy.Services.Cms.Dtos
+namespace Moxy.Services.Cms.Dtos.Article
 {
     [MapsFrom(typeof(CmsArticle), ReverseMap = true)]
     public class ArticleItemDto

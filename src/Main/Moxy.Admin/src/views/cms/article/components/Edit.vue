@@ -40,7 +40,9 @@ export default {
   props: ['id'],
   data() {
     return {
-      form: {},
+      form: {
+        tags: ''
+      },
       submit_loading: false
     }
   },

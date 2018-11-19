@@ -14,7 +14,7 @@
         <v-btn-create @click="showDialog({})" auth="cms_category_create">添加文章分类</v-btn-create>
       </el-col>
     </el-row>
-    <v-table-pager :loadAction="$api.cms.getCategoryList" :loadSearch="search" ref="mytable" :show-checkbox="true" :hide-pager="false" @handle-checkbox="e=>checkList=e">
+    <v-table-pager :loadAction="$api.cms.getCategoryList" :loadSearch="search" ref="mytable" show-checkbox :hide-pager="false" @handle-checkbox="e=>checkList=e">
       <el-table-column prop="categoryName" label="文章分类名称">
       </el-table-column>
       <el-table-column prop="createdAt" label="创建时间">
@@ -22,7 +22,7 @@
       <el-table-column width="180" label="操作">
         <template slot-scope="prop">
           <v-btn-edit @click="showDialog(prop.row)" auth="cms_category_edit" icon="el-icon-document">编辑</v-btn-edit>
-          <v-btn-del @click="delCategory(prop.row.id)" auth="cms_category_delete">删除</v-btn-del>
+          <v-btn-del @click="delCategory([prop.row.id])" auth="cms_category_delete">删除</v-btn-del>
         </template>
       </el-table-column>
     </v-table-pager>
@@ -62,15 +62,21 @@ export default {
     submitCallback(result) {
       this.editDialog.show = false
       if (!result) return
+      this.$refs.mytable.showLoading()
       this.$refs.mytable.loadData()
     },
-    delCategory(id) {
+    delCategory(ids) {
       this.$ui.pages.confirm('确认删除？').then(res => {
-        this.$api.cms.delCategory({ ids: [id] }).then(res => {
-          if (res.status !== 1) return
-          this.$ui.pages.success(res.msg)
-          this.$refs.mytable.loadData()
-        })
+        this.$refs.mytable.showLoading()
+        this.$api.cms
+          .delCategory({ ids: ids })
+          .then(res => {
+            if (res.status !== 1) return
+            this.$ui.pages.success(res.msg)
+          })
+          .finally(_ => {
+            this.$refs.mytable.loadData()
+          })
       })
     }
   }

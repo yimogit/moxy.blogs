@@ -12,6 +12,7 @@ using Moxy.Framework.Filters;
 using Moxy.Framework.Permissions;
 using Moxy.Services.Cms;
 using Moxy.Services.Cms.Dtos;
+using Moxy.Services.Cms.Dtos.Article;
 using Moxy.Services.System;
 using Moxy.Services.System.Dtos;
 
@@ -41,14 +42,14 @@ namespace Moxy.Api.Controllers.V1.Admin
         /// <summary>
         /// 文章列表
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="search"></param>
         /// <returns></returns>
         [HttpGet]
         [Route("article/list")]
         [Permission("cms_article_list", "文章列表", true)]
-        public IActionResult ArticleList(ArticleSearchRequest request)
+        public IActionResult ArticleList(ArticleSearch search)
         {
-            var result = _articleService.GetArticleList(request);
+            var result = _articleService.GetArticleList(search);
             return Ok(OperateResult.Succeed("ok", result));
         }
         /// <summary>
@@ -101,20 +102,32 @@ namespace Moxy.Api.Controllers.V1.Admin
             var result = _articleService.DeleteArticle(request.Ids);
             return Ok(result);
         }
+        /// <summary>
+        /// 置顶文章
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("article/settop")]
+        [Permission("cms_article_settop", "文章置顶")]
+        public IActionResult SetTopArticle([FromBody]ArticleSetTopInputDto input)
+        {
+            var result = _articleService.SetTopArticle(input);
+            return Ok(result);
+        }
         #endregion
 
         #region 文章分类管理
         /// <summary>
         /// 文章分类列表
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="search"></param>
         /// <returns></returns>
         [HttpGet]
         [Route("category/list")]
         [Permission("cms_category_list", "文章分类列表", true)]
-        public IActionResult CategoryList(CategorySearchRequest request)
+        public IActionResult CategoryList(CategorySearch search)
         {
-            var result = _articleService.GetCategoryList(request);
+            var result = _articleService.GetCategoryList(search);
             return Ok(OperateResult.Succeed("ok", result));
         }
         /// <summary>

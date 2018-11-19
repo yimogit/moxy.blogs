@@ -40,6 +40,11 @@ namespace Moxy.Data.Domain
         [Column("is_release")]
         public bool IsRelease { get; set; }
         /// <summary>
+        /// 是否发布
+        /// </summary>
+        [Column("is_set_top")]
+        public bool? IsSetTop { get; set; }
+        /// <summary>
         /// 发布时间
         /// </summary>
         [Column("release_time")]

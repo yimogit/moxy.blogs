@@ -1,5 +1,5 @@
 <template>
-    <el-button :size="size" v-auth="auth" @click="click_handle">
+    <el-button :size="size" :disabled="disabled" :loading="loading" v-auth="auth" @click="click_handle">
         <slot name="icon">
             <i :class="icon"></i>
         </slot>
