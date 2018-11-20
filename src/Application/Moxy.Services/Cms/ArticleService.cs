@@ -4,6 +4,7 @@ using Moxy.Data;
 using Moxy.Data.Domain;
 using Moxy.Services.Cms.Dtos;
 using Moxy.Services.Cms.Dtos.Article;
+using Moxy.Services.Cms.Dtos.Category;
 using Moxy.Utils;
 using System;
 using System.Collections.Generic;
@@ -227,13 +228,30 @@ namespace Moxy.Services.Cms
         public List<ArticleTopListOutputDto> GetArticleTopList(ArticleTopSearch search)
         {
             var now = DateTime.Now;
-            var query = _unitOfWork.GetRepository<CmsArticle>().Table.Where(s => s.IsRelease && s.ReleaseTime >= now);
+            var query = _unitOfWork.GetRepository<CmsArticle>().Table.Where(s => s.IsRelease && s.ReleaseTime <= now);
             if (search.FilterBySetTop.HasValue)
             {
                 query = query.Where(s => s.IsSetTop == search.FilterBySetTop);
             }
             var result = query.ProjectTo<ArticleTopListOutputDto>().ToList();
             return result;
+        }
+
+        /// <summary>
+        /// 分类汇总接口
+        /// </summary>
+        /// <returns></returns>
+        public List<CategorySummaryListOutputDto> GetCategorySummaryList()
+        {
+            var query = from e in _unitOfWork.GetRepository<CmsCategory>().Table
+                        join s in _unitOfWork.GetRepository<CmsArticle>().Table on e.Id equals s.CategoryId into arts
+                        select new CategorySummaryListOutputDto()
+                        {
+                            Id = e.Id,
+                            CategoryName = e.CategoryName,
+                            TotalNum = arts.Count()
+                        };
+            return query.ToList();
         }
         #endregion
     }

@@ -44,7 +44,7 @@ namespace Moxy.Api.Controllers.V1.Site
                 siteKeywords = "墨玄涯,个人博客",
                 siteDescription = "墨玄涯的个人博客",
                 siteName = "墨玄涯博客",
-                footer = "备案号：蜀ICP备11002373号-1",
+                footer = "备案号：蜀ICP备15032981号-2<br/><a href='https://metools.js.org/'>metools</a>",
                 menus,
             };
             return Ok(OperateResult.Succeed("ok", result));

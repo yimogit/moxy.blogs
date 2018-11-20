@@ -31,7 +31,7 @@ namespace Moxy.Api.Controllers.V1.Site
         /// <returns></returns>
         [HttpGet]
         [Route("article/top/list")]
-        public IActionResult TopList()
+        public IActionResult GetArticleTopList()
         {
             var topList = _articleService.GetArticleTopList(new Services.Cms.Dtos.Article.ArticleTopSearch()
             {
@@ -45,9 +45,10 @@ namespace Moxy.Api.Controllers.V1.Site
         /// <returns></returns>
         [HttpGet]
         [Route("article/category/list")]
-        public IActionResult CategoryList()
+        public IActionResult GetCategoryList()
         {
-            return Ok(OperateResult.Succeed("ok"));
+            var categoryList = _articleService.GetCategorySummaryList();
+            return Ok(OperateResult.Succeed("ok", categoryList));
         }
     }
 }

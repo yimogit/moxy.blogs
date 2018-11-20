@@ -19,6 +19,10 @@ namespace Moxy.Services.Cms.Dtos.Article
         /// </summary>
         public string ArtTitle { get; set; }
         /// <summary>
+        /// 文章简介
+        /// </summary>
+        public string ArtDesc { get; set; }
+        /// <summary>
         /// 发布时间
         /// </summary>
         public DateTime? ReleaseTime { get; set; }

@@ -2,6 +2,7 @@
 using Moxy.Data.Domain;
 using Moxy.Services.Cms.Dtos;
 using Moxy.Services.Cms.Dtos.Article;
+using Moxy.Services.Cms.Dtos.Category;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -86,6 +87,11 @@ namespace Moxy.Services.Cms
         /// <param name="top"></param>
         /// <returns></returns>
         List<ArticleTopListOutputDto> GetArticleTopList(ArticleTopSearch search);
+        /// <summary>
+        /// 分类汇总接口
+        /// </summary>
+        /// <returns></returns>
+        List<CategorySummaryListOutputDto> GetCategorySummaryList();
         #endregion
     }
 }

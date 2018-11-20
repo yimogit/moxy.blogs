@@ -7,18 +7,32 @@ Vue.use(Vuex)
 const store = () =>
   new Vuex.Store({
     state: {
-      appInfo: {}
+      appInfo: {},
+      artTopList: [],
+      categoryList: [],
+      friendList: []
     },
     mutations: {
       setAppInfo(state, data) {
-        state.appInfo = data
+        state.appInfo = data.appInfo
+        state.artTopList = data.artTopList
+        state.categoryList = data.categoryList
+        state.friendList = data.friendList
       }
     },
     actions: {
       async nuxtServerInit({ state, commit }, { req }) {
         // 获取全局信息
-        const res = await $api.common.getAppInfo()
-        commit('setAppInfo', res.data)
+        const appRes = await $api.config.getAppInfo()
+        const artTopRes = await $api.cms.getArticleTopList()
+        const categoryRes = await $api.cms.getCategoryList()
+        const friendRes = await $api.common.getFriendList()
+        commit('setAppInfo', {
+          appInfo: appRes.data,
+          artTopList: artTopRes.data,
+          categoryList: categoryRes.data,
+          friendList: friendRes.data
+        })
       }
     }
   })

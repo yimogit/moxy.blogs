@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header>
+    <header id="layout-header">
       <div class="logo"><a href="/">{{appInfo.siteName}}</a></div>
       <nav>
         <ul id="starlist">
@@ -11,8 +11,8 @@
         </ul>
       </nav>
     </header>
-    <nuxt class="box" />
-    <footer v-html="appInfo.footer">
+    <nuxt class="box" id="layout-container" />
+    <footer v-html="appInfo.footer" id="layout-footer" :class="{'layout-footer-block':!computedEnd}">
     </footer>
   </div>
 </template>
@@ -36,12 +36,36 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      computedEnd: false
+    }
   },
   computed: {
     appInfo() {
       return this.$store.state.appInfo
     }
+  },
+  mounted() {
+    var bodyMinHeight =
+      window.innerHeight -
+      document.getElementById('layout-footer').offsetHeight -
+      document.getElementById('layout-header').offsetHeight
+    document.getElementById('layout-container').style.minHeight =
+      bodyMinHeight + 'px'
+    this.computedEnd = true
   }
 }
 </script>
+<style>
+.layout-footer-fixed {
+  position: absolute;
+  bottom: 0;
+}
+#layout-footer {
+  transition: opacity 0.3s ease-in;
+  -webkt-transition: opacity 0.3s ease-in;
+}
+.layout-footer-block {
+  opacity: 0;
+}
+</style>

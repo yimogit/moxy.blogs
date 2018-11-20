@@ -23,6 +23,7 @@ instance.interceptors.response.use(
     return resp
   },
   error => {
+    console.warn(error)
     const err = { status: 0, msg: '服务器异常' }
     if (
       error.message &&
