@@ -15,7 +15,6 @@ namespace Moxy.Api.Controllers.V1.Site
     /// <summary>
     /// 通用接口
     /// </summary>
-    [ControllerName("config")]
     public class ConfigController : BaseSiteController
     {
         private readonly IWebContext _webContext;
@@ -44,7 +43,7 @@ namespace Moxy.Api.Controllers.V1.Site
                 siteKeywords = "墨玄涯,个人博客",
                 siteDescription = "墨玄涯的个人博客",
                 siteName = "墨玄涯博客",
-                footer = "备案号：蜀ICP备15032981号-2<br/><a href='https://metools.js.org/'>metools</a>",
+                footer = "备案号：蜀ICP备15032981号-2<br/><span id=\"busuanzi_container_site_pv\">本站总访问量 <span id=\"busuanzi_value_site_pv\"></span> 次</span><br/>本站总访客数<span id=\"busuanzi_value_site_uv\"></span>人",
                 menus,
             };
             return Ok(OperateResult.Succeed("ok", result));

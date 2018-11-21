@@ -15,7 +15,6 @@ namespace Moxy.Api.Controllers.V1.Site
     /// <summary>
     /// 内容接口
     /// </summary>
-    [ControllerName("cms")]
     public class CmsController : BaseSiteController
     {
         private readonly IWebContext _webContext;
@@ -49,6 +48,20 @@ namespace Moxy.Api.Controllers.V1.Site
         {
             var categoryList = _articleService.GetCategorySummaryList();
             return Ok(OperateResult.Succeed("ok", categoryList));
+        }
+        /// <summary>
+        /// 获取文章信息
+        /// </summary>
+        /// <param name="entryName"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("article/detail")]
+        public IActionResult GetArticleDetail(string entryName)
+        {
+            var model = _articleService.GetDisplayArticleDetail(entryName);
+            if (model == null)
+                return Ok(OperateResult.Error("数据不存在"));
+            return Ok(OperateResult.Succeed("ok", model));
         }
     }
 }

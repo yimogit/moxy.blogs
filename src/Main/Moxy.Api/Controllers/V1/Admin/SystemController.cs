@@ -18,7 +18,6 @@ namespace Moxy.Api.Controllers.V1.Admin
     /// <summary>
     /// 系统管理接口
     /// </summary>
-    [ControllerName("system")]
     [MoxyModule(Order = 100, ModuleName = "系统管理")]
     public class SystemController : BaseAdminController
     {

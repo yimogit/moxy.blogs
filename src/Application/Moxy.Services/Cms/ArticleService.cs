@@ -253,6 +253,25 @@ namespace Moxy.Services.Cms
                         };
             return query.ToList();
         }
+
+        /// <summary>
+        /// 获取显示文章信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ArticleDetailOutputDto GetDisplayArticleDetail(string entryName)
+        {
+            var query = from e in _unitOfWork.GetRepository<CmsArticle>().Table
+                        where e.EntryName == entryName && e.IsRelease && e.ReleaseTime <= DateTime.Now
+                        select e;
+            var existItem = query.ProjectTo<ArticleDetailOutputDto>().FirstOrDefault();
+            if (existItem == null)
+                return null;
+            existItem.CategoryName = existItem.CategoryId.HasValue ? GetCategoryItem(existItem.CategoryId.Value)?.CategoryName : string.Empty;
+            existItem.TagList = string.IsNullOrEmpty(existItem.Tags) ? new List<string>() : existItem.Tags.Split(',').ToList();
+
+            return existItem;
+        }
         #endregion
     }
 }

@@ -15,9 +15,14 @@ namespace Moxy.Data.Domain
         [Column("display_code"), MaxLength(100)]
         public string EntryName { get; set; }
         /// <summary>
+        /// 文章作者
+        /// </summary>
+        [Column("art_author"), MaxLength(100)]
+        public string ArtAuthor { get; set; }
+        /// <summary>
         /// 文章标题
         /// </summary>
-        [Column("art_title"), MaxLength(100)]
+        [Column("art_title"), MaxLength(200)]
         public string ArtTitle { get; set; }
         /// <summary>
         /// 文章内容
@@ -55,6 +60,5 @@ namespace Moxy.Data.Domain
         /// </summary>
         [Column("category_id")]
         public int? CategoryId { get; set; }
-
     }
 }

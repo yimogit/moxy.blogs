@@ -2,7 +2,7 @@
   <div>
     <div class="blank"></div>
     <div class="blogs">
-      <v-art-top />
+      <v-art-top></v-art-top>
     </div>
     <aside>
       <v-category />
@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import VArtTop from '../components/partial/ArtTopList'
-import VCategory from '../components/partial/Category'
-import VFriend from '../components/partial/Friend'
+import VArtTop from '@/components/partial/ArtTopList'
+import VCategory from '@/components/partial/Category'
+import VFriend from '@/components/partial/Friend'
 export default {
   components: {
     VArtTop,
@@ -22,15 +22,7 @@ export default {
     VFriend
   },
   data() {
-    return {
-      indexList: [],
-      categoryList: []
-    }
+    return {}
   }
-  // async asyncData(context) {
-  //   const res = await context.app.$api.cms.getArticleTopList()
-  //   const categoryRes = await context.app.$api.cms.getCategoryList()
-  //   return { indexList: res.data, categoryList: categoryRes.data }
-  // }
 }
 </script>

@@ -92,6 +92,12 @@ namespace Moxy.Services.Cms
         /// </summary>
         /// <returns></returns>
         List<CategorySummaryListOutputDto> GetCategorySummaryList();
+        /// <summary>
+        /// 获取显示文章信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        ArticleDetailOutputDto GetDisplayArticleDetail(string entryName);
         #endregion
     }
 }

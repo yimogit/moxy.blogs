@@ -4,6 +4,12 @@
   "description": "My phenomenal Nuxt.js project",
   "author": "yimo",
   "private": true,
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "3333"
+    }
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",

@@ -11,7 +11,9 @@
         </ul>
       </nav>
     </header>
-    <nuxt class="box" id="layout-container" />
+    <div id="layout-container">
+      <nuxt class="box" />
+    </div>
     <footer v-html="appInfo.footer" id="layout-footer" :class="{'layout-footer-block':!computedEnd}">
     </footer>
   </div>
@@ -46,13 +48,20 @@ export default {
     }
   },
   mounted() {
-    var bodyMinHeight =
-      window.innerHeight -
-      document.getElementById('layout-footer').offsetHeight -
-      document.getElementById('layout-header').offsetHeight
-    document.getElementById('layout-container').style.minHeight =
-      bodyMinHeight + 'px'
-    this.computedEnd = true
+    this.computedFooter()
+  },
+  methods: {
+    computedFooter() {
+      this.$nextTick(() => {
+        var bodyMinHeight =
+          window.innerHeight -
+          document.getElementById('layout-footer').offsetHeight -
+          document.getElementById('layout-header').offsetHeight
+        document.getElementById('layout-container').style.minHeight =
+          bodyMinHeight + 'px'
+        this.computedEnd = true
+      })
+    }
   }
 }
 </script>

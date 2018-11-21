@@ -15,7 +15,6 @@ namespace Moxy.Api.Controllers.V1.Site
     /// <summary>
     /// 通用接口
     /// </summary>
-    [ControllerName("common")]
     public class CommonController : BaseSiteController
     {
         private readonly IWebContext _webContext;

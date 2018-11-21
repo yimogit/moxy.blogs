@@ -7,3 +7,10 @@ export function getArticleTopList() {
 export function getCategoryList() {
   return fetch.get(`${prefix}/article/category/list`)
 }
+
+export function getArticleDetail(entryName) {
+  return fetch({
+    url: `${prefix}/article/detail`,
+    params: { entryName }
+  })
+}

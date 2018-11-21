@@ -225,8 +225,8 @@ nav li {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   line-height: 24px;
-  height: 72px;
   margin: 10px 0 0;
+  word-break: break-all;
 }
 aside {
   width: 32%;
@@ -378,7 +378,7 @@ a.curPage {
   background: rgba(255, 255, 255, 1);
   margin: 20px 0;
 }
-.newsview h2 {
+.newsview h2.customtit {
   font-size: 16px;
   width: 120px;
   height: 30px;
@@ -422,6 +422,7 @@ a.curPage {
   margin: 20px auto 15px auto;
   line-height: 23px;
   background: none repeat 0 0 #f6f6f6;
+  word-wrap: break-word;
 }
 .news_about strong {
   color: #38485a;
@@ -452,12 +453,13 @@ a.curPage {
   line-height: 1.8;
   font-size: 16px;
   text-align: justify;
+  word-wrap: break-word;
 }
 .infosbox .news_con p {
   margin-bottom: 25x;
 }
 .infosbox .news_con img {
-  max-width: 650px;
+  max-width: 100%;
   height: auto;
 }
 .infosbox .share {
@@ -491,6 +493,8 @@ a.curPage {
 }
 .diggit a {
   color: #fff;
+  display: inline-block;
+  width: 100%;
 }
 #diggnum {
   margin: 5px;

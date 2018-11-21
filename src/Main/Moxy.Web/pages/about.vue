@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="newsview">
-            <h2>关于我</h2>
+            <h2 class="customtit">关于我</h2>
             <div class="news_infos">
                 <p>杨青，女，一个80后草根女站长！09年入行。一直潜心研究web前端技术，一边工作一边积累经验，分享一些个人博客模板，以及SEO优化等心得。我入行早，大家也亲切的叫我“青姐”。<br>
                     <br>

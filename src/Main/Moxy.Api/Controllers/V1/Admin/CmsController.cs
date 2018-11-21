@@ -21,7 +21,6 @@ namespace Moxy.Api.Controllers.V1.Admin
     /// <summary>
     /// 内容管理
     /// </summary>
-    [ControllerName("cms")]
     [MoxyModule(Order = 20, ModuleName = "内容管理")]
     public class CmsController : BaseAdminController
     {
