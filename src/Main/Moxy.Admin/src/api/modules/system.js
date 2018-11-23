@@ -43,3 +43,11 @@ export function delAdmin(data) {
     data: data
   })
 }
+
+export function updatePwd(data) {
+  return request({
+    url: '/v1/system/admin/updatepwd',
+    method: 'POST',
+    data: data
+  })
+}

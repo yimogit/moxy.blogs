@@ -18,7 +18,7 @@
           <i class="el-icon-arrow-down el-icon--right"></i>
         </el-button>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="updatepwd">修改密码</el-dropdown-item>
+          <el-dropdown-item command="updatepwd" v-auth="'system_admin_updatepwd'">修改密码</el-dropdown-item>
           <el-dropdown-item command="disabledTab" divided>{{disabledTab?'启用':'禁用'}}选项卡</el-dropdown-item>
           <el-dropdown-item command="logout" divided>退出</el-dropdown-item>
         </el-dropdown-menu>
@@ -53,7 +53,7 @@ export default {
       } else if (e === 'logout') {
         this.logout()
       } else if (e === 'updatepwd') {
-        //...
+        this.$ui.pages.link({ name: 'updatepwd' })
       }
     }
   }

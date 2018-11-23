@@ -5,6 +5,15 @@ export default {
   component: Layout,
   children: [
     {
+      path: 'admin/updatepwd',
+      name: 'updatepwd',
+      component: _import('system/admin/updatepwd'),
+      meta: {
+        auth: true,
+        title: '修改密码'
+      }
+    },
+    {
       path: 'admin/list',
       name: 'system_admin_list',
       component: _import('system/admin/list'),

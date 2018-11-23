@@ -57,6 +57,12 @@ namespace Moxy.Services.System
         /// </summary>
         /// <returns></returns>
         OperateResult DeleteAdmin(List<int> ids);
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        OperateResult UpdatePwd(SysAdminUpdatePwdInputDto input);
 
         #endregion
 

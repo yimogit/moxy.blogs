@@ -153,5 +153,19 @@ namespace Moxy.Api.Controllers.V1.Admin
         #endregion
 
 
+        /// <summary>
+        /// 删除管理员
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("admin/updatepwd")]
+        [Permission("system_admin_updatepwd", "管理员密码修改")]
+        [ModelValid]
+        public IActionResult UpdatePwd([FromBody]SysAdminUpdatePwdInputDto input)
+        {
+            input.AdminName = _webContext.AuthName;
+            var result = _systemService.UpdatePwd(input);
+            return Ok(result);
+        }
     }
 }

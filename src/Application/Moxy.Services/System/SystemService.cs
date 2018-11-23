@@ -196,6 +196,21 @@ namespace Moxy.Services.System
             return OperateResult.Succeed("执行成功");
         }
 
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public OperateResult UpdatePwd(SysAdminUpdatePwdInputDto input)
+        {
+            var existItem = _unitOfWork.GetRepository<SysAdmin>().Table.FirstOrDefault(s => s.AdminName == input.AdminName);
+            if (existItem == null)
+                return OperateResult.Error("管理员不存在");
+            existItem.AdminPwd = Utils.SecurityHelper.EncryptDES(input.NewPassword);
+            existItem.AdminKey = new Random().Next(0, int.MaxValue).ToString();
+            _unitOfWork.SaveChanges();
+            return OperateResult.Succeed("修改密码成功");
+        }
 
         #endregion
     }
