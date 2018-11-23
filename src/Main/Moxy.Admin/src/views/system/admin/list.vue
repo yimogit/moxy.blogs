@@ -2,7 +2,7 @@
   <div>
     <el-row>
       <el-col :span="18">
-        <el-form :inline="true">
+        <el-form :inline="true" @submit.native.prevent>
           <el-form-item label="管理员名称">
             <el-input type="text" v-model="search.keyword" clearable>
               <el-button slot="append" icon="el-icon-search" @click="e=>this.$refs.mytable.search()"></el-button>

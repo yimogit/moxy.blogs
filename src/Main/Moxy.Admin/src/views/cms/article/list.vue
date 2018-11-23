@@ -2,7 +2,7 @@
   <div>
     <el-row>
       <el-col :span="18">
-        <el-form :inline="true">
+        <el-form :inline="true" @submit.native.prevent>
           <el-form-item label="是否置顶">
             <el-select v-model="search.isSetTop" style="width:120px;" placeholder="是否置顶" clearable>
               <el-option v-for="item in boolOptions" :key="item.value" :label="item.text" :value="item.value">

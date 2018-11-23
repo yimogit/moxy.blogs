@@ -113,7 +113,7 @@ namespace Moxy.Services.Cms
             var query = _unitOfWork.GetRepository<CmsArticle>().Table;
             if (search.IsSetTop.HasValue)
             {
-                query = query.Where(s => s.IsSetTop == search.IsSetTop);
+                query = query.Where(s => (s.IsSetTop ?? false) == search.IsSetTop);
             }
             if (search.IsRelease.HasValue)
             {
