@@ -2,10 +2,10 @@
   <el-row>
     <el-col :span="24">
       <el-form ref="form" :model="form" label-width="200px" v-loading="submit_loading">
-        <el-form-item label="管理员名称">
+        <el-form-item label="管理员名称" class="custom-input-small">
           <el-input v-model="form.adminName"></el-input>
         </el-form-item>
-        <el-form-item label="管理员密码">
+        <el-form-item label="管理员密码" class="custom-input-small">
           <el-input v-model="form.adminPwd" :placeholder="form.id?'为空则不修改':''"></el-input>
         </el-form-item>
         <el-form-item label="是否启用">

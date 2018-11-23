@@ -39,3 +39,6 @@ body {
 .app-left {
   order: -1; /* 让left居于左侧 */
 }
+.custom-input-small {
+  width: 60%;
+}

@@ -79,7 +79,14 @@ namespace Moxy.Services.Cms
         OperateResult SetTopArticle(ArticleSetTopInputDto input);
 
         #endregion
+        #region 通用
 
+        /// <summary>
+        /// 获取标签列表
+        /// </summary>
+        /// <returns></returns>
+        List<string> GetArticleTagList();
+        #endregion
         #region 前台接口
         /// <summary>
         /// 获取推荐文章

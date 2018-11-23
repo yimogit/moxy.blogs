@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="isMd"><textarea v-model="currentValue"></textarea></div>
-    <yimo-editor v-model="currentValue" v-else></yimo-editor>
+    <yimo-editor v-model="currentValue" :uploadHandler="uploadHandler" v-else></yimo-editor>
   </div>
 </template>
 
@@ -27,6 +27,11 @@ export default {
     },
     currentValue(val) {
       this.$emit('input', val)
+    }
+  },
+  methods: {
+    uploadHandler(type, resTxt) {
+      return resTxt
     }
   }
 }

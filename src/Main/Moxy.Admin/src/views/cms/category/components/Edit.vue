@@ -2,10 +2,10 @@
   <el-row>
     <el-col :span="24">
       <el-form ref="form" :model="form" label-width="200px" v-loading="submit_loading">
-        <el-form-item label="文章分类名称">
+        <el-form-item label="文章分类名称" class="custom-input-small">
           <el-input v-model="form.categoryName"></el-input>
         </el-form-item>
-        <el-form-item label="文章分类描述">
+        <el-form-item label="文章分类描述" class="custom-input-small">
           <el-input v-model="form.categoryDesc" type="textarea"></el-input>
         </el-form-item>
         <el-form-item>

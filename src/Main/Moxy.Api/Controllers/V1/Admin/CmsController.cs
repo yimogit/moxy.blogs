@@ -114,7 +114,33 @@ namespace Moxy.Api.Controllers.V1.Admin
             return Ok(result);
         }
         #endregion
+        #region 下拉项
 
+        /// <summary>
+        /// 分类下拉选项
+        /// </summary>
+        /// <returns></returns>
+        [RelyPermission("cms_article_create", "cms_article_edit")]
+        [HttpGet]
+        [Route("category/options")]
+        public IActionResult CategoryOptions()
+        {
+            var result = _articleService.GetCategoryList(new CategorySearch()).Items.Select(e => new SelectOptionItemModel(e.CategoryName, e.Id)).ToList();
+            return Ok(OperateResult.Succeed("ok", result));
+        }
+        /// <summary>
+        /// 标签下拉选项
+        /// </summary>
+        /// <returns></returns>
+        [RelyPermission("cms_article_create", "cms_article_edit")]
+        [HttpGet]
+        [Route("tags/options")]
+        public IActionResult ArticleTagsOptions()
+        {
+            var result = _articleService.GetArticleTagList().Select(e => new SelectOptionItemModel(e, e)).ToList();
+            return Ok(OperateResult.Succeed("ok", result));
+        }
+        #endregion
         #region 文章分类管理
         /// <summary>
         /// 文章分类列表

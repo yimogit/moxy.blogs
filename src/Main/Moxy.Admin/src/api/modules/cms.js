@@ -84,3 +84,21 @@ export function delCategory(data) {
   })
 }
 //#endregion
+
+//#region
+
+export function getCategoryOptions(params) {
+  return request({
+    url: '/v1/cms/category/options',
+    method: 'get',
+    params: params
+  })
+}
+export function getTagsOptions(params) {
+  return request({
+    url: '/v1/cms/tags/options',
+    method: 'get',
+    params: params
+  })
+}
+//#endregion

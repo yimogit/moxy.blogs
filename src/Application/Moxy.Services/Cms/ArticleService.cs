@@ -1,5 +1,6 @@
 ﻿using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Moxy.Data;
 using Moxy.Data.Domain;
 using Moxy.Services.Cms.Dtos;
@@ -122,7 +123,10 @@ namespace Moxy.Services.Cms
             {
                 query = query.Where(s => s.ArtTitle.Contains(search.Keyword) || s.ArtContent.Contains(search.Keyword));
             }
-            var result = query.ProjectTo<ArticleListDto>().ToPagedList(search);
+            var result = query
+                .OrderByDescending(s => s.IsSetTop)
+                .ThenByDescending(s => s.CreatedAt)
+                .ProjectTo<ArticleListDto>().ToPagedList(search);
             return result;
         }
 
@@ -216,6 +220,23 @@ namespace Moxy.Services.Cms
             }
             _unitOfWork.SaveChanges();
             return OperateResult.Succeed("执行成功");
+        }
+        #endregion
+        #region 通用接口
+
+        /// <summary>
+        /// 获取标签列表
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetArticleTagList()
+        {
+            var list = _unitOfWork.GetRepository<CmsArticle>().Table
+                .Where(s => s.IsRelease)
+                .Select(s => s.Tags)
+                .ToList()
+                .Join(",").Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries)
+                .Distinct().ToList();
+            return list;
         }
         #endregion
         #region 前台接口

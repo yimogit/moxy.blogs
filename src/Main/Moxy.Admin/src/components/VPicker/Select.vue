@@ -1,5 +1,5 @@
 <template>
-  <el-select v-model="currentValue" :collapse-tags="collapseTags" clearable @change="change" :multiple="multiple" :placeholder="placeholder" @focus="loadData">
+  <el-select v-model="currentValue" v-loading="isloading" :collapse-tags="collapseTags" clearable @change="change" :multiple="multiple" :placeholder="placeholder" @focus="loadData">
     <el-option v-for="item in options" :key="item.value" :label="item.text" :value="item.value">
     </el-option>
   </el-select>
@@ -36,7 +36,8 @@ export default {
   data() {
     return {
       options: [],
-      currentValue: this.multiple ? [] : null
+      currentValue: this.multiple ? [] : null,
+      isloading: true
     }
   },
   methods: {
@@ -47,7 +48,11 @@ export default {
       this.options.length === 0 &&
         this.func &&
         this.func().then(res => {
-          this.options = res.data
+          this.options = res.data.map(s => {
+            s.value = String(s.value)
+            return s
+          })
+          this.isloading = false
         })
     }
   }
