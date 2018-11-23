@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Moxy.Data.Extensions;
+using Moxy.Core;
 
 namespace Moxy.Data
 {
@@ -18,6 +19,7 @@ namespace Moxy.Data
             : base(options)
         {
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
         }
@@ -27,7 +29,7 @@ namespace Moxy.Data
             if (entries == null)
                 return base.SaveChanges();
 
-            entries.ApplyEntityAuditable("system");
+            entries.ApplyEntityAuditable(ServiceLocator.GetService<IWebContext>()?.AuthName);
 
             return base.SaveChanges();
         }

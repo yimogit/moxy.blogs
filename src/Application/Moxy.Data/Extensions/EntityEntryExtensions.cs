@@ -10,6 +10,7 @@ namespace Moxy.Data.Extensions
     {
         public static void ApplyEntityAuditable(this IEnumerable<EntityEntry> entries, string operationUser)
         {
+            operationUser = operationUser ?? string.Empty;
             foreach (var entry in entries)
             {
                 if (entry.State == EntityState.Added)
@@ -17,8 +18,7 @@ namespace Moxy.Data.Extensions
                     if (entry.Entity is ICreatable creatable)
                     {
                         creatable.CreatedAt = DateTime.Now;
-                        if (string.IsNullOrWhiteSpace(creatable.CreatedBy))
-                            creatable.CreatedBy = operationUser;
+                        creatable.CreatedBy = operationUser;
                     }
                 }
                 else if (entry.State == EntityState.Modified)
@@ -26,8 +26,7 @@ namespace Moxy.Data.Extensions
                     if (entry.Entity is IUpdatable updatable)
                     {
                         updatable.UpdatedAt = DateTime.Now;
-                        if (string.IsNullOrWhiteSpace(updatable.UpdatedBy))
-                            updatable.UpdatedBy = operationUser;
+                        updatable.UpdatedBy = operationUser;
                     }
                 }
                 else if (entry.State == EntityState.Deleted)

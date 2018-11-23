@@ -141,6 +141,8 @@ namespace Moxy.Api
             app.UseSwaggerCustom(CURRENT_SWAGGER_OPTIONS);
 
             //app.UseStaticFiles();
+            //定义器
+            ServiceLocator.Instance = app.ApplicationServices;
         }
 
         /// <summary>
