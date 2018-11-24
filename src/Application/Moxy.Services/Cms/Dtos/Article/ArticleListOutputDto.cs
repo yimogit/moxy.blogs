@@ -7,7 +7,7 @@ using System.Text;
 namespace Moxy.Services.Cms.Dtos.Article
 {
     [MapsFrom(typeof(CmsArticle), ReverseMap = true)]
-    public class ArticleTopListOutputDto
+    public class ArticleListOutputDto
     {
         public int Id { get; set; }
         /// <summary>

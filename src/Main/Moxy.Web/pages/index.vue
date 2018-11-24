@@ -21,6 +21,11 @@ export default {
     VCategory,
     VFriend
   },
+  head() {
+    return {
+      title: '首页 - ' + this.$store.state.appInfo.siteTitle
+    }
+  },
   data() {
     return {}
   }

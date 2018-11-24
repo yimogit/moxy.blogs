@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moxy.Core;
 using Moxy.Data.Domain;
 using Moxy.Services.Cms;
+using Moxy.Services.Cms.Dtos.Article;
 
 namespace Moxy.Api.Controllers.V1.Site
 {
@@ -25,29 +26,15 @@ namespace Moxy.Api.Controllers.V1.Site
             _articleService = articleService;
         }
         /// <summary>
-        /// 文章推荐列表
+        /// 文章列表
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("article/top/list")]
-        public IActionResult GetArticleTopList()
+        [Route("article/list")]
+        public IActionResult GetArticleList(ArticleTopSearch search)
         {
-            var topList = _articleService.GetArticleTopList(new Services.Cms.Dtos.Article.ArticleTopSearch()
-            {
-                FilterBySetTop = true
-            });
+            var topList = _articleService.GetArticleOutputList(search);
             return Ok(OperateResult.Succeed("ok", topList));
-        }
-        /// <summary>
-        /// 文章分类列表
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("article/category/list")]
-        public IActionResult GetCategoryList()
-        {
-            var categoryList = _articleService.GetCategorySummaryList();
-            return Ok(OperateResult.Succeed("ok", categoryList));
         }
         /// <summary>
         /// 获取文章信息
@@ -62,6 +49,17 @@ namespace Moxy.Api.Controllers.V1.Site
             if (model == null)
                 return Ok(OperateResult.Error("数据不存在"));
             return Ok(OperateResult.Succeed("ok", model));
+        }
+        /// <summary>
+        /// 文章分类列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("category/list")]
+        public IActionResult GetCategoryList()
+        {
+            var categoryList = _articleService.GetCategorySummaryList();
+            return Ok(OperateResult.Succeed("ok", categoryList));
         }
     }
 }

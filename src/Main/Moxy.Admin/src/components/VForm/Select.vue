@@ -1,5 +1,5 @@
 <template>
-  <el-select v-model="currentValue" v-loading="isloading" :collapse-tags="collapseTags" clearable @change="change" :multiple="multiple" :placeholder="placeholder" @focus="loadData(true)" ref="currentSelect">
+  <el-select v-model="currentValue" v-loading="isloading" :collapse-tags="collapseTags" :allowCreate="allowCreate" :filterable="filterable" clearable @change="change" :multiple="multiple" :placeholder="placeholder" @focus="loadData(true)" ref="currentSelect">
     <el-option v-for="item in options" :key="item.value" :label="item.text" :value="item.value">
     </el-option>
   </el-select>
@@ -13,6 +13,8 @@ export default {
     multiple: Boolean,
     collapseTags: Boolean,
     placeholder: String,
+    allowCreate: Boolean,
+    filterable: Boolean,
     api: {
       type: Function,
       required: true

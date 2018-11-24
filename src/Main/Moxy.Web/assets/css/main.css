@@ -85,8 +85,14 @@ nav {
   overflow: hidden;
 }
 nav li {
-  display: inline;
+  display: inline-block;
   line-height: 40px;
+}
+nav li:hover {
+}
+nav li a {
+  line-height: 40px;
+  display: inline-block;
   padding: 0 20px;
 }
 .newsbox {
@@ -341,6 +347,7 @@ footer {
   margin: 0 10px;
   width: 100px;
   text-align: center;
+  position: relative;
 }
 .pagelist {
   text-align: center;
@@ -676,4 +683,24 @@ a.curPage {
   .infosbox {
     width: 100%;
   }
+}
+.text-center {
+  text-align: center;
+}
+#starlist li {
+  position: relative;
+}
+#starlist li:after,
+.place a:after {
+  width: 0;
+  content: '';
+  background-color: #282828;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+}
+#starlist li.active:after,
+.place a.active:after {
+  width: 100%;
 }

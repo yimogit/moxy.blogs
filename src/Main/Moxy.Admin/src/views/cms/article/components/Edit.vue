@@ -15,7 +15,7 @@
           <el-input v-model="form.artDesc" type="textarea"></el-input>
         </el-form-item>
         <el-form-item label="文章标签">
-          <v-form-select multiple :api="$api.cms.getTagsOptions" multipleSplit="," v-model="form.tags" placeholder="请选择文章标签"></v-form-select>
+          <v-form-select multiple allow-create filterable :api="$api.cms.getTagsOptions" multipleSplit="," v-model="form.tags" placeholder="请选择文章标签"></v-form-select>
         </el-form-item>
         <el-form-item label="是否发布">
           <el-switch v-model="form.isRelease"></el-switch>

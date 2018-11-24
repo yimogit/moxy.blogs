@@ -29,7 +29,7 @@ const store = () =>
         const friendRes = await $api.common.getFriendList()
         commit('setAppInfo', {
           appInfo: appRes.data,
-          artTopList: artTopRes.data,
+          artTopList: artTopRes.data.items,
           categoryList: categoryRes.data,
           friendList: friendRes.data
         })

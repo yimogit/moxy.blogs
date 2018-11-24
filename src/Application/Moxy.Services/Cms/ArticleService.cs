@@ -246,7 +246,7 @@ namespace Moxy.Services.Cms
         /// </summary>
         /// <param name="top"></param>
         /// <returns></returns>
-        public List<ArticleTopListOutputDto> GetArticleTopList(ArticleTopSearch search)
+        public IPagedList<ArticleListOutputDto> GetArticleOutputList(ArticleTopSearch search)
         {
             var now = DateTime.Now;
             var query = _unitOfWork.GetRepository<CmsArticle>().Table.Where(s => s.IsRelease && s.ReleaseTime <= now);
@@ -254,7 +254,19 @@ namespace Moxy.Services.Cms
             {
                 query = query.Where(s => s.IsSetTop == search.FilterBySetTop);
             }
-            var result = query.ProjectTo<ArticleTopListOutputDto>().ToList();
+            if (search.CategoryId.HasValue)
+            {
+                query = query.Where(s => s.CategoryId == search.CategoryId);
+            }
+            if (!string.IsNullOrEmpty(search.CategoryName))
+            {
+                var existCategoryItem = GetCategorySummaryList().FirstOrDefault(s => s.CategoryName == search.CategoryName);
+                if (existCategoryItem != null)
+                {
+                    query = query.Where(s => s.CategoryId == existCategoryItem.Id);
+                }
+            }
+            var result = query.ProjectTo<ArticleListOutputDto>().ToPagedList(search);
             return result;
         }
 
@@ -270,7 +282,7 @@ namespace Moxy.Services.Cms
                         {
                             Id = e.Id,
                             CategoryName = e.CategoryName,
-                            TotalNum = arts.Count()
+                            TotalNum = arts.Where(s2 => s2.IsRelease).Count()
                         };
             return query.ToList();
         }
@@ -283,7 +295,7 @@ namespace Moxy.Services.Cms
         public ArticleDetailOutputDto GetDisplayArticleDetail(string entryName)
         {
             var query = from e in _unitOfWork.GetRepository<CmsArticle>().Table
-                        where e.EntryName == entryName && e.IsRelease && e.ReleaseTime <= DateTime.Now
+                        where e.EntryName == entryName && e.IsRelease && (e.ReleaseTime <= DateTime.Now || e.ReleaseTime == null)
                         select e;
             var existItem = query.ProjectTo<ArticleDetailOutputDto>().FirstOrDefault();
             if (existItem == null)

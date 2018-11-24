@@ -34,7 +34,7 @@ namespace Moxy.Api.Controllers.V1.Site
             {
 
                 new { menuName="首页",menuUrl="/"},
-                new { menuName="关于",menuUrl="/about"},
+                new { menuName="关于",menuUrl="/detail/about"},
                 new { menuName="MeTools",menuUrl="http://tools.yimo.link"},
             };
             var result = new

@@ -93,7 +93,7 @@ namespace Moxy.Services.Cms
         /// </summary>
         /// <param name="top"></param>
         /// <returns></returns>
-        List<ArticleTopListOutputDto> GetArticleTopList(ArticleTopSearch search);
+        IPagedList<ArticleListOutputDto> GetArticleOutputList(ArticleTopSearch search);
         /// <summary>
         /// 分类汇总接口
         /// </summary>

@@ -4,7 +4,7 @@
       <div class="logo"><a href="/">{{appInfo.siteName}}</a></div>
       <nav>
         <ul id="starlist">
-          <li v-for="(item,index) in appInfo.menus" :key="index">
+          <li v-for="(item,index) in appInfo.menus" :key="index" :class="{'active':fullPath===item.menuUrl}">
             <a :href="item.menuUrl" v-if="item.menuUrl&&item.menuUrl.startsWith('http')">{{item.menuName}}</a>
             <nuxt-link :to="item.menuUrl" v-else>{{item.menuName}}</nuxt-link>
           </li>
@@ -45,6 +45,9 @@ export default {
   computed: {
     appInfo() {
       return this.$store.state.appInfo
+    },
+    fullPath() {
+      return this.$route.fullPath
     }
   },
   mounted() {
